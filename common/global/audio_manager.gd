@@ -22,7 +22,7 @@ const MUSIC_1 = preload("uid://b2j225xmqrrkd")
 
 # sound load test
 var fx_path = "res://assets/sounds/fx/"
-var sounds: Dictionary[String, AudioStream] = {}  # key: name of sound, value: AudioStream
+var sounds: Dictionary = {}  # key: bus, key: name of sound, value: AudioStream
 var active_sounds: Dictionary[String, Array] = {}  # key: name of sound, value: array of stream ids
 var polyphonic_player: AudioStreamPlayer
 
@@ -166,6 +166,24 @@ func print_features(only_true := true, include_desc := true) -> void:
 	print()
 
 
+
+func _get_bus_from_path(path: String) -> String:
+	path = path.trim_suffix("/")  # ✅ correct built-in method
+	var parts := path.split("/")
+	for i in range(parts.size() - 1, -1, -1):
+		var part = parts[i].to_lower()
+		match part:
+			"music":
+				return "Music"
+			"sfx", "soundeffects", "effects":
+				return "SFX"
+			"ambience", "ambient", "environment":
+				return "Ambient"
+			"ui":
+				return "UI"
+	return "Master"
+
+
 func load_sounds() -> void:
 	# print_features()
 	
@@ -177,13 +195,17 @@ func load_sounds() -> void:
 		extensions = ["import"]
 
 	sounds.clear()
+	
+	
 	_load_sounds_recursive("res://", extensions)
 	print("Loaded %d sounds from project" % sounds.size())
 	print(sounds)
+	#for k in sounds:
+		#print("  %s -> bus:%s" % [k, sounds[k].bus])
 
 
 func _load_sounds_recursive(path:String, extensions:Array[String]) -> void:
-	print("Scanning:", path)
+	
 	var dir := DirAccess.open(path)
 	if dir == null:
 		push_warning("Failed to open directory: " + path)
@@ -191,6 +213,7 @@ func _load_sounds_recursive(path:String, extensions:Array[String]) -> void:
 
 	dir.list_dir_begin()
 	while true:
+		
 		var file_name := dir.get_next()
 		if file_name == "":
 			break
@@ -198,25 +221,45 @@ func _load_sounds_recursive(path:String, extensions:Array[String]) -> void:
 			continue
 
 		var full_path := path + file_name
-		
 
 		if dir.current_is_dir():
 			# Recurse into subfolders
 			_load_sounds_recursive(full_path + "/", extensions)
-		else:
-			var ext := file_name.get_extension().to_lower()
-			if ext in extensions:
-				var stream := ResourceLoader.load(full_path)
-				if stream:
-					# sounds[file_name] = stream
-					var base_name := file_name.get_basename().get_file()  # removes extension
-					sounds[base_name] = stream
-				else:
-					push_warning("Could not load sound: " + full_path)
+			continue
+			
+		# If not dir (file)
+		var ext := file_name.get_extension().to_lower()
+		if ext not in extensions:
+			continue
+			
+		# If import, check if sound
+		if file_name.get_extension() == "import":
+			file_name = file_name.replace('.import', '')
+			if file_name.get_extension() not in ["ogg", "wav", "mp3"]:
+				continue
+			else:
+				full_path = path + file_name
+		
+		# Load sound
+		var stream := ResourceLoader.load(full_path)
+		if not stream:
+			push_warning("Could not load sound: " + full_path)
+			continue
+		
+		# Add sound to array
+		# Determine default bus based on folder
+		# var bus_name := _get_bus_from_path(path)
+		var base_name := file_name.get_basename().get_file()  # removes extension
+		sounds[base_name] = stream
+		#sounds[base_name] = {
+			#"stream": stream,
+			#"bus": bus_name,
+		#}
+		
+		print("Found '%s' in '%s'" % [file_name, path])
+
+
 	dir.list_dir_end()
-
-
-
 
 
 
@@ -253,7 +296,7 @@ func play_sound(sound_name:String, volume:float=0.0, pitch:float=1.0, layer:bool
 							# stop_sound(sound_name)
 							playback.stop_stream(id)
 							stream_ids.erase(sound_name)
-				
+			
 			var stream_id = playback.play_stream(sounds[sound_name], offset, volume, pitch, playback_type, bus)
 			stream_ids.append(stream_id)
 			
