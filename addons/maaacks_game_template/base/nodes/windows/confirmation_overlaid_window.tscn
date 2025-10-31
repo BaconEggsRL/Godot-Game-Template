@@ -1,13 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwt4p3bufkke5"]
+[gd_scene load_steps=5 format=3 uid="uid://cwt4p3bufkke5"]
 
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="1_vfkm2"]
+[ext_resource type="Theme" uid="uid://2qh3aix7i37a" path="res://resources/themes/gravity.tres" id="2_a8vqs"]
 [ext_resource type="Script" uid="uid://bgthh72eu0du" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.gd" id="2_sw7p1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8vqs"]
+bg_color = Color(0.0619267, 0.0619267, 0.0619266, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 1
+
 [node name="ConfirmationOverlaidWindow" instance=ExtResource("1_vfkm2")]
+theme = ExtResource("2_a8vqs")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8vqs")
 script = ExtResource("2_sw7p1")
 confirm_button_text = "Confirm"
 close_button_text = "Cancel"
-title_visible = true
 
 [node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
 vertical = false
