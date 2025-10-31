@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene load_steps=23 format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
 [ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_2k5l7"]
 [ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_vsp5b"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_6xh1d"]
+[ext_resource type="Shader" uid="uid://cm08i45juumwb" path="res://common/shaders/sway.gdshader" id="6_2k5l7"]
+[ext_resource type="Texture2D" uid="uid://bejc7dlq6ehgj" path="res://common/sprites/grass_blade.png" id="7_vsp5b"]
+[ext_resource type="PackedScene" uid="uid://cem463t2vmh71" path="res://common/particles/falling_leaves.tscn" id="8_vsp5b"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -314,6 +317,11 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xh1d"]
+shader = ExtResource("6_2k5l7")
+shader_parameter/speed = 2.0
+shader_parameter/dis = 20.0
+
 [node name="MainMenu" instance=ExtResource("1_sr523")]
 script = ExtResource("2_ixa71")
 level_select_packed_scene = null
@@ -331,11 +339,35 @@ tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
+[node name="sway_shader_example" type="Node2D" parent="." index="5"]
+
+[node name="Sprite2D" type="Sprite2D" parent="sway_shader_example" index="0"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_6xh1d")
+texture = ExtResource("7_vsp5b")
+centered = false
+offset = Vector2(-10, 656)
+region_enabled = true
+region_rect = Rect2(-0.026046753, 3.2096586, 1280.026, 72.290344)
+
+[node name="Sprite2D2" type="Sprite2D" parent="sway_shader_example" index="1"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_6xh1d")
+position = Vector2(24, 12)
+texture = ExtResource("7_vsp5b")
+centered = false
+offset = Vector2(-10, 656)
+region_enabled = true
+region_rect = Rect2(-0.31306458, 3.397705, 1280.3131, 72.102295)
+
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
+
+[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
+text = "Maaack's Game Template"
 
 [node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
@@ -344,6 +376,7 @@ modulate = Color(1, 1, 1, 0)
 modulate = Color(1, 1, 1, 0)
 
 [node name="MenuButtonsBoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" index="0"]
+focus_behavior_recursive = 1
 lock = true
 
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
@@ -358,7 +391,7 @@ visible = false
 layout_mode = 2
 text = "Level Select"
 
-[node name="NewGameConfirmation" parent="." index="7" instance=ExtResource("5_6xh1d")]
+[node name="NewGameConfirmation" parent="." index="8" instance=ExtResource("5_6xh1d")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)
@@ -373,7 +406,7 @@ text = "Are you sure you want to start a new game?
 All progress in the current game will be lost."
 title = "New Game"
 
-[node name="MouseFilter" type="Control" parent="." index="8"]
+[node name="MouseFilter" type="Control" parent="." index="9"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -382,6 +415,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[node name="falling_leaves" parent="." index="10" instance=ExtResource("8_vsp5b")]
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]

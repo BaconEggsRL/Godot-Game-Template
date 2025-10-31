@@ -30,7 +30,7 @@ func _focus_first_search(control_node : Control, levels : int = 1) -> bool:
 	if control_node == null or !control_node.is_visible_in_tree():
 		return false
 	if control_node.focus_mode == FOCUS_ALL:
-		control_node.grab_focus()
+		# control_node.grab_focus()
 		if control_node is ItemList:
 			control_node.select(0)
 		return true
@@ -62,7 +62,42 @@ func _is_visible_and_should_capture() -> bool:
 func _on_visibility_changed() -> void:
 	call_deferred("update_focus")
 
+#############################################################
+
+# Customize these values
+var tween_dict = {}
+@export var hover_scale := Vector2(1.2, 1.2)
+var normal_scale := Vector2(1, 1)
+@export var duration := 0.4
+
+
 func _ready() -> void:
 	if is_inside_tree():
 		update_focus()
 		connect("visibility_changed", _on_visibility_changed)
+		for btn in self.get_children():
+			# print(btn)
+			if btn is Button:
+				var tween = create_tween()
+				tween.kill()
+				tween_dict[btn.name] = tween
+				btn.mouse_entered.connect(_on_btn_mouse_hover.bind(btn, true))
+				btn.mouse_exited.connect(_on_btn_mouse_hover.bind(btn, false))
+			
+
+func _on_btn_mouse_hover(btn:Button, hover:bool) -> void:
+	# print("hi")
+	btn.pivot_offset.x = btn.size.x / 2.0
+	btn.pivot_offset.y = btn.size.y / 2.0
+	var tween:Tween
+	if tween_dict.has(btn.name):
+		tween = tween_dict[btn.name]
+		tween.kill()
+	var target_scale = hover_scale if hover else normal_scale
+	var ease = Tween.EASE_OUT if hover else Tween.EASE_OUT
+	tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(ease)
+	tween.tween_property(btn, "scale", target_scale, duration)
+	if hover:
+		AudioManager.play_sound("btn_hover", 0.0, 1.0, true)
+		# AudioManager.play_sound("short_click.wav", 0.0, 1.0, true)
+		pass

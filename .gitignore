@@ -15,6 +15,7 @@ data_*/
 mono_crash.*.json
 
 # Export folders
+_exports/
 exports/
 Exports/
 

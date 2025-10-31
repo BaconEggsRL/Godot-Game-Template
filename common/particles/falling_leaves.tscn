@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://cem463t2vmh71"]
+
+[ext_resource type="Texture2D" uid="uid://cc7qkpl7phi3u" path="res://common/sprites/leaf.png" id="1_nqse2"]
+
+[sub_resource type="Curve" id="Curve_672y5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.198864, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8dhfv"]
+curve = SubResource("Curve_672y5")
+
+[sub_resource type="Curve" id="Curve_xkrf4"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, 165.343, 0, 1, Vector2(1, 165.843), -0.0807154, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x5bcm"]
+curve = SubResource("Curve_xkrf4")
+
+[sub_resource type="Curve" id="Curve_x5bcm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_672y5"]
+curve = SubResource("Curve_x5bcm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkrf4"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -16, 0)
+emission_shape = 3
+emission_box_extents = Vector3(640, 1, 1)
+angle_min = 0.100011
+angle_max = 1.00001
+angle_curve = SubResource("CurveTexture_x5bcm")
+initial_velocity_min = 102.8
+initial_velocity_max = 205.6
+gravity = Vector3(125, 98, 0)
+scale_curve = SubResource("CurveTexture_672y5")
+alpha_curve = SubResource("CurveTexture_8dhfv")
+
+[node name="falling_leaves" type="GPUParticles2D"]
+amount = 50
+texture = ExtResource("1_nqse2")
+lifetime = 7.0
+process_material = SubResource("ParticleProcessMaterial_xkrf4")

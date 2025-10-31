@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Game Template"
+config/name="Maaack's Game Template"
 run/main_scene="res://scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.png"
@@ -21,6 +21,7 @@ AppConfig="*res://addons/maaacks_game_template/base/nodes/autoloads/app_config/a
 SceneLoader="*res://addons/maaacks_game_template/base/nodes/autoloads/scene_loader/scene_loader.tscn"
 ProjectMusicController="*res://addons/maaacks_game_template/base/nodes/autoloads/music_controller/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn"
+AudioManager="*res://common/global/audio_manager.tscn"
 
 [display]
 
@@ -33,6 +34,7 @@ enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
 
 [gui]
 
+theme/custom="res://resources/themes/gravity.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
