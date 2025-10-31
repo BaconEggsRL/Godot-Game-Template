@@ -18,13 +18,9 @@ size_flags_vertical = 3
 packed_scene = ExtResource("2_mljqd")
 update_content = true
 close_button_text = "Back"
-title_visible = false
 
-[node name="TitleMargin" parent="ContentContainer/BoxContainer" index="0"]
-visible = false
-
-[node name="DescriptionMargin" parent="ContentContainer/BoxContainer" index="1"]
-visible = false
+[node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+text = "Options"
 
 [node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 size_flags_horizontal = 0

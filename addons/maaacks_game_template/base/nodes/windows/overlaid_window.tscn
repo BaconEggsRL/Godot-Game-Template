@@ -9,3 +9,6 @@ script = ExtResource("1_euyj1")
 pauses_game = false
 makes_mouse_visible = true
 exclusive = true
+
+[node name="TitleMargin" parent="ContentContainer/BoxContainer" index="0"]
+visible = false

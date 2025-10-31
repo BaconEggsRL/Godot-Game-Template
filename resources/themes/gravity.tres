@@ -57,6 +57,10 @@ corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sucf2"]
 bg_color = Color(0.0619267, 0.0619267, 0.0619266, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -102,6 +106,8 @@ corner_radius_top_right = 8
 corner_detail = 1
 
 [resource]
+default_font = ExtResource("1_ghyb5")
+default_font_size = 24
 Button/colors/font_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
@@ -114,10 +120,10 @@ Button/styles/normal = SubResource("StyleBoxFlat_6tkof")
 Button/styles/pressed = SubResource("StyleBoxFlat_ftays")
 Label/fonts/font = ExtResource("1_ghyb5")
 Panel/styles/panel = SubResource("StyleBoxFlat_sucf2")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_sucf2")
 TabContainer/colors/font_hovered_color = Color(0.945281, 0.945281, 0.945281, 1)
 TabContainer/colors/font_selected_color = Color(0.0195315, 0.0195315, 0.0195315, 1)
 TabContainer/colors/font_unselected_color = Color(0.945281, 0.945281, 0.945281, 1)
+TabContainer/fonts/font = ExtResource("1_ghyb5")
 TabContainer/styles/panel = SubResource("StyleBoxFlat_sucf2")
 TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_ghyb5")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_u30hj")

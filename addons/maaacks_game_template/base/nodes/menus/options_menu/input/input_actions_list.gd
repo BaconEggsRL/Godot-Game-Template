@@ -206,6 +206,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 	new_action_box.visible = true
 	new_action_box.vertical = !(vertical)
 	new_action_box.get_child(0).text = readable_action_name
+
 	for group_iter in range(action_groups):
 		var input_event : InputEvent
 		if group_iter < input_events.size():
@@ -260,6 +261,16 @@ func _build_ui_list() -> void:
 			continue
 		var readable_name : String = _get_action_readable_name(action_name)
 		_add_action_options(action_name, readable_name, input_events)
+		
+	var max_label_width:float = 0.0
+	var buffer:float = 0.0
+	for label:Label in get_tree().get_nodes_in_group("action_name_label"):
+		if label.size.x > max_label_width:
+			max_label_width = label.size.x
+	print("max_label_width = %f" % max_label_width)
+	for label:Label in get_tree().get_nodes_in_group("action_name_label"):
+		label.custom_minimum_size.x = max_label_width + buffer
+		
 
 func _assign_input_event(input_event : InputEvent, action_name : String) -> void:
 	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name

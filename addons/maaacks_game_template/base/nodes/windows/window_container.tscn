@@ -19,6 +19,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_te2s1")
+title_visible = false
 
 [node name="ContentContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true

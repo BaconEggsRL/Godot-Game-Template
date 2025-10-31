@@ -7,6 +7,7 @@
 script = ExtResource("2_sw7p1")
 confirm_button_text = "Confirm"
 close_button_text = "Cancel"
+title_visible = true
 
 [node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
 vertical = false

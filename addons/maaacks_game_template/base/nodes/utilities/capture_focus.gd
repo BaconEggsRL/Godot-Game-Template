@@ -78,15 +78,17 @@ func _ready() -> void:
 		for btn in self.get_children():
 			# print(btn)
 			if btn is Button:
+				#if btn.name == "CloseButton":
+					#return
 				var tween = create_tween()
 				tween.kill()
 				tween_dict[btn.name] = tween
 				btn.mouse_entered.connect(_on_btn_mouse_hover.bind(btn, true))
 				btn.mouse_exited.connect(_on_btn_mouse_hover.bind(btn, false))
+				btn.pressed.connect(_on_btn_pressed.bind(btn))
 			
 
 func _on_btn_mouse_hover(btn:Button, hover:bool) -> void:
-	# print("hi")
 	btn.pivot_offset.x = btn.size.x / 2.0
 	btn.pivot_offset.y = btn.size.y / 2.0
 	var tween:Tween
@@ -101,3 +103,7 @@ func _on_btn_mouse_hover(btn:Button, hover:bool) -> void:
 		AudioManager.play_sound("btn_hover", 0.0, 1.0, true)
 		# AudioManager.play_sound("short_click.wav", 0.0, 1.0, true)
 		pass
+
+
+func _on_btn_pressed(btn:Button) -> void:
+	AudioManager.play_sound("btn_press", 0.0, 1.0, true)
