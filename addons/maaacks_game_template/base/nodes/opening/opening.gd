@@ -5,6 +5,7 @@ extends Control
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var next_scene_path : String
 ## The list of images to show in the opening sequence.
+@export var bg_color: Color = "101010"
 @export var images : Array[Texture2D]
 @export_group("Animation")
 ## The time to fade-in the next image.
@@ -110,6 +111,7 @@ func _show_next_image(animated : bool = true) -> void:
 	_wait_and_fade_out(texture_rect)
 
 func _ready() -> void:
+	RenderingServer.set_default_clear_color(bg_color)
 	SceneLoader.load_scene(get_next_scene_path(), true)
 	_add_textures_to_container(images)
 	_transition_in()

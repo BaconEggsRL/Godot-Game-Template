@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://2qh3aix7i37a"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://2qh3aix7i37a"]
+
+[ext_resource type="FontFile" uid="uid://bupg8sjmeelew" path="res://common/fonts/Kenney Mini Square Mono.ttf" id="1_ghyb5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2aawa"]
 
@@ -104,11 +106,13 @@ Button/colors/font_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_pressed_color = Color(0.125911, 0.125911, 0.125911, 1)
+Button/fonts/font = ExtResource("1_ghyb5")
 Button/styles/disabled = null
 Button/styles/focus = SubResource("StyleBoxEmpty_2aawa")
 Button/styles/hover = SubResource("StyleBoxFlat_w50h3")
 Button/styles/normal = SubResource("StyleBoxFlat_6tkof")
 Button/styles/pressed = SubResource("StyleBoxFlat_ftays")
+Label/fonts/font = ExtResource("1_ghyb5")
 Panel/styles/panel = SubResource("StyleBoxFlat_sucf2")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_sucf2")
 TabContainer/colors/font_hovered_color = Color(0.945281, 0.945281, 0.945281, 1)
