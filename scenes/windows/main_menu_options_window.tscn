@@ -26,9 +26,6 @@ visible = false
 [node name="DescriptionMargin" parent="ContentContainer/BoxContainer" index="1"]
 visible = false
 
-[node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
-focus_behavior_recursive = 1
-
 [node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 size_flags_horizontal = 0
 text = "Back"
