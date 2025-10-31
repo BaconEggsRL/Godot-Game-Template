@@ -32,6 +32,7 @@ search_depth = 5
 [node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_behavior_recursive = 1
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer"]
