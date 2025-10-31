@@ -50,8 +50,14 @@ func _on_key_assignment_window_confirmed() -> void:
 func _open_key_assignment_window(action_name : String, readable_input_name : String = assignment_placeholder_text) -> void:
 	$KeyAssignmentWindow.title = tr("Assign Key for {action}").format({action = action_name})
 	$KeyAssignmentWindow.text = readable_input_name
+	
+	# assign for populating labels
+	$KeyAssignmentWindow.action_name = action_name
+	$KeyAssignmentWindow.readable_input_name = readable_input_name
+	
 	$KeyAssignmentWindow.confirm_button.disabled = true
 	$KeyAssignmentWindow.show()
+
 
 func _on_input_actions_tree_add_button_clicked(action_name) -> void:
 	_open_key_assignment_window(action_name)
@@ -82,6 +88,8 @@ func _on_input_actions_list_minimum_reached(action_name) -> void:
 	_popup_minimum_reached.call_deferred(action_name)
 
 func _on_input_actions_list_button_clicked(action_name, readable_input_name) -> void:
+	# print("action_name = %s" % action_name)
+	# print("readable_input_name = %s" % readable_input_name)
 	_open_key_assignment_window(action_name, readable_input_name)
 
 func _on_reset_confirmation_confirmed() -> void:

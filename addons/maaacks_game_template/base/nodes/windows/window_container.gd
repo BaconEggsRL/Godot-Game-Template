@@ -45,6 +45,16 @@ signal opened
 		if update_content and is_inside_tree():
 			title_margin.visible = title_visible
 
+
+@export_subgroup("Style")
+@export var stylebox_override : StyleBox:
+	set(value):
+		stylebox_override = value
+		if update_content and is_inside_tree():
+			self.add_theme_stylebox_override("panel", stylebox_override)
+
+
+
 func _ready() -> void:
 	title = title
 	title_font_size = title_font_size

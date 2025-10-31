@@ -78,8 +78,8 @@ func _ready() -> void:
 		for btn in self.get_children():
 			# print(btn)
 			if btn is Button:
-				#if btn.name == "CloseButton":
-					#return
+				#if btn.is_in_group("no_tween"):
+					#continue
 				var tween = create_tween()
 				tween.kill()
 				tween_dict[btn.name] = tween

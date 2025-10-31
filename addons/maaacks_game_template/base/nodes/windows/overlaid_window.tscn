@@ -12,3 +12,6 @@ exclusive = true
 
 [node name="TitleMargin" parent="ContentContainer/BoxContainer" index="0"]
 visible = false
+
+[node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
+size_flags_horizontal = 4

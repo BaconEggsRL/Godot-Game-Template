@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://2qh3aix7i37a"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://2qh3aix7i37a"]
 
 [ext_resource type="FontFile" uid="uid://bupg8sjmeelew" path="res://common/fonts/Kenney Mini Square Mono.ttf" id="1_ghyb5"]
 
@@ -105,6 +105,10 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_detail = 1
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghyb5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ij4qd"]
+
 [resource]
 default_font = ExtResource("1_ghyb5")
 default_font_size = 24
@@ -129,3 +133,5 @@ TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_ghyb5")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_u30hj")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_h5y6c")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_g0qsc")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_ghyb5")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_ij4qd")

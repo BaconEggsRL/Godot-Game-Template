@@ -86,7 +86,15 @@ func _clear_list() -> void:
 			continue
 		child.queue_free()
 
+#func _replace_action(action_name : String, readable_input_name : String = "") -> void:
+	#var readable_action_name = tr(_get_action_readable_name(action_name))
+	#button_clicked.emit(readable_action_name, readable_input_name)
 func _replace_action(action_name : String, readable_input_name : String = "") -> void:
+	if readable_input_name == "":
+		# fetch the currently assigned input for the editing group
+		var button = _get_button_by_action(action_name, editing_action_group)
+		if button and button in button_readable_input_map:
+			readable_input_name = button_readable_input_map[button]
 	var readable_action_name = tr(_get_action_readable_name(action_name))
 	button_clicked.emit(readable_action_name, readable_input_name)
 

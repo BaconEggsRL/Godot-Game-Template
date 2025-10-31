@@ -7,6 +7,10 @@ const FOCUS_HERE_TEXT : String = "Focus here to assign inputs."
 const CONFIRM_INPUT_TEXT : String = "Press again to confirm..."
 const NO_INPUT_TEXT : String = "None"
 
+# from input_actions_list.gd
+var action_name : String = ""
+var readable_input_name : String = NO_INPUT_TEXT
+
 enum InputConfirmation {
 	SINGLE,
 	DOUBLE,
@@ -105,5 +109,5 @@ func _on_input_text_edit_gui_input(event) -> void:
 func _on_visibility_changed() -> void:
 	super._on_visibility_changed()
 	if visible:
-		%InputLabel.text = NO_INPUT_TEXT
-		%InputTextEdit.grab_focus()
+		%InputLabel.text = "Assign key: %s" % action_name  # title
+		%InputTextEdit.grab_focus.call_deferred()
