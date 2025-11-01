@@ -276,7 +276,7 @@ func _build_ui_list() -> void:
 		for label:Label in get_tree().get_nodes_in_group("action_name_label"):
 			if label.size.x > max_label_width:
 				max_label_width = label.size.x
-		print("new max_label_width = %f" % max_label_width)
+		# print("new max_label_width = %f" % max_label_width)
 		AppSettings.max_label_width = max_label_width
 	
 	for label:Label in get_tree().get_nodes_in_group("action_name_label"):

@@ -120,7 +120,7 @@ func update_focus_arrows(new_focus:Control) -> void:
 	new_focus.material = MENU_BTN_SHADER_MAT
 	last_focused = new_focus
 	
-	print(new_focus)
+	# print(new_focus)
 	
 	if not first_focus_call and last_position != new_position:
 		AudioManager.play_sound("btn_hover", 0.0, 1.0, true)

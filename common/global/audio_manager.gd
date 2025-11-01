@@ -198,10 +198,8 @@ func load_sounds() -> void:
 	
 	
 	_load_sounds_recursive("res://", extensions)
-	print("Loaded %d sounds from project" % sounds.size())
-	print(sounds)
-	#for k in sounds:
-		#print("  %s -> bus:%s" % [k, sounds[k].bus])
+	# print("Loaded %d sounds from project" % sounds.size())
+	# print(sounds)
 
 
 func _load_sounds_recursive(path:String, extensions:Array[String]) -> void:
@@ -247,16 +245,10 @@ func _load_sounds_recursive(path:String, extensions:Array[String]) -> void:
 			continue
 		
 		# Add sound to array
-		# Determine default bus based on folder
-		# var bus_name := _get_bus_from_path(path)
 		var base_name := file_name.get_basename().get_file()  # removes extension
 		sounds[base_name] = stream
-		#sounds[base_name] = {
-			#"stream": stream,
-			#"bus": bus_name,
-		#}
 		
-		print("Found '%s' in '%s'" % [file_name, path])
+		# print("Found '%s' in '%s'" % [file_name, path])
 
 
 	dir.list_dir_end()

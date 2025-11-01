@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://bupg8sjmeelew" path="res://common/fonts/Kenney Mini Square Mono.ttf" id="1_ghyb5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2aawa"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ij4qd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w50h3"]
 content_margin_left = 16.0
@@ -118,11 +118,18 @@ Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
 Button/colors/font_pressed_color = Color(0.125911, 0.125911, 0.125911, 1)
 Button/fonts/font = ExtResource("1_ghyb5")
 Button/styles/disabled = null
-Button/styles/focus = SubResource("StyleBoxEmpty_2aawa")
+Button/styles/focus = SubResource("StyleBoxEmpty_ij4qd")
 Button/styles/hover = SubResource("StyleBoxFlat_w50h3")
 Button/styles/normal = SubResource("StyleBoxFlat_6tkof")
 Button/styles/pressed = SubResource("StyleBoxFlat_ftays")
 Label/fonts/font = ExtResource("1_ghyb5")
+OptionButton/colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+OptionButton/colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+OptionButton/colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+OptionButton/colors/font_hover_pressed_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+OptionButton/colors/font_pressed_color = Color(0.9490196, 0.9490196, 0.9490196, 1)
+OptionButton/styles/hover_pressed = SubResource("StyleBoxFlat_6tkof")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_6tkof")
 Panel/styles/panel = SubResource("StyleBoxFlat_sucf2")
 TabContainer/colors/font_hovered_color = Color(0.945281, 0.945281, 0.945281, 1)
 TabContainer/colors/font_selected_color = Color(0.0195315, 0.0195315, 0.0195315, 1)
