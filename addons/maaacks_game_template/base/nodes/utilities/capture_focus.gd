@@ -54,14 +54,9 @@ func update_focus() -> void:
 	if lock : return
 	if _is_visible_and_should_capture():
 		focus_first()
-		
-	#var test = get_viewport().gui_get_focus_owner()
-	#print("test", test)
-	#if not test is Button:
-		#if last_focused:
-			#if not last_focused.has_focus():
-				#poopy_butt = true
-				#last_focused.grab_focus()
+	# regian focus after return from menus
+	if focus_arrows:
+		last_focused.grab_focus()
 
 
 func _should_capture_focus() -> bool:
@@ -87,13 +82,18 @@ var normal_scale := Vector2(1, 1)
 const MENU_BTN_SHADER_MAT = preload("uid://fq2s47chxdpw")
 var last_focused:Control
 
-#var check_time = 1.0
-#var _timer = 0.0
-#func _process(delta: float) -> void:
-	#_timer += delta
-	#if _timer >= check_time:
-		#print(get_viewport().gui_get_focus_owner())
-		#_timer = 0.0
+
+
+var check_time = 1.0
+var _timer = 0.0
+func _process(delta: float) -> void:
+	if not focus_arrows:
+		return
+	_timer += delta
+	if _timer >= check_time:
+		print("current_focused = ", get_viewport().gui_get_focus_owner())
+		print("last_focused = ", last_focused)
+		_timer = 0.0
 	
 	
 # after grabbing focus
