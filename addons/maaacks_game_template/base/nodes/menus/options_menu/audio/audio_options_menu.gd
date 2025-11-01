@@ -9,6 +9,9 @@ extends Control
 
 func _on_bus_changed(bus_value : float, bus_iter : int) -> void:
 	AppSettings.set_bus_volume(bus_iter, bus_value)
+	var bus_name := AudioServer.get_bus_name(bus_iter)
+	if bus_name == "SFX":
+		AudioManager.play_sound("btn_press", 0.0, 1.0, true)
 
 func _add_audio_control(bus_name : String, bus_value : float, bus_iter : int) -> void:
 	if audio_control_scene == null or bus_name in hide_busses or bus_name.begins_with(AppSettings.SYSTEM_BUS_NAME_PREFIX):

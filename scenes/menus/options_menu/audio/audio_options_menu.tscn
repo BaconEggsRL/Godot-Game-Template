@@ -6,4 +6,5 @@
 [node name="Audio" instance=ExtResource("1_33wdu")]
 
 [node name="AudioInputOptionControl" parent="VBoxContainer" index="2" instance=ExtResource("2_vnecy")]
+visible = false
 layout_mode = 2

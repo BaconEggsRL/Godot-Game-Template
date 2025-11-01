@@ -11,3 +11,7 @@ func _unhandled_input(event : InputEvent) -> void:
 			current_tab = get_tab_count()-1
 		else:
 			current_tab = current_tab-1
+
+
+func _on_tab_changed(_tab: int) -> void:
+	AudioManager.play_sound("tab_press", -6.0, 1.0, true)
