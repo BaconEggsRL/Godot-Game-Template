@@ -270,14 +270,17 @@ func _build_ui_list() -> void:
 		var readable_name : String = _get_action_readable_name(action_name)
 		_add_action_options(action_name, readable_name, input_events)
 		
-	var max_label_width:float = 0.0
-	var buffer:float = 0.0
+	var max_label_width:float = AppSettings.max_label_width
+	
+	if max_label_width == -1:
+		for label:Label in get_tree().get_nodes_in_group("action_name_label"):
+			if label.size.x > max_label_width:
+				max_label_width = label.size.x
+		print("new max_label_width = %f" % max_label_width)
+		AppSettings.max_label_width = max_label_width
+	
 	for label:Label in get_tree().get_nodes_in_group("action_name_label"):
-		if label.size.x > max_label_width:
-			max_label_width = label.size.x
-	print("max_label_width = %f" % max_label_width)
-	for label:Label in get_tree().get_nodes_in_group("action_name_label"):
-		label.custom_minimum_size.x = max_label_width + buffer
+		label.custom_minimum_size.x = max_label_width
 		
 
 func _assign_input_event(input_event : InputEvent, action_name : String) -> void:

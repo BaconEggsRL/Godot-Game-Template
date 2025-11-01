@@ -19,6 +19,8 @@ const SYSTEM_BUS_NAME_PREFIX = "_"
 # Input
 static var default_action_events : Dictionary
 static var initial_bus_volumes : Array
+static var last_options_tab : int = 0
+static var max_label_width : float = -1
 
 static func get_config_input_events(action_name : String, default = null) -> Array:
 	return PlayerConfig.get_config(INPUT_SECTION, action_name, default)
