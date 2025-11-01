@@ -84,17 +84,17 @@ var last_focused:Control
 
 
 
-var check_time = 1.0
-var _timer = 0.0
-func _process(delta: float) -> void:
-	if not focus_arrows:
-		return
-	_timer += delta
-	if _timer >= check_time:
-		print("current_focused = ", get_viewport().gui_get_focus_owner())
-		print("last_focused = ", last_focused)
-		_timer = 0.0
-	
+#var check_time = 1.0
+#var _timer = 0.0
+#func _process(delta: float) -> void:
+	#if not focus_arrows:
+		#return
+	#_timer += delta
+	#if _timer >= check_time:
+		#print("current_focused = ", get_viewport().gui_get_focus_owner())
+		#print("last_focused = ", last_focused)
+		#_timer = 0.0
+	#
 	
 # after grabbing focus
 func update_focus_arrows(new_focus:Control) -> void:
@@ -171,5 +171,5 @@ func _on_btn_mouse_hover(btn:Button, hover:bool) -> void:
 
 
 func _on_btn_pressed(btn:Button) -> void:
-	# AudioManager.play_sound("btn_press", 0.0, 1.0, true)
+	AudioManager.play_sound("btn_press", 0.0, 1.0, true)
 	pass
