@@ -114,7 +114,7 @@ func update_focus_arrows(new_focus:Control) -> void:
 			last_focused.material = null
 	
 	var last_position = focus_arrows.global_position.y
-	var new_position = new_focus.global_position.y + 12
+	var new_position = new_focus.global_position.y # + 12
 	
 	focus_arrows.global_position.y = new_position
 	new_focus.material = MENU_BTN_SHADER_MAT
