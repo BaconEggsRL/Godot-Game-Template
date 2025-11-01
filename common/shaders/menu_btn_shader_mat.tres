@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://fq2s47chxdpw"]
+
+[ext_resource type="Shader" uid="uid://cguowh7gu3qik" path="res://common/shaders/text_wave.gdshader" id="1_e1ucs"]
+
+[resource]
+shader = ExtResource("1_e1ucs")
+shader_parameter/height = 3.0
+shader_parameter/frequency = 20.0
+shader_parameter/speed = 2.0

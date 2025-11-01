@@ -1,4 +1,9 @@
 extends Control
+
+@export var focus_arrows : Control
+@export var first_focus : Control
+var first_focus_call:bool = true
+
 ## Node that captures UI focus when switching menus.
 ##
 ## This script assists with capturing UI focus when
@@ -49,6 +54,15 @@ func update_focus() -> void:
 	if lock : return
 	if _is_visible_and_should_capture():
 		focus_first()
+		
+	#var test = get_viewport().gui_get_focus_owner()
+	#print("test", test)
+	#if not test is Button:
+		#if last_focused:
+			#if not last_focused.has_focus():
+				#poopy_butt = true
+				#last_focused.grab_focus()
+
 
 func _should_capture_focus() -> bool:
 	return enabled or \
@@ -70,22 +84,72 @@ var tween_dict = {}
 var normal_scale := Vector2(1, 1)
 @export var duration := 0.4
 
+const MENU_BTN_SHADER_MAT = preload("uid://fq2s47chxdpw")
+var last_focused:Control
+
+#var check_time = 1.0
+#var _timer = 0.0
+#func _process(delta: float) -> void:
+	#_timer += delta
+	#if _timer >= check_time:
+		#print(get_viewport().gui_get_focus_owner())
+		#_timer = 0.0
+	
+	
+# after grabbing focus
+func update_focus_arrows(new_focus:Control) -> void:
+	if new_focus == null:
+		return
+	if not focus_arrows:
+		return
+	if not new_focus is Button:
+		return
+	if not new_focus.get_parent() == self:
+		return
+	
+	if last_focused:
+		if last_focused == new_focus:
+			return
+		else:
+			last_focused.material = null
+	
+	var last_position = focus_arrows.global_position.y
+	var new_position = new_focus.global_position.y + 12
+	
+	focus_arrows.global_position.y = new_position
+	new_focus.material = MENU_BTN_SHADER_MAT
+	last_focused = new_focus
+	
+	print(new_focus)
+	
+	if not first_focus_call and last_position != new_position:
+		AudioManager.play_sound("btn_hover", 0.0, 1.0, true)
+	else:
+		first_focus_call = false
+
+
+func _on_focus_changed(control:Control) -> void:
+	update_focus_arrows(control)
+
 
 func _ready() -> void:
 	if is_inside_tree():
+		if focus_arrows:
+			get_viewport().gui_focus_changed.connect(_on_focus_changed)
 		update_focus()
 		connect("visibility_changed", _on_visibility_changed)
+		
 		for btn in self.get_children():
-			# print(btn)
 			if btn is Button:
-				#if btn.is_in_group("no_tween"):
-					#continue
 				var tween = create_tween()
 				tween.kill()
 				tween_dict[btn.name] = tween
 				btn.mouse_entered.connect(_on_btn_mouse_hover.bind(btn, true))
 				btn.mouse_exited.connect(_on_btn_mouse_hover.bind(btn, false))
 				btn.pressed.connect(_on_btn_pressed.bind(btn))
+		
+		if first_focus:
+			first_focus.grab_focus.call_deferred()
 			
 
 func _on_btn_mouse_hover(btn:Button, hover:bool) -> void:
@@ -100,10 +164,12 @@ func _on_btn_mouse_hover(btn:Button, hover:bool) -> void:
 	tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(ease)
 	tween.tween_property(btn, "scale", target_scale, duration)
 	if hover:
-		AudioManager.play_sound("btn_hover", 0.0, 1.0, true)
+		if not focus_arrows:
+			AudioManager.play_sound("btn_hover", 0.0, 1.0, true)
 		# AudioManager.play_sound("short_click.wav", 0.0, 1.0, true)
-		pass
+		btn.grab_focus()
 
 
 func _on_btn_pressed(btn:Button) -> void:
-	AudioManager.play_sound("btn_press", 0.0, 1.0, true)
+	# AudioManager.play_sound("btn_press", 0.0, 1.0, true)
+	pass

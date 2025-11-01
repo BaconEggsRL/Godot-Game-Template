@@ -2,6 +2,7 @@ extends TabContainer
 ## Applies UI page up and page down inputs to tab switching.
 
 
+
 func _ready() -> void:
 	# call_deferred("_restore_last_tab")
 	# await get_tree().process_frame
@@ -16,9 +17,9 @@ func _restore_last_tab() -> void:
 func _unhandled_input(event : InputEvent) -> void:
 	if not is_visible_in_tree():
 		return
-	if event.is_action_pressed("ui_page_down"):
+	if event.is_action_pressed("next_tab"):
 		current_tab = (current_tab+1) % get_tab_count()
-	elif event.is_action_pressed("ui_page_up"):
+	elif event.is_action_pressed("prev_tab"):
 		if current_tab == 0:
 			current_tab = get_tab_count()-1
 		else:
