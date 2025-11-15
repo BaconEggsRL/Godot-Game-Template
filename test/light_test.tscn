@@ -1,10 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://d0oscrsyixgyx"]
+[gd_scene load_steps=24 format=3 uid="uid://d0oscrsyixgyx"]
 
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="1_sq04a"]
 [ext_resource type="Texture2D" uid="uid://nbgc8lmeunmp" path="res://test/point_light.webp" id="2_27n6q"]
 [ext_resource type="Script" uid="uid://cfxr7yy3t5fty" path="res://test/light_beam.gd" id="3_qi5yx"]
 [ext_resource type="Script" uid="uid://boy6qto1h36qv" path="res://test/spotlight.gd" id="4_qi5yx"]
-[ext_resource type="Script" uid="uid://cyh7cqcugg3wn" path="res://test/static_reflector.gd" id="5_4okyl"]
+[ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="5_2lx3s"]
 [ext_resource type="Texture2D" uid="uid://cqf8ignmkdq2l" path="res://test/ray_light.tres" id="5_tco37"]
 [ext_resource type="Texture2D" uid="uid://bhc7f72wr7xky" path="res://test/spotlight_head.png" id="6_sq04a"]
 [ext_resource type="Texture2D" uid="uid://chh7xh0x3gqm1" path="res://test/spotlight_body.png" id="7_qi5yx"]
@@ -45,17 +45,6 @@ polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fs73y"]
 radius = 16.0
 height = 64.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi5yx"]
-size = Vector2(224, 32)
-
-[sub_resource type="Gradient" id="Gradient_fs73y"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0.57486576, 0.57596195, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_tco37"]
-gradient = SubResource("Gradient_fs73y")
-height = 32
-fill_to = Vector2(0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4okyl"]
 size = Vector2(194, 141)
@@ -235,26 +224,13 @@ shadow_enabled = true
 texture = ExtResource("5_tco37")
 offset = Vector2(0, 123.87)
 
-[node name="static_reflector" type="Node2D" parent="."]
-position = Vector2(1106, 13)
-script = ExtResource("5_4okyl")
+[node name="static_reflector2" parent="." instance=ExtResource("5_2lx3s")]
+position = Vector2(914, 16)
+rotation = 0.028203994
 
-[node name="StaticBody2D" type="StaticBody2D" parent="static_reflector" groups=["reflector"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="static_reflector/StaticBody2D"]
-shape = SubResource("RectangleShape2D_qi5yx")
-
-[node name="Sprite2D" type="Sprite2D" parent="static_reflector"]
-scale = Vector2(3.5, 1)
-texture = SubResource("GradientTexture2D_tco37")
-
-[node name="reflected_light" type="PointLight2D" parent="static_reflector"]
-visible = false
-position = Vector2(1, -17)
-energy = 3.0
-shadow_enabled = true
-texture = ExtResource("5_tco37")
-offset = Vector2(0, -90)
+[node name="static_reflector" parent="." instance=ExtResource("5_2lx3s")]
+position = Vector2(355, 19)
+rotation = 0.025770962
 
 [node name="rotating_reflector" type="Node2D" parent="."]
 position = Vector2(640, 524)

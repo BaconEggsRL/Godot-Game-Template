@@ -18,3 +18,4 @@ position = Vector2(1, 1)
 target_position = Vector2(0, -1500)
 
 [node name="Line2D" type="Line2D" parent="."]
+texture_mode = 2

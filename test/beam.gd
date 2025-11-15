@@ -10,6 +10,8 @@ extends Node2D
 
 @export var offset := 0.1  # small step to avoid self-hit
 
+@onready var parent:Node2D = self.get_parent()
+
 
 func _ready():
 	update_ray_direction()
@@ -45,7 +47,9 @@ func cast_beam():
 	# reflect if collider is a mirror/reflector
 	if collider and collider.is_in_group("reflector"):
 		var reflected_dir = dir.bounce(hit_normal).normalized()
-		reflected_dir = reflected_dir.rotated(dir.angle()/2.0)
+		# reflected_dir = reflected_dir.rotated(dir.angle()/2.0)
+		reflected_dir = reflected_dir.rotated(-self.global_rotation)
+
 		var next_start = hit_pos + reflected_dir * offset
 		# draw reflected line segment (single bounce)
 		line.add_point(to_local(next_start + reflected_dir * max_distance))

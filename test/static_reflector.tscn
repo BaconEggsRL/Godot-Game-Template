@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpra7angkhxrq"]
+
+[ext_resource type="Script" uid="uid://cyh7cqcugg3wn" path="res://test/static_reflector.gd" id="1_67yjh"]
+[ext_resource type="Texture2D" uid="uid://cqf8ignmkdq2l" path="res://test/ray_light.tres" id="2_8guyd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qi5yx"]
+size = Vector2(224, 32)
+
+[sub_resource type="Gradient" id="Gradient_fs73y"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.57486576, 0.57596195, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tco37"]
+gradient = SubResource("Gradient_fs73y")
+height = 32
+fill_to = Vector2(0, 1)
+
+[node name="static_reflector" type="StaticBody2D" groups=["reflector"]]
+script = ExtResource("1_67yjh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qi5yx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.5, 1)
+texture = SubResource("GradientTexture2D_tco37")
+
+[node name="reflected_light" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1, -17)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("2_8guyd")
+offset = Vector2(0, -90)
