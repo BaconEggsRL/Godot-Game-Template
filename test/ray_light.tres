@@ -7,4 +7,4 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 [resource]
 gradient = SubResource("Gradient_tco37")
 width = 256
-height = 256
+height = 1500

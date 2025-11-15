@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
 [global_group]
 
 player=""
+reflector=""
 
 [gui]
 

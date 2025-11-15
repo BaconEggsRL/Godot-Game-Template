@@ -158,6 +158,7 @@ shape = SubResource("RectangleShape2D_tco37")
 position = Vector2(138, 452)
 
 [node name="chain_light" type="Node2D" parent="."]
+visible = false
 
 [node name="base" type="StaticBody2D" parent="chain_light"]
 position = Vector2(609, 3)
@@ -235,11 +236,11 @@ shadow_enabled = true
 texture = ExtResource("5_tco37")
 offset = Vector2(0, 123.87)
 
-[node name="static_reflector" type="Node2D" parent="."]
+[node name="static_reflector" type="Node2D" parent="." groups=["reflector"]]
 position = Vector2(1106, 13)
 script = ExtResource("5_4okyl")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="static_reflector" groups=["reflector"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="static_reflector"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="static_reflector/StaticBody2D"]
 shape = SubResource("RectangleShape2D_qi5yx")
@@ -249,7 +250,6 @@ scale = Vector2(3.5, 1)
 texture = SubResource("GradientTexture2D_tco37")
 
 [node name="reflected_light" type="PointLight2D" parent="static_reflector"]
-visible = false
 position = Vector2(1, -17)
 energy = 3.0
 shadow_enabled = true
@@ -257,7 +257,7 @@ texture = ExtResource("5_tco37")
 offset = Vector2(0, -90)
 
 [node name="rotating_reflector" type="Node2D" parent="."]
-position = Vector2(640, 524)
+position = Vector2(630, 530)
 script = ExtResource("4_qi5yx")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="rotating_reflector"]
@@ -270,7 +270,11 @@ shape = SubResource("RectangleShape2D_4okyl")
 texture = ExtResource("6_sq04a")
 
 [node name="beam" parent="rotating_reflector/head" instance=ExtResource("8_2lx3s")]
-position = Vector2(-3, -26)
+max_distance = null
+max_bounces = null
+direction = null
+recursion_depth = null
+max_depth = null
 
 [node name="body" type="Sprite2D" parent="rotating_reflector"]
 texture = ExtResource("7_qi5yx")

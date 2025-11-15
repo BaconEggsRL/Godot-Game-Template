@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://omj4w5foosv6"]
+
+[ext_resource type="Texture2D" uid="uid://cqf8ignmkdq2l" path="res://test/ray_light.tres" id="1_b05as"]
+[ext_resource type="Script" uid="uid://ctc4p37t682c4" path="res://test/beam.gd" id="1_urw4b"]
+
+[node name="beam" type="Node2D"]
+script = ExtResource("1_urw4b")
+
+[node name="light" type="PointLight2D" parent="."]
+position = Vector2(1, 1)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("1_b05as")
+offset = Vector2(0, -750)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(1, 1)
+target_position = Vector2(0, -1500)
+
+[node name="Line2D" type="Line2D" parent="."]
