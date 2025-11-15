@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0oscrsyixgyx"]
+[gd_scene load_steps=24 format=3 uid="uid://d0oscrsyixgyx"]
 
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="1_sq04a"]
 [ext_resource type="Texture2D" uid="uid://nbgc8lmeunmp" path="res://test/point_light.webp" id="2_27n6q"]
+[ext_resource type="Script" uid="uid://cfxr7yy3t5fty" path="res://test/light_beam.gd" id="3_qi5yx"]
 [ext_resource type="Script" uid="uid://boy6qto1h36qv" path="res://test/spotlight.gd" id="4_qi5yx"]
 [ext_resource type="Texture2D" uid="uid://cqf8ignmkdq2l" path="res://test/ray_light.tres" id="5_tco37"]
 [ext_resource type="Texture2D" uid="uid://bhc7f72wr7xky" path="res://test/spotlight_head.png" id="6_sq04a"]
@@ -151,98 +152,114 @@ shape = SubResource("RectangleShape2D_tco37")
 [node name="player" parent="." instance=ExtResource("1_sq04a")]
 position = Vector2(138, 452)
 
-[node name="light" type="Node2D" parent="."]
+[node name="chain_light" type="Node2D" parent="."]
+visible = false
 
-[node name="base" type="StaticBody2D" parent="light"]
+[node name="base" type="StaticBody2D" parent="chain_light"]
 position = Vector2(609, 3)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="light/base"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chain_light/base"]
 position = Vector2(30.5, 25.5)
 shape = SubResource("RectangleShape2D_sq04a")
 
-[node name="Sprite2D2" type="Sprite2D" parent="light/base"]
+[node name="Sprite2D2" type="Sprite2D" parent="chain_light/base"]
 position = Vector2(31.25, 24.499992)
 scale = Vector2(1.0234374, 1.0156252)
 texture = SubResource("GradientTexture2D_fs73y")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="light/base"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="chain_light/base"]
 position = Vector2(31.25, 24.499992)
 scale = Vector2(1.0234374, 1.0156252)
 occluder = SubResource("OccluderPolygon2D_qi5yx")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="light"]
+[node name="PinJoint2D" type="PinJoint2D" parent="chain_light"]
 position = Vector2(641, 60)
 node_a = NodePath("../base")
 node_b = NodePath("../chain1")
 
-[node name="chain1" type="RigidBody2D" parent="light"]
+[node name="chain1" type="RigidBody2D" parent="chain_light"]
 position = Vector2(641, 92)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="light/chain1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chain_light/chain1"]
 shape = SubResource("CapsuleShape2D_fs73y")
 
-[node name="PinJoint2D2" type="PinJoint2D" parent="light"]
+[node name="PinJoint2D2" type="PinJoint2D" parent="chain_light"]
 position = Vector2(641, 124)
 node_a = NodePath("../chain1")
 node_b = NodePath("../chain2")
 
-[node name="chain2" type="RigidBody2D" parent="light"]
+[node name="chain2" type="RigidBody2D" parent="chain_light"]
 position = Vector2(641, 156)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="light/chain2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chain_light/chain2"]
 shape = SubResource("CapsuleShape2D_fs73y")
 
-[node name="PinJoint2D3" type="PinJoint2D" parent="light"]
+[node name="PinJoint2D3" type="PinJoint2D" parent="chain_light"]
 position = Vector2(640, 189)
 node_a = NodePath("../chain2")
 node_b = NodePath("../chain3")
 
-[node name="chain3" type="RigidBody2D" parent="light"]
+[node name="chain3" type="RigidBody2D" parent="chain_light"]
 position = Vector2(641, 221)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="light/chain3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="chain_light/chain3"]
 shape = SubResource("CapsuleShape2D_fs73y")
 
-[node name="PointLight2D" type="PointLight2D" parent="light/chain3"]
+[node name="PointLight2D" type="PointLight2D" parent="chain_light/chain3"]
 visible = false
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("2_27n6q")
 texture_scale = 3.52
 
-[node name="reflector" type="Node2D" parent="."]
+[node name="light_beam" type="Node2D" parent="."]
+position = Vector2(640, 0)
+script = ExtResource("3_qi5yx")
+
+[node name="RayCast2D" type="RayCast2D" parent="light_beam"]
+target_position = Vector2(0, 660)
+
+[node name="PointLight2D" type="PointLight2D" parent="light_beam"]
+position = Vector2(0, 7.8749046)
+scale = Vector2(1, 2.9067578)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("5_tco37")
+offset = Vector2(0, 123.87)
+
+[node name="static_reflector" type="Node2D" parent="."]
 position = Vector2(1106, 13)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="reflector"]
+[node name="StaticBody2D" type="StaticBody2D" parent="static_reflector"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="reflector/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="static_reflector/StaticBody2D"]
 shape = SubResource("RectangleShape2D_qi5yx")
 
-[node name="Sprite2D" type="Sprite2D" parent="reflector"]
+[node name="Sprite2D" type="Sprite2D" parent="static_reflector"]
 scale = Vector2(3.5, 1)
 texture = SubResource("GradientTexture2D_tco37")
 
-[node name="reflected_light" type="PointLight2D" parent="reflector"]
+[node name="reflected_light" type="PointLight2D" parent="static_reflector"]
 position = Vector2(1, -17)
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("5_tco37")
 offset = Vector2(0, 161.66)
 
-[node name="spotlight" type="Node2D" parent="."]
+[node name="rotating_reflector" type="Node2D" parent="."]
 position = Vector2(630, 530)
 script = ExtResource("4_qi5yx")
 
-[node name="head" type="Sprite2D" parent="spotlight"]
+[node name="head" type="Sprite2D" parent="rotating_reflector"]
 texture = ExtResource("6_sq04a")
 
-[node name="body" type="Sprite2D" parent="spotlight"]
+[node name="body" type="Sprite2D" parent="rotating_reflector"]
 texture = ExtResource("7_qi5yx")
 
-[node name="InteractArea" type="Area2D" parent="spotlight"]
+[node name="InteractArea" type="Area2D" parent="rotating_reflector"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spotlight/InteractArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rotating_reflector/InteractArea"]
 shape = SubResource("CircleShape2D_qi5yx")
