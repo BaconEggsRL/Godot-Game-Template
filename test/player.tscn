@@ -9,7 +9,7 @@ radius = 32.0
 height = 128.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sq04a"]
-polygon = PackedVector2Array(35, -47, -26.5, -47, -55, -29, -56, -11.5, -38, 83, -31, 96, -19, 108, 1, 112, 18, 108, 31, 100, 40, 84, 55.800003, -11, 56, -30.6)
+polygon = PackedVector2Array(35, -47, -26.5, -47, -55, -29, -56, -11, 57, -11, 56, -30.6)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_wvbbu")

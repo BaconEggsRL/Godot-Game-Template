@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d0oscrsyixgyx"]
+[gd_scene load_steps=25 format=3 uid="uid://d0oscrsyixgyx"]
 
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="1_sq04a"]
 [ext_resource type="Texture2D" uid="uid://nbgc8lmeunmp" path="res://test/point_light.webp" id="2_27n6q"]
@@ -57,6 +57,9 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi5yx"]
 radius = 136.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4okyl"]
+size = Vector2(194, 141)
 
 [node name="light_test" type="Node2D"]
 
@@ -216,6 +219,7 @@ texture = ExtResource("2_27n6q")
 texture_scale = 3.52
 
 [node name="light_beam" type="Node2D" parent="."]
+visible = false
 position = Vector2(640, 0)
 script = ExtResource("3_qi5yx")
 
@@ -263,3 +267,16 @@ texture = ExtResource("7_qi5yx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rotating_reflector/InteractArea"]
 shape = SubResource("CircleShape2D_qi5yx")
+
+[node name="reflected_light" type="PointLight2D" parent="rotating_reflector"]
+position = Vector2(1, 1)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("5_tco37")
+offset = Vector2(0, -153.29)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="rotating_reflector"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rotating_reflector/StaticBody2D"]
+position = Vector2(-3, 26.5)
+shape = SubResource("RectangleShape2D_4okyl")
