@@ -36,7 +36,7 @@ radius = 32.0
 height = 128.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sq04a"]
-polygon = PackedVector2Array(38, -46.9, 35, -47, -26.5, -47, -40.5, -40, -42.8, -40, -56, -26.8, -56, -11.5, -50.7, -7, -16.8, -7, 8, -7, 36, -6, 50.800003, -6, 55.800003, -11, 56, -30.6, 38, -45)
+polygon = PackedVector2Array(35, -47, -26.5, -47, -55, -29, -56, -11.5, -38, 83, -31, 96, -19, 108, 1, 112, 18, 108, 31, 100, 40, 84, 55.800003, -11, 56, -30.6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sq04a"]
 size = Vector2(64, 64)
