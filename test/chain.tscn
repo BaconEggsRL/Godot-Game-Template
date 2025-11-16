@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://6wuh4mdxheaw"]
+[gd_scene load_steps=3 format=3 uid="uid://6wuh4mdxheaw"]
+
+[ext_resource type="Texture2D" uid="uid://ultc1vch1fvk" path="res://test/chain_link.png" id="1_j00qg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fs73y"]
 radius = 16.0
@@ -10,3 +12,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fs73y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_j00qg")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 64)

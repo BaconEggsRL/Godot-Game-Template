@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://d34he0ix7qx5a"]
+
+[ext_resource type="PackedScene" uid="uid://6wuh4mdxheaw" path="res://test/chain.tscn" id="1_10vvq"]
+[ext_resource type="Texture2D" uid="uid://nbgc8lmeunmp" path="res://test/point_light.webp" id="2_53yla"]
+[ext_resource type="Texture2D" uid="uid://cpfygn7jutedj" path="res://test/light_fixture.png" id="3_w1qos"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sq04a"]
+size = Vector2(64, 64)
+
+[sub_resource type="Gradient" id="Gradient_1678g"]
+colors = PackedColorArray(0.11119685, 0.11119684, 0.11119684, 1, 0.10980392, 0.10980392, 0.10980392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fs73y"]
+gradient = SubResource("Gradient_1678g")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qi5yx"]
+polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+
+[node name="chain_light" type="Node2D"]
+
+[node name="base" type="StaticBody2D" parent="."]
+position = Vector2(609, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="base"]
+position = Vector2(30.5, 25.5)
+shape = SubResource("RectangleShape2D_sq04a")
+
+[node name="Sprite2D2" type="Sprite2D" parent="base"]
+position = Vector2(31.25, 24.499992)
+scale = Vector2(1.0234374, 1.0156252)
+texture = SubResource("GradientTexture2D_fs73y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="base"]
+position = Vector2(31.25, 24.499992)
+scale = Vector2(1.0234374, 1.0156252)
+occluder = SubResource("OccluderPolygon2D_qi5yx")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(641, 60)
+node_a = NodePath("../base")
+node_b = NodePath("../chain1")
+angular_limit_enabled = true
+angular_limit_lower = -0.5235988
+angular_limit_upper = 0.5235988
+
+[node name="chain1" parent="." instance=ExtResource("1_10vvq")]
+position = Vector2(641, 92)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(641, 124)
+node_a = NodePath("../chain1")
+node_b = NodePath("../chain2")
+angular_limit_enabled = true
+angular_limit_lower = -0.5235988
+angular_limit_upper = 0.5235988
+
+[node name="chain2" parent="." instance=ExtResource("1_10vvq")]
+position = Vector2(641, 154)
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(640, 189)
+node_a = NodePath("../chain2")
+node_b = NodePath("../chain3")
+angular_limit_enabled = true
+angular_limit_lower = -0.5235988
+angular_limit_upper = 0.5235988
+
+[node name="chain3" parent="." instance=ExtResource("1_10vvq")]
+position = Vector2(642, 218)
+
+[node name="PointLight2D" type="PointLight2D" parent="chain3"]
+position = Vector2(-2, -189)
+texture = ExtResource("2_53yla")
+offset = Vector2(0, 208)
+
+[node name="Sprite2D2" type="Sprite2D" parent="chain3"]
+texture = ExtResource("3_w1qos")
+offset = Vector2(0, 32)

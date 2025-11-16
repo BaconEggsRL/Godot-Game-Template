@@ -34,13 +34,20 @@ func _physics_process(delta):
 	if self.hp <= 0.0:
 		level.restart_pressed.emit()
 		return
-	
+		
+	# Umbrella
 	if umbrella:
+		# Rotate umbrella toward mouse
+		var mouse_pos = get_global_mouse_position()
+		var dir = (mouse_pos - umbrella.global_position).angle()
+		
+		# Check umbrella death
+		umbrella.rotation = dir + PI/2
 		if umbrella.hp <= 0.0:
 			umbrella.queue_free.call_deferred()
 			return
 		
-		
+	################################
 	
 	# Coyote timer
 	if is_on_floor():

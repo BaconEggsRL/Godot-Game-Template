@@ -1,5 +1,16 @@
+@tool
 class_name Beam
 extends Node2D
+
+@export var active:bool = false :
+	set(value):
+		active = value
+		if active:
+			self.set_process_mode(Node.PROCESS_MODE_INHERIT)
+			self.show()
+		else:
+			self.set_process_mode(Node.PROCESS_MODE_DISABLED)
+			self.hide()
 
 @export var beam_dps := 10.0
 
@@ -26,7 +37,10 @@ extends Node2D
 @onready var parent:Node2D = self.get_parent()
 
 
-
+func _ready() -> void:
+	pass
+	
+	
 func _process(_delta):
 	bounce_light.hide()
 	bounce_ray.hide()
