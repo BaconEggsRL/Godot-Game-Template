@@ -131,6 +131,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 2d_physics/layer_4="crates"
 2d_physics/layer_5="interact_area"
 2d_physics/layer_6="chains"
+2d_physics/layer_7="glass_crates"
 
 [maaacks_game_template]
 
