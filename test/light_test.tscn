@@ -225,12 +225,10 @@ texture = ExtResource("5_tco37")
 offset = Vector2(0, 123.87)
 
 [node name="static_reflector2" parent="." instance=ExtResource("5_2lx3s")]
-position = Vector2(914, 16)
-rotation = 0.028203994
+position = Vector2(920, 85.99999)
 
 [node name="static_reflector" parent="." instance=ExtResource("5_2lx3s")]
-position = Vector2(355, 19)
-rotation = 0.025770962
+position = Vector2(333, 85)
 
 [node name="rotating_reflector" type="Node2D" parent="."]
 position = Vector2(640, 524)

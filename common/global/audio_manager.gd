@@ -31,7 +31,7 @@ var polyphonic_player: AudioStreamPlayer
 
 func _ready() -> void:
 	# sound test
-	AudioManager.play_music("music_1", 0.0, 0.5)
+	# AudioManager.play_music("music_1", 0.0, 0.5)
 	
 	# polyphonic player
 	polyphonic_player = AudioStreamPlayer.new()

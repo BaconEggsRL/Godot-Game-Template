@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpra7angkhxrq"]
+[gd_scene load_steps=7 format=3 uid="uid://dpra7angkhxrq"]
 
 [ext_resource type="Script" uid="uid://cyh7cqcugg3wn" path="res://test/static_reflector.gd" id="1_67yjh"]
 [ext_resource type="Texture2D" uid="uid://cqf8ignmkdq2l" path="res://test/ray_light.tres" id="2_8guyd"]
@@ -13,6 +13,9 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0.57486576, 0.57596195, 1)
 gradient = SubResource("Gradient_fs73y")
 height = 32
 fill_to = Vector2(0, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67yjh"]
+polygon = PackedVector2Array(-32, -16, -32, 16, 32, 16, 32, -16)
 
 [node name="static_reflector" type="StaticBody2D" groups=["reflector"]]
 script = ExtResource("1_67yjh")
@@ -31,3 +34,7 @@ energy = 3.0
 shadow_enabled = true
 texture = ExtResource("2_8guyd")
 offset = Vector2(0, -90)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(3.5, 1)
+occluder = SubResource("OccluderPolygon2D_67yjh")

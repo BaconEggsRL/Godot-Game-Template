@@ -6,14 +6,25 @@
 [node name="beam" type="Node2D"]
 script = ExtResource("1_urw4b")
 
-[node name="light" type="PointLight2D" parent="."]
+[node name="lights" type="Node2D" parent="."]
+
+[node name="light" type="PointLight2D" parent="lights"]
 position = Vector2(1, 1)
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("1_b05as")
 offset = Vector2(0, -750)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="bounce_light" type="PointLight2D" parent="lights"]
+position = Vector2(1, 1)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("1_b05as")
+offset = Vector2(0, -750)
+
+[node name="rays" type="Node2D" parent="."]
+
+[node name="ray" type="RayCast2D" parent="rays"]
 position = Vector2(1, 1)
 target_position = Vector2(0, -1500)
 
