@@ -11,6 +11,8 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 # music
 # list of all music
 const MUSIC_1 = preload("uid://b2j225xmqrrkd")
+const MUSIC_VIBE = preload("uid://ddtgixr6derbu")
+
 
 # ambient
 # list of all ambient sounds
@@ -31,7 +33,7 @@ var polyphonic_player: AudioStreamPlayer
 
 func _ready() -> void:
 	# sound test
-	# AudioManager.play_music("music_1", 0.0, 0.5)
+	AudioManager.play_music("MUSIC_VIBE", 0.0, 0.5)
 	
 	# polyphonic player
 	polyphonic_player = AudioStreamPlayer.new()
