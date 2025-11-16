@@ -1,8 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-const PUSH_FORCE = 150
-const MAX_CRATE_VEL = 200
+const PUSH_FORCE = 100
+const MAX_CRATE_VEL = 300
 
 
 @export var hp:float = 50.0

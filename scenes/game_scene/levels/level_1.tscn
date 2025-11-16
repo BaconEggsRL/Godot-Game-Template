@@ -127,17 +127,22 @@ text = "SKIP"
 layout_mode = 2
 text = "pause"
 
-[node name="spike" parent="." instance=ExtResource("7_bsimd")]
+[node name="spikes" type="Node2D" parent="."]
+
+[node name="spike" parent="spikes" instance=ExtResource("7_bsimd")]
 position = Vector2(1022, 694)
 
+[node name="spike2" parent="spikes" instance=ExtResource("7_bsimd")]
+position = Vector2(268, 688)
+
 [node name="star" parent="." instance=ExtResource("7_pmyid")]
-position = Vector2(1184, 209)
+position = Vector2(1210, 68)
 
 [node name="crate" parent="." instance=ExtResource("9_fmabn")]
-position = Vector2(252, 208)
+position = Vector2(298, 232)
 
 [node name="crate2" parent="." instance=ExtResource("9_fmabn")]
-position = Vector2(139, 206)
+position = Vector2(133, 233)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
@@ -146,5 +151,4 @@ position = Vector2(139, 206)
 [connection signal="pressed" from="UI/restart_btn" to="." method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="UI/skip_btn" to="." method="_on_skip_btn_pressed"]
 [connection signal="pressed" from="UI/pause_btn" to="." method="_on_pause_btn_pressed"]
-[connection signal="hit_spike" from="spike" to="." method="_on_spike_hit_spike"]
 [connection signal="reached_star" from="star" to="." method="_on_star_reached_star"]

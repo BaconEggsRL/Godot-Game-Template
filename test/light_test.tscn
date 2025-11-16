@@ -121,7 +121,7 @@ position = Vector2(245, 31)
 shape = SubResource("RectangleShape2D_1678g")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="platforms"]
-position = Vector2(1058, 316)
+position = Vector2(1120, 141)
 
 [node name="Sprite2D2" type="Sprite2D" parent="platforms/StaticBody2D2"]
 position = Vector2(262.12503, 40.999992)
@@ -155,12 +155,12 @@ position = Vector2(245.5, 45)
 shape = SubResource("RectangleShape2D_tco37")
 
 [node name="player" parent="." node_paths=PackedStringArray("hp_bar", "umbrella_bar") instance=ExtResource("1_sq04a")]
-position = Vector2(438, 540)
+position = Vector2(84, 662)
 hp_bar = NodePath("../VBoxContainer/hp_bar")
 umbrella_bar = NodePath("../VBoxContainer/umbrella_bar")
 
 [node name="crumble_wall" parent="." instance=ExtResource("10_kcwul")]
-position = Vector2(1116, 139)
+position = Vector2(1112, 77)
 
 [node name="chain_light" type="Node2D" parent="."]
 
