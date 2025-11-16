@@ -70,6 +70,6 @@ func cast_beam():
 		line.add_point(local_reflect_point)
 		# draw the light
 		bounce_light.position = to_local(hit_pos)
-		bounce_light.rotation = (local_reflect_point).angle() - PI/2 + PI
+		bounce_light.global_rotation = reflected_dir.angle() + PI/2
 
 		bounce_light.show()
