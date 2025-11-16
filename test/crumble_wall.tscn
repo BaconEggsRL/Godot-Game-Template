@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://blf6u2qahxm37"]
+
+[ext_resource type="Texture2D" uid="uid://ddyokjy7w1urq" path="res://test/crumble_wall.png" id="1_hvero"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85t3v"]
+size = Vector2(64, 320)
+
+[node name="crumble_wall" type="StaticBody2D" groups=["crumble_wall"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_85t3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_hvero")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 320)

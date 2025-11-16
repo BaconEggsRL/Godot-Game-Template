@@ -97,7 +97,8 @@ offset_right = 270.0
 offset_bottom = 30.0
 text = "this is level 1"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="UI" type="HBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0.5)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -106,21 +107,21 @@ offset_left = -158.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="prev_btn" type="Button" parent="HBoxContainer"]
+[node name="prev_btn" type="Button" parent="UI"]
 visible = false
 layout_mode = 2
 text = "PREV"
 
-[node name="restart_btn" type="Button" parent="HBoxContainer"]
+[node name="restart_btn" type="Button" parent="UI"]
 layout_mode = 2
 text = "restart"
 
-[node name="skip_btn" type="Button" parent="HBoxContainer"]
+[node name="skip_btn" type="Button" parent="UI"]
 visible = false
 layout_mode = 2
 text = "SKIP"
 
-[node name="pause_btn" type="Button" parent="HBoxContainer"]
+[node name="pause_btn" type="Button" parent="UI"]
 layout_mode = 2
 text = "pause"
 
@@ -128,14 +129,14 @@ text = "pause"
 position = Vector2(1022, 694)
 
 [node name="star" parent="." instance=ExtResource("7_pmyid")]
-position = Vector2(1093, 232)
+position = Vector2(1184, 209)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="pressed" from="HBoxContainer/restart_btn" to="." method="_on_restart_btn_pressed"]
-[connection signal="pressed" from="HBoxContainer/skip_btn" to="." method="_on_skip_btn_pressed"]
-[connection signal="pressed" from="HBoxContainer/pause_btn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="UI/restart_btn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="UI/skip_btn" to="." method="_on_skip_btn_pressed"]
+[connection signal="pressed" from="UI/pause_btn" to="." method="_on_pause_btn_pressed"]
 [connection signal="hit_spike" from="spike" to="." method="_on_spike_hit_spike"]
 [connection signal="reached_star" from="star" to="." method="_on_star_reached_star"]

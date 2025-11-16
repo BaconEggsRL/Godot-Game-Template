@@ -47,7 +47,10 @@ func cast_beam():
 	var collider = ray.get_collider()
 
 	line.add_point(to_local(hit_pos))
-
+	
+	if collider:
+			if collider.is_in_group("crumble_wall"):
+				print("crumble 1")
 
 	# reflect if collider is a mirror/reflector
 	if collider and collider.is_in_group("reflector"):
@@ -68,13 +71,20 @@ func cast_beam():
 		bounce_light.global_rotation = reflected_dir.angle() + PI/2
 		
 		# draw the line
-		var bounce_hit_pos = reflect_origin + reflected_dir * max_distance
+		var _bounce_hit_pos = reflect_origin + reflected_dir * max_distance
+		var _bounce_hit_normal = bounce_ray.get_collision_normal()
+		var _bounce_hit_collider = bounce_ray.get_collider()
+		
 		if not bounce_ray.is_colliding():
 			# Nothing hit → draw full beam
-			line.add_point(to_local(bounce_hit_pos))
+			line.add_point(to_local(_bounce_hit_pos))
 		else:
-			bounce_hit_pos = bounce_ray.get_collision_point()
-			line.add_point(to_local(bounce_hit_pos))
+			_bounce_hit_pos = bounce_ray.get_collision_point()
+			line.add_point(to_local(_bounce_hit_pos))
+
+		if _bounce_hit_collider:
+			if _bounce_hit_collider.is_in_group("crumble_wall"):
+				print("crumble 2")
 
 		# show
 		bounce_light.show()
