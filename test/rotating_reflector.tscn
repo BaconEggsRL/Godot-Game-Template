@@ -15,6 +15,7 @@ script = ExtResource("1_5ujov")
 [node name="head" type="RigidBody2D" parent="."]
 position = Vector2(5, -7)
 collision_layer = 4
+lock_rotation = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head"]
 polygon = PackedVector2Array(-83, -31, 66, -35, 78, -31, 83, -18, 76, -2, 49, 23, 8, 35, -33, 32, -66, 19, -87, -4, -89, -23)
@@ -45,24 +46,26 @@ polygon = PackedVector2Array(-46, 16, -83, 87, -40, 87, -10, 26, 19, 26, 45, 88,
 [node name="Sprite2D" type="Sprite2D" parent="body"]
 texture = ExtResource("2_g0sd3")
 
-[node name="wheel1" parent="." instance=ExtResource("5_g0sd3")]
-position = Vector2(-57, 76)
-
-[node name="wheel2" parent="." instance=ExtResource("5_g0sd3")]
-position = Vector2(61, 78)
-
 [node name="joints" type="Node2D" parent="."]
 
 [node name="PinJoint2D" type="PinJoint2D" parent="joints"]
 position = Vector2(-57, 77)
-node_a = NodePath("../../wheel1")
+node_a = NodePath("../../wheels/wheel1")
 node_b = NodePath("../../body")
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="joints"]
 position = Vector2(61, 78)
-node_a = NodePath("../../wheel2")
+node_a = NodePath("../../wheels/wheel2")
 node_b = NodePath("../../body")
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="joints"]
 node_a = NodePath("../../head")
 node_b = NodePath("../../body")
+
+[node name="wheels" type="Node2D" parent="."]
+
+[node name="wheel1" parent="wheels" instance=ExtResource("5_g0sd3")]
+position = Vector2(-57, 76)
+
+[node name="wheel2" parent="wheels" instance=ExtResource("5_g0sd3")]
+position = Vector2(61, 78)
