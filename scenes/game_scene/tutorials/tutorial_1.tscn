@@ -5,8 +5,8 @@
 [node name="OverlaidWindow" instance=ExtResource("1_b2dkv")]
 custom_minimum_size = Vector2(420, 200)
 update_content = true
-text = "Click the Win button to progress.
-Click the Lose button to try again."
+text = "Reach the Star to progress.
+Click the restart button to try again."
 title = "Tutorial"
 title_font_size = 20
 
@@ -15,5 +15,5 @@ theme_override_font_sizes/font_size = 20
 text = "Tutorial"
 
 [node name="DescriptionLabel" parent="ContentContainer/BoxContainer/DescriptionMargin" index="0"]
-text = "Click the Win button to progress.
-Click the Lose button to try again."
+text = "Reach the Star to progress.
+Click the restart button to try again."
