@@ -140,9 +140,11 @@ position = Vector2(1210, 68)
 
 [node name="crate" parent="." instance=ExtResource("9_fmabn")]
 position = Vector2(298, 232)
+is_glass = false
 
 [node name="crate2" parent="." instance=ExtResource("9_fmabn")]
 position = Vector2(133, 233)
+collision_layer = 64
 is_glass = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]

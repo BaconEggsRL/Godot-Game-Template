@@ -11,7 +11,8 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 # music
 # list of all music
 const MUSIC_1 = preload("uid://b2j225xmqrrkd")
-const MUSIC_VIBE = preload("uid://ddtgixr6derbu")
+const MUSIC_VIBE = preload("uid://yun6cbqqjevc")
+
 
 
 # ambient
