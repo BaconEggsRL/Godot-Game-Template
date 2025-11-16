@@ -39,5 +39,13 @@ func _on_tutorial_button_pressed() -> void:
 	open_tutorials()
 
 
+
+
 func _on_restart_btn_pressed() -> void:
 	_on_lose_button_pressed()
+
+func _on_skip_btn_pressed() -> void:
+	_on_win_button_pressed()
+
+func _on_star_reached_star() -> void:
+	_on_win_button_pressed()
