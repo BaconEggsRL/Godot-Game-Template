@@ -50,7 +50,7 @@ func cast_beam():
 	
 	if collider:
 		if collider.is_in_group("crumble_wall"):
-			print("crumble 1")
+			# print("crumble 1")
 			collider.queue_free.call_deferred()
 
 	# reflect if collider is a mirror/reflector
@@ -85,7 +85,7 @@ func cast_beam():
 
 		if _bounce_hit_collider:
 			if _bounce_hit_collider.is_in_group("crumble_wall"):
-				print("crumble 2")
+				# print("crumble 2")
 				_bounce_hit_collider.queue_free.call_deferred()
 
 		# show

@@ -20,7 +20,6 @@ var _scene_tree : SceneTree
 var _exclusive_control_node : Node
 
 func close() -> void:
-	print("close")
 	if not visible: return
 	_scene_tree.paused = _initial_pause_state
 	Input.set_mouse_mode(_initial_mouse_mode)
