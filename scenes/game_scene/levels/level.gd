@@ -1,5 +1,7 @@
 extends Node
 
+signal toggle_pause_request
+
 signal level_lost
 signal level_won
 signal level_won_and_changed(level_path : String)
@@ -49,3 +51,7 @@ func _on_skip_btn_pressed() -> void:
 
 func _on_star_reached_star() -> void:
 	_on_win_button_pressed()
+
+
+func _on_pause_btn_pressed() -> void:
+	toggle_pause_request.emit()

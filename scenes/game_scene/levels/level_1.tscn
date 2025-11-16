@@ -105,13 +105,23 @@ offset_left = -158.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
+[node name="prev_btn" type="Button" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "PREV"
+
 [node name="restart_btn" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "restart"
 
 [node name="skip_btn" type="Button" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
-text = "skip"
+text = "SKIP"
+
+[node name="pause_btn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "pause"
 
 [node name="star" parent="." instance=ExtResource("7_pmyid")]
 position = Vector2(1152, 239)
@@ -122,4 +132,5 @@ position = Vector2(1152, 239)
 [connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
 [connection signal="pressed" from="HBoxContainer/restart_btn" to="." method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="HBoxContainer/skip_btn" to="." method="_on_skip_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/pause_btn" to="." method="_on_pause_btn_pressed"]
 [connection signal="reached_star" from="star" to="." method="_on_star_reached_star"]

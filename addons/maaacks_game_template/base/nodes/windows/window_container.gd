@@ -5,6 +5,13 @@ extends PanelContainer
 signal closed
 signal opened
 
+var _close_on_cancel := false
+@export var close_on_cancel : bool = false :
+	set(value):
+		_close_on_cancel = value
+	get:
+		return _close_on_cancel
+
 @onready var content_container : Container = %ContentContainer
 @onready var title_label : Label = %TitleLabel
 @onready var title_margin : MarginContainer = %TitleMargin
@@ -67,7 +74,10 @@ func close() -> void:
 	closed.emit()
 
 func _handle_cancel_input() -> void:
-	close()
+	if close_on_cancel == true:
+		close()
+	else:
+		pass
 
 func _unhandled_input(event : InputEvent) -> void:
 	if visible and event.is_action_released("ui_cancel"):

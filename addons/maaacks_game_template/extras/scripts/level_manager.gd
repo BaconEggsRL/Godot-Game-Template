@@ -8,6 +8,9 @@ extends Node
 ## It can detect signals from levels to change levels in an open-world.
 ## With a scene lister, it will instead traverse through levels linearly.
 
+
+signal toggle_pause_request
+
 ## Required reference to a level loader in the scene.
 @export var level_loader : LevelLoader
 ## Optional path to a starting level scene.
@@ -103,6 +106,11 @@ func _load_ending() -> void:
 	else:
 		_load_main_menu()
 
+
+func _on_toggle_pause_request() -> void:
+	toggle_pause_request.emit()
+		
+		
 func _on_level_lost() -> void:
 	if level_lost_scene:
 		var instance = level_lost_scene.instantiate()
@@ -170,6 +178,7 @@ func _on_level_changed(next_level : String):
 	_load_next_level()
 
 func _connect_level_signals() -> void:
+	_try_connecting_signal_to_level(&"toggle_pause_request", _on_toggle_pause_request)
 	_try_connecting_signal_to_level(&"level_lost", _on_level_lost)
 	_try_connecting_signal_to_level(&"level_won", _on_level_won)
 	_try_connecting_signal_to_level(&"level_won_and_changed", _on_level_won_and_changed)

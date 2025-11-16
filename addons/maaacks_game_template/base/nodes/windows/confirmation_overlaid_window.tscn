@@ -21,7 +21,12 @@ theme = ExtResource("2_a8vqs")
 theme_override_styles/panel = SubResource("StyleBoxFlat_a8vqs")
 script = ExtResource("2_sw7p1")
 confirm_button_text = "Confirm"
-close_button_text = "Cancel"
+pauses_game = null
+text = false
+close_button_text = ""
+title = null
+title_font_size = "Menu"
+title_visible = 16
 
 [node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" index="0"]
 vertical = false

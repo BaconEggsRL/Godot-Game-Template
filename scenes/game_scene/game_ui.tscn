@@ -125,3 +125,5 @@ metadata/_edit_lock_ = true
 libraries = {
 &"": SubResource("AnimationLibrary_3re04")
 }
+
+[connection signal="toggle_pause_request" from="LevelManager" to="." method="_on_level_manager_toggle_pause_request"]
