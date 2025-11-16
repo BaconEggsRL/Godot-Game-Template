@@ -1,8 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-const PUSH_FORCE = 100
-const MAX_CRATE_VEL = 150
+const PUSH_FORCE = 150
+const MAX_CRATE_VEL = 200
 
 
 @export var hp:float = 50.0
@@ -13,7 +13,7 @@ const MAX_CRATE_VEL = 150
 
 
 @export var speed = 1200
-@export var jump_speed = -1800
+@export var jump_speed = -1500
 @export var gravity = 4000
 
 @export var coyote_time: float = 0.12

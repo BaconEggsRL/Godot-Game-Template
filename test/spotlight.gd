@@ -2,8 +2,8 @@ extends Node2D
 
 @export var rotation_speed := 2.0
 
-@onready var head: Sprite2D = $head
-@onready var body: Sprite2D = $body
+@onready var head: StaticBody2D = $head
+@onready var body: StaticBody2D = $body
 @onready var area: Area2D = $InteractArea
 
 

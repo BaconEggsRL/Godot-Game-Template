@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://d0oscrsyixgyx"]
+[gd_scene load_steps=24 format=3 uid="uid://d0oscrsyixgyx"]
 
 [ext_resource type="Script" uid="uid://dkn8d6xrbenv8" path="res://test/hp_bar.gd" id="1_0vcph"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="1_sq04a"]
-[ext_resource type="Texture2D" uid="uid://nbgc8lmeunmp" path="res://test/point_light.webp" id="2_27n6q"]
 [ext_resource type="Script" uid="uid://cfxr7yy3t5fty" path="res://test/light_beam.gd" id="3_qi5yx"]
+[ext_resource type="PackedScene" uid="uid://6wuh4mdxheaw" path="res://test/chain.tscn" id="4_0vcph"]
 [ext_resource type="Script" uid="uid://boy6qto1h36qv" path="res://test/spotlight.gd" id="4_qi5yx"]
 [ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="5_2lx3s"]
 [ext_resource type="Texture2D" uid="uid://cqf8ignmkdq2l" path="res://test/ray_light.tres" id="5_tco37"]
@@ -44,15 +44,8 @@ size = Vector2(64, 64)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qi5yx"]
 polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fs73y"]
-radius = 16.0
-height = 64.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4okyl"]
-size = Vector2(194, 141)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi5yx"]
-radius = 136.0
+radius = 164.0
 
 [node name="light_test" type="Node2D"]
 
@@ -128,7 +121,7 @@ position = Vector2(245, 31)
 shape = SubResource("RectangleShape2D_1678g")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="platforms"]
-position = Vector2(892, 314)
+position = Vector2(1058, 316)
 
 [node name="Sprite2D2" type="Sprite2D" parent="platforms/StaticBody2D2"]
 position = Vector2(262.12503, 40.999992)
@@ -162,12 +155,12 @@ position = Vector2(245.5, 45)
 shape = SubResource("RectangleShape2D_tco37")
 
 [node name="player" parent="." node_paths=PackedStringArray("hp_bar", "umbrella_bar") instance=ExtResource("1_sq04a")]
-position = Vector2(138, 452)
+position = Vector2(438, 540)
 hp_bar = NodePath("../VBoxContainer/hp_bar")
 umbrella_bar = NodePath("../VBoxContainer/umbrella_bar")
 
 [node name="crumble_wall" parent="." instance=ExtResource("10_kcwul")]
-position = Vector2(1037, 141)
+position = Vector2(1116, 139)
 
 [node name="chain_light" type="Node2D" parent="."]
 
@@ -193,43 +186,24 @@ position = Vector2(641, 60)
 node_a = NodePath("../base")
 node_b = NodePath("../chain1")
 
-[node name="chain1" type="RigidBody2D" parent="chain_light"]
+[node name="chain1" parent="chain_light" instance=ExtResource("4_0vcph")]
 position = Vector2(641, 92)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chain_light/chain1"]
-shape = SubResource("CapsuleShape2D_fs73y")
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="chain_light"]
 position = Vector2(641, 124)
 node_a = NodePath("../chain1")
 node_b = NodePath("../chain2")
 
-[node name="chain2" type="RigidBody2D" parent="chain_light"]
-position = Vector2(641, 156)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chain_light/chain2"]
-shape = SubResource("CapsuleShape2D_fs73y")
+[node name="chain2" parent="chain_light" instance=ExtResource("4_0vcph")]
+position = Vector2(641, 154)
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="chain_light"]
 position = Vector2(640, 189)
 node_a = NodePath("../chain2")
 node_b = NodePath("../chain3")
 
-[node name="chain3" type="RigidBody2D" parent="chain_light"]
-position = Vector2(641, 221)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chain_light/chain3"]
-shape = SubResource("CapsuleShape2D_fs73y")
-
-[node name="PointLight2D" type="PointLight2D" parent="chain_light/chain3"]
-visible = false
-energy = 3.0
-shadow_enabled = true
-texture = ExtResource("2_27n6q")
-texture_scale = 3.52
+[node name="chain3" parent="chain_light" instance=ExtResource("4_0vcph")]
+position = Vector2(642, 218)
 
 [node name="light_beam" type="Node2D" parent="."]
 visible = false
@@ -257,22 +231,32 @@ position = Vector2(389, 16)
 position = Vector2(640, 524)
 script = ExtResource("4_qi5yx")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="rotating_reflector"]
+[node name="body" type="StaticBody2D" parent="rotating_reflector"]
+collision_layer = 4
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rotating_reflector/StaticBody2D"]
-position = Vector2(-3, 26.5)
-shape = SubResource("RectangleShape2D_4okyl")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotating_reflector/body"]
+polygon = PackedVector2Array(-46, 16, -83, 87, -40, 87, -10, 26, 19, 26, 45, 88, 88, 88, 55, 16)
 
-[node name="head" type="Sprite2D" parent="rotating_reflector"]
+[node name="Sprite2D" type="Sprite2D" parent="rotating_reflector/body"]
+texture = ExtResource("7_qi5yx")
+
+[node name="head" type="StaticBody2D" parent="rotating_reflector"]
+position = Vector2(5, -7)
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotating_reflector/head"]
+polygon = PackedVector2Array(-83, -31, 66, -35, 78, -31, 83, -18, 76, -2, 49, 23, 8, 35, -33, 32, -66, 19, -87, -4, -89, -23)
+
+[node name="Sprite2D" type="Sprite2D" parent="rotating_reflector/head"]
 texture = ExtResource("6_sq04a")
 
 [node name="beam" parent="rotating_reflector/head" instance=ExtResource("8_2lx3s")]
 position = Vector2(-3, -26)
 
-[node name="body" type="Sprite2D" parent="rotating_reflector"]
-texture = ExtResource("7_qi5yx")
-
 [node name="InteractArea" type="Area2D" parent="rotating_reflector"]
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rotating_reflector/InteractArea"]
 shape = SubResource("CircleShape2D_qi5yx")

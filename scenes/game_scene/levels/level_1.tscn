@@ -136,6 +136,9 @@ position = Vector2(1184, 209)
 [node name="crate" parent="." instance=ExtResource("9_fmabn")]
 position = Vector2(252, 208)
 
+[node name="crate2" parent="." instance=ExtResource("9_fmabn")]
+position = Vector2(139, 206)
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]

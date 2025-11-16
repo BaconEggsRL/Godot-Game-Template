@@ -118,6 +118,15 @@ rotate_left={
 
 locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation")
 
+[layer_names]
+
+2d_physics/layer_1="floor"
+2d_physics/layer_2="player"
+2d_physics/layer_3="objects"
+2d_physics/layer_4="crates"
+2d_physics/layer_5="interact_area"
+2d_physics/layer_6="chains"
+
 [maaacks_game_template]
 
 copy_path="res://"
@@ -127,6 +136,7 @@ disable_install_audio_busses=true
 
 [physics]
 
+2d/physics_engine="Rapier2D"
 common/enable_pause_aware_picking=true
 
 [rendering]
