@@ -10,7 +10,7 @@ signal level_won_and_changed(level_path : String)
 ## Optional path to the next level if using an open world level system.
 @export_file("*.tscn") var next_level_path : String
 
-@onready var spikes: Node2D = $spikes
+var spikes: Node2D
 
 
 var level_state : LevelState
@@ -37,6 +37,7 @@ func open_tutorials() -> void:
 
 
 func _ready() -> void:
+	spikes = get_node("spikes")
 	if spikes:
 		for spike in spikes.get_children():
 			spike.hit_spike.connect(_on_hit_spike)

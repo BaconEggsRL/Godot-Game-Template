@@ -529,6 +529,8 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in_time=0.5) -> void
 	match scene_name:
 		"music_1":
 			music = MUSIC_1  # insert music const here
+		"MUSIC_VIBE":
+			music = MUSIC_VIBE
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % scene_name)
 	
