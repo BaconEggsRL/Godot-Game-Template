@@ -15,6 +15,7 @@ extends Node2D
 @onready var ray: RayCast2D = $rays/ray
 
 @onready var bounce_light: PointLight2D = $lights/bounce_light
+@onready var bounce_ray: RayCast2D = $rays/bounce_ray
 
 
 
@@ -24,15 +25,9 @@ extends Node2D
 
 
 
-#func _ready():
-	#update_ray_direction()
-
-# rotating ray
-#func update_ray_direction():
-	#ray.target_position = dir.normalized() * max_distance
-
 func _process(_delta):
 	bounce_light.hide()
+	bounce_ray.hide()
 	cast_beam()
 
 
@@ -40,9 +35,6 @@ func cast_beam():
 	# Clear old line
 	line.clear_points()
 	line.add_point(Vector2.ZERO)
-
-	# Update ray direction every frame in case parent rotates
-	# update_ray_direction()
 
 	if not ray.is_colliding():
 		# Nothing hit → draw full beam
@@ -56,6 +48,7 @@ func cast_beam():
 
 	line.add_point(to_local(hit_pos))
 
+
 	# reflect if collider is a mirror/reflector
 	if collider and collider.is_in_group("reflector"):
 		var reflected_dir = dir.bounce(hit_normal).normalized()
@@ -64,12 +57,25 @@ func cast_beam():
 		reflected_dir = reflected_dir.rotated(-self.global_rotation)
 		
 		var reflect_origin = hit_pos + reflected_dir * offset
-
-		# draw reflected line segment (single bounce)
-		var local_reflect_point = to_local(reflect_origin + reflected_dir * max_distance)
-		line.add_point(local_reflect_point)
-		# draw the light
+		
+		# update bounce ray
+		bounce_ray.position = to_local(hit_pos)
+		bounce_ray.global_rotation = reflected_dir.angle() + PI/2
+		bounce_ray.force_raycast_update()
+		
+		# draw the bounce light
 		bounce_light.position = to_local(hit_pos)
 		bounce_light.global_rotation = reflected_dir.angle() + PI/2
+		
+		# draw the line
+		var bounce_hit_pos = reflect_origin + reflected_dir * max_distance
+		if not bounce_ray.is_colliding():
+			# Nothing hit → draw full beam
+			line.add_point(to_local(bounce_hit_pos))
+		else:
+			bounce_hit_pos = bounce_ray.get_collision_point()
+			line.add_point(to_local(bounce_hit_pos))
 
+		# show
 		bounce_light.show()
+		bounce_ray.show()
