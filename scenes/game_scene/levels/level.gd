@@ -1,6 +1,7 @@
 extends Node
 
-signal toggle_pause_request
+signal pause_pressed
+signal restart_pressed
 
 signal level_lost
 signal level_won
@@ -44,7 +45,7 @@ func _on_tutorial_button_pressed() -> void:
 
 
 func _on_restart_btn_pressed() -> void:
-	_on_lose_button_pressed()
+	restart_pressed.emit()
 
 func _on_skip_btn_pressed() -> void:
 	_on_win_button_pressed()
@@ -54,4 +55,8 @@ func _on_star_reached_star() -> void:
 
 
 func _on_pause_btn_pressed() -> void:
-	toggle_pause_request.emit()
+	pause_pressed.emit()
+
+
+func _on_spike_hit_spike() -> void:
+	restart_pressed.emit()
