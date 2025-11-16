@@ -1,8 +1,16 @@
 class_name Player
 extends CharacterBody2D
 
-@export var hp:float = 100
-@export var hp_bar:ProgressBar
+const PUSH_FORCE = 100
+const MAX_CRATE_VEL = 150
+
+
+@export var hp:float = 50.0
+@export var hp_bar:LifeBar
+@export var umbrella_bar:LifeBar
+
+@onready var umbrella: Umbrella = $umbrella
+
 
 @export var speed = 1200
 @export var jump_speed = -1800
@@ -18,12 +26,21 @@ var _jump_buffer_timer: float = 0.0
 @onready var level:Node = parent.get_parent()
 
 
+func _ready() -> void:
+	umbrella_bar.setup(umbrella)
+	
 func _physics_process(delta):
 	# Death check
 	if self.hp <= 0.0:
-		# hp_bar.value = 0.0
 		level.restart_pressed.emit()
 		return
+	
+	if umbrella:
+		if umbrella.hp <= 0.0:
+			umbrella.queue_free.call_deferred()
+			return
+		
+		
 	
 	# Coyote timer
 	if is_on_floor():
@@ -42,6 +59,14 @@ func _physics_process(delta):
 
 	# Input affects x axis only
 	velocity.x = Input.get_axis("move_left", "move_right") * speed
+
+	# Check collision
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider.is_in_group("crate") and collider is RigidBody2D:
+			if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
+				collider.apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
 
 	move_and_slide()
 	

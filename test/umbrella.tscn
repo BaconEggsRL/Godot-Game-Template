@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bffy3r2d8udky"]
+
+[ext_resource type="Texture2D" uid="uid://cq1nqa4mgiiq0" path="res://test/umbrella.png" id="1_afmux"]
+[ext_resource type="Script" uid="uid://ef7dbeexuq44" path="res://test/umbrella.gd" id="1_wfpb0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvbbu"]
+size = Vector2(117, 40)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sq04a"]
+polygon = PackedVector2Array(35, -47, -26.5, -47, -55, -29, -56, -11, 57, -11, 56, -30.6)
+
+[node name="umbrella" type="Area2D" groups=["umbrella"]]
+script = ExtResource("1_wfpb0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -71)
+shape = SubResource("RectangleShape2D_wvbbu")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-1, -42)
+occluder = SubResource("OccluderPolygon2D_sq04a")
+
+[node name="umbrella" type="Sprite2D" parent="."]
+position = Vector2(-1, -42)
+texture = ExtResource("1_afmux")

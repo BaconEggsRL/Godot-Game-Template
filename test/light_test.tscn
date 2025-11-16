@@ -61,13 +61,21 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.20511743, 0.20511743, 0.20511743, 1)
 
-[node name="hp_bar" type="ProgressBar" parent="." node_paths=PackedStringArray("player")]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 252.0
+offset_bottom = 72.0
+
+[node name="hp_bar" type="ProgressBar" parent="VBoxContainer" node_paths=PackedStringArray("entity")]
 self_modulate = Color(0, 1, 0, 1)
-offset_right = 232.0
-offset_bottom = 34.0
+layout_mode = 2
 value = 100.0
 script = ExtResource("1_0vcph")
-player = NodePath("../player")
+entity = NodePath("../../player")
+
+[node name="umbrella_bar" type="ProgressBar" parent="VBoxContainer"]
+layout_mode = 2
+value = 100.0
+script = ExtResource("1_0vcph")
 
 [node name="level_border" type="Node2D" parent="."]
 position = Vector2(640, 0)
@@ -153,9 +161,10 @@ occluder = SubResource("OccluderPolygon2D_tco37")
 position = Vector2(245.5, 45)
 shape = SubResource("RectangleShape2D_tco37")
 
-[node name="player" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("1_sq04a")]
+[node name="player" parent="." node_paths=PackedStringArray("hp_bar", "umbrella_bar") instance=ExtResource("1_sq04a")]
 position = Vector2(138, 452)
-hp_bar = NodePath("../hp_bar")
+hp_bar = NodePath("../VBoxContainer/hp_bar")
+umbrella_bar = NodePath("../VBoxContainer/umbrella_bar")
 
 [node name="crumble_wall" parent="." instance=ExtResource("10_kcwul")]
 position = Vector2(1037, 141)

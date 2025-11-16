@@ -1,7 +1,7 @@
 class_name Beam
 extends Node2D
 
-@export var beam_dps := 100.0
+@export var beam_dps := 10.0
 
 @export var dir := Vector2.UP
 @export var max_distance := 2000.0
@@ -57,7 +57,9 @@ func cast_beam(_delta):
 			
 		if collider.is_in_group("player") and collider is Player:
 			collider.hp -= beam_dps * _delta
-
+		
+		if collider.is_in_group("umbrella") and collider is Umbrella:
+			collider.hp -= beam_dps * _delta
 
 
 	# reflect if collider is a mirror/reflector
@@ -99,6 +101,10 @@ func cast_beam(_delta):
 			if _bounce_hit_collider.is_in_group("player") and _bounce_hit_collider is Player:
 				_bounce_hit_collider.hp -= beam_dps * _delta
 
+			if _bounce_hit_collider.is_in_group("umbrella") and _bounce_hit_collider is Umbrella:
+				_bounce_hit_collider.hp -= beam_dps * _delta
+				
+				
 		# show
 		bounce_light.show()
 		bounce_ray.show()

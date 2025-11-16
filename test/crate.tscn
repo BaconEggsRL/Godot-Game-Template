@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://pdseefr663hp"]
+
+[ext_resource type="Texture2D" uid="uid://dt4gib8a3eisa" path="res://test/crate.png" id="1_htay6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g53gq"]
+size = Vector2(64, 64)
+
+[node name="crate" type="RigidBody2D" groups=["crate"]]
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g53gq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_htay6")
