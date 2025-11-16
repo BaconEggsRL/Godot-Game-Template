@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://d0oscrsyixgyx"]
+[gd_scene load_steps=26 format=3 uid="uid://d0oscrsyixgyx"]
 
+[ext_resource type="Script" uid="uid://dkn8d6xrbenv8" path="res://test/hp_bar.gd" id="1_0vcph"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="1_sq04a"]
 [ext_resource type="Texture2D" uid="uid://nbgc8lmeunmp" path="res://test/point_light.webp" id="2_27n6q"]
 [ext_resource type="Script" uid="uid://cfxr7yy3t5fty" path="res://test/light_beam.gd" id="3_qi5yx"]
@@ -59,6 +60,14 @@ radius = 136.0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+
+[node name="hp_bar" type="ProgressBar" parent="." node_paths=PackedStringArray("player")]
+self_modulate = Color(0, 1, 0, 1)
+offset_right = 232.0
+offset_bottom = 34.0
+value = 100.0
+script = ExtResource("1_0vcph")
+player = NodePath("../player")
 
 [node name="level_border" type="Node2D" parent="."]
 position = Vector2(640, 0)
@@ -144,8 +153,9 @@ occluder = SubResource("OccluderPolygon2D_tco37")
 position = Vector2(245.5, 45)
 shape = SubResource("RectangleShape2D_tco37")
 
-[node name="player" parent="." instance=ExtResource("1_sq04a")]
+[node name="player" parent="." node_paths=PackedStringArray("hp_bar") instance=ExtResource("1_sq04a")]
 position = Vector2(138, 452)
+hp_bar = NodePath("../hp_bar")
 
 [node name="crumble_wall" parent="." instance=ExtResource("10_kcwul")]
 position = Vector2(1037, 141)

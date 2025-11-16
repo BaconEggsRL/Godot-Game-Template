@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+@export var hp:float = 100
+@export var hp_bar:ProgressBar
+
 @export var speed = 1200
 @export var jump_speed = -1800
 @export var gravity = 4000
@@ -11,8 +14,17 @@ extends CharacterBody2D
 var _coyote_timer: float = 0.0
 var _jump_buffer_timer: float = 0.0
 
+@onready var parent:Node = get_parent()
+@onready var level:Node = parent.get_parent()
+
 
 func _physics_process(delta):
+	# Death check
+	if self.hp <= 0.0:
+		# hp_bar.value = 0.0
+		level.restart_pressed.emit()
+		return
+	
 	# Coyote timer
 	if is_on_floor():
 		_coyote_timer = coyote_time

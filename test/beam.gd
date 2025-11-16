@@ -1,6 +1,8 @@
 class_name Beam
 extends Node2D
 
+@export var beam_dps := 100.0
+
 @export var dir := Vector2.UP
 @export var max_distance := 2000.0
 @export var max_bounces := 1
@@ -28,10 +30,10 @@ extends Node2D
 func _process(_delta):
 	bounce_light.hide()
 	bounce_ray.hide()
-	cast_beam()
+	cast_beam(_delta)
 
 
-func cast_beam():
+func cast_beam(_delta):
 	# Clear old line
 	line.clear_points()
 	line.add_point(Vector2.ZERO)
@@ -52,6 +54,11 @@ func cast_beam():
 		if collider.is_in_group("crumble_wall"):
 			# print("crumble 1")
 			collider.queue_free.call_deferred()
+			
+		if collider.is_in_group("player") and collider is Player:
+			collider.hp -= beam_dps * _delta
+
+
 
 	# reflect if collider is a mirror/reflector
 	if collider and collider.is_in_group("reflector"):
@@ -83,10 +90,14 @@ func cast_beam():
 			_bounce_hit_pos = bounce_ray.get_collision_point()
 			line.add_point(to_local(_bounce_hit_pos))
 
+
 		if _bounce_hit_collider:
 			if _bounce_hit_collider.is_in_group("crumble_wall"):
 				# print("crumble 2")
 				_bounce_hit_collider.queue_free.call_deferred()
+				
+			if _bounce_hit_collider.is_in_group("player") and _bounce_hit_collider is Player:
+				_bounce_hit_collider.hp -= beam_dps * _delta
 
 		# show
 		bounce_light.show()
