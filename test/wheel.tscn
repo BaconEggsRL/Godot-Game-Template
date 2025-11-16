@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs1cbwh8uiu3s"]
+[gd_scene load_steps=3 format=3 uid="uid://cs1cbwh8uiu3s"]
+
+[ext_resource type="Texture2D" uid="uid://cglldq46x4g6i" path="res://test/wheel.png" id="1_3gj78"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ujov"]
 radius = 24.0
@@ -9,3 +11,6 @@ collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5ujov")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3gj78")

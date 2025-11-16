@@ -3,6 +3,8 @@ class_name RotatingReflector
 extends Node2D
 
 
+@export var wheels: Node2D
+
 @export var active:bool = false :
 	set(value):
 		active = value
@@ -11,6 +13,13 @@ extends Node2D
 @export var has_wheels:bool = false :
 	set(value):
 		has_wheels = value
+		for c in self.get_children():
+			if c is RigidBody2D:
+				c.freeze = false if has_wheels else true
+		if wheels:
+			for c in wheels.get_children():
+				if c is RigidBody2D:
+					c.freeze = false if has_wheels else true
 
 @export var rotation_speed := 2.0
 
@@ -21,6 +30,8 @@ extends Node2D
 
 
 @onready var beam: Beam = $head/beam
+
+
 
 
 var player_inside := false
