@@ -37,7 +37,7 @@ func open_tutorials() -> void:
 
 
 func _ready() -> void:
-	spikes = get_node("spikes")
+	spikes = get_node_or_null("spikes")
 	if spikes:
 		for spike in spikes.get_children():
 			spike.hit_spike.connect(_on_hit_spike)
