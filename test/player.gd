@@ -11,17 +11,15 @@ const MAX_WHEEL_VEL = 300
 
 signal hp_changed
 
-@export var hp:float = 50.0:# 50.0:
+@export var hp:float = 1.0:# 50.0:
 	set(value):
 		hp = value
 		hp_changed.emit(value)
-		if hp <= 0.0:
-			dead.emit()
-		
-# @export var hp_bar:LifeBar
-# @export var umbrella_bar:LifeBar
-
-# @onready var umbrella: Umbrella = $umbrella
+		if not is_dying:
+			if hp <= 0.0:
+				dead.emit()
+				is_dying = true
+			
 
 
 @export_range(0, 1200, 1.0) var speed:float = 1000 # 1200
@@ -38,6 +36,9 @@ var _jump_buffer_timer: float = 0.0
 @onready var level:Node = parent.get_parent()
 
 var wind_velocity := Vector2.ZERO
+
+var is_dying:bool = false
+
 
 
 func _ready() -> void:

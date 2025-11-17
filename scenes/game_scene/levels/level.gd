@@ -18,7 +18,9 @@ signal level_won_prev
 var level: Node2D
 var spikes: Node2D
 var level_ui: LevelUI
+
 var player: Player
+var umbrella: Umbrella
 
 var level_state : LevelState
 
@@ -45,6 +47,7 @@ func _ready() -> void:
 	level = get_node_or_null("level")
 	level_ui = get_node_or_null("LevelUI")
 	player = get_tree().get_first_node_in_group("player")
+	umbrella = get_tree().get_first_node_in_group("umbrella")
 	if level:
 		spikes = level.get_node_or_null("spikes")
 	if spikes:
@@ -101,4 +104,8 @@ func _on_hit_spike() -> void:
 	
 func _on_player_dead() -> void:
 	AudioManager.play_sound("spike_splatt", 0.0, 1.0, true)
+	
+	# umbrella.queue_free.call_deferred()
+	# player.queue_free.call_deferred()
+	
 	restart_pressed.emit()
