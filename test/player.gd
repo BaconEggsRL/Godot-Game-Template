@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal dead
+
 const CRATE_PUSH_FORCE = 100
 const MAX_CRATE_VEL = 300
 
@@ -85,6 +87,18 @@ func _physics_process(delta):
 		if not collider:
 			continue
 		
+
+		if collider is TileMapLayer:
+			var tilemap := collider as TileMapLayer
+			var tile_pos = tilemap.local_to_map(collision.get_position())
+			var data := tilemap.get_cell_tile_data(tile_pos)
+
+			if data and data.get_custom_data("type") == "spike":
+				AudioManager.play_sound("spike_splatt", 0.0, 1.0, true)
+				dead.emit()
+				return
+
+
 		if collider.is_in_group("crate") or collider.is_in_group("wheel") and collider is RigidBody2D:
 			if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
 				var normal = collision.get_normal()

@@ -59,6 +59,8 @@ func _ready() -> void:
 		level_ui.restart.connect(_on_level_ui_restart)
 		level_ui.skip.connect(_on_level_ui_skip)
 		level_ui.level_num = level_num
+	if player:
+		player.dead.connect(_on_player_dead)
 	
 	
 	level_state = GameState.get_level_state(scene_file_path)
@@ -77,16 +79,8 @@ func _on_tutorial_button_pressed() -> void:
 	open_tutorials()
 
 
-
-
-
 func _on_star_reached_star() -> void:
 	_on_win_button_pressed()
-
-func _on_hit_spike() -> void:
-	restart_pressed.emit()
-
-
 
 
 func _on_level_ui_pause() -> void:
@@ -104,3 +98,11 @@ func _on_level_ui_restart() -> void:
 
 func _on_level_ui_skip() -> void:
 	_on_win_button_pressed()
+
+
+
+func _on_hit_spike() -> void:
+	restart_pressed.emit()
+	
+func _on_player_dead() -> void:
+	restart_pressed.emit()
