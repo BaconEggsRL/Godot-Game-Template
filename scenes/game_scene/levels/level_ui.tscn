@@ -58,3 +58,8 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Level 1"
 horizontal_alignment = 2
+
+[connection signal="pressed" from="Buttons/prev_btn" to="." method="_on_prev_btn_pressed"]
+[connection signal="pressed" from="Buttons/restart_btn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Buttons/skip_btn" to="." method="_on_skip_btn_pressed"]
+[connection signal="pressed" from="Buttons/pause_btn" to="." method="_on_pause_btn_pressed"]

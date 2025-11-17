@@ -40,7 +40,7 @@ polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tco37"]
 size = Vector2(511, 106)
 
-[node name="Level1" type="Control"]
+[node name="Level" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
