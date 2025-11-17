@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var player: Node2D
+@onready var player:Player = get_tree().get_first_node_in_group("player")
 
 @export var max_mouse_offset_x: float = 360.0
 @export var max_mouse_offset_y: float = 360.0

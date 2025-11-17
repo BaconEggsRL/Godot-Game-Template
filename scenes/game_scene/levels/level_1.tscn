@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ud20wyvvkoe" path="res://test/rotating_reflector.tscn" id="8_8a31v"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="9_5hj03"]
 [ext_resource type="PackedScene" uid="uid://pdseefr663hp" path="res://test/crate.tscn" id="9_fmabn"]
-[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_2d.tscn" id="10_1wmy8"]
+[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_controller.tscn" id="10_1wmy8"]
 
 [sub_resource type="Gradient" id="Gradient_1678g"]
 colors = PackedColorArray(0.11119685, 0.11119684, 0.11119684, 1, 0.10980392, 0.10980392, 0.10980392, 1)

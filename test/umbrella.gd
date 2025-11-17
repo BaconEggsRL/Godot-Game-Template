@@ -1,4 +1,9 @@
 class_name Umbrella
 extends Area2D
 
-@export var hp:float = 25.0
+signal hp_changed
+
+@export var hp:float = 25.0:
+	set(value):
+		hp = value
+		hp_changed.emit(value)

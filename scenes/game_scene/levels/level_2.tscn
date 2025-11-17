@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c7mh16ic2xq57"]
+[gd_scene load_steps=14 format=4 uid="uid://c7mh16ic2xq57"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_xgqhu"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_jwndf"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="6_pu0aw"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="11_h1q7v"]
 [ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="11_yh8gr"]
-[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_2d.tscn" id="12_x7qrw"]
 [ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="13_r6abn"]
 [ext_resource type="Texture2D" uid="uid://r1w6gru5a3eg" path="res://tilemap/tilemap.png" id="14_xg5px"]
 
@@ -91,15 +90,7 @@ rotate_amount = 10.0
 rotate_time = 0.5
 
 [node name="player" parent="level" instance=ExtResource("11_h1q7v")]
-position = Vector2(828, 89)
-
-[node name="Camera2D" parent="level/player" node_paths=PackedStringArray("player") instance=ExtResource("12_x7qrw")]
-position = Vector2(0, -64)
-limit_left = -360
-limit_top = -360
-limit_right = 1640
-limit_bottom = 1080
-player = NodePath("..")
+position = Vector2(814, 102)
 
 [node name="star" parent="level" instance=ExtResource("13_r6abn")]
 position = Vector2(1210, 68)

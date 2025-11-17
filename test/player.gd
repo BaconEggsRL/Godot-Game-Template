@@ -9,8 +9,13 @@ const MAX_CRATE_VEL = 300
 const WHEEL_PUSH_FORCE = 100
 const MAX_WHEEL_VEL = 300
 
+signal hp_changed
 
-@export var hp:float = 50.0
+@export var hp:float = 50.0:
+	set(value):
+		hp = value
+		hp_changed.emit(value)
+		
 # @export var hp_bar:LifeBar
 # @export var umbrella_bar:LifeBar
 
@@ -43,6 +48,7 @@ func _ready() -> void:
 func _physics_process(delta):
 	# Death check
 	if self.hp <= 0.0:
+		# await get_tree().process_frame
 		level.restart_pressed.emit()
 		return
 		

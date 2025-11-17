@@ -47,7 +47,7 @@ process_material = SubResource("ParticleProcessMaterial_c6hhn")
 [node name="rays" type="Node2D" parent="."]
 
 [node name="left" type="RayCast2D" parent="rays"]
-position = Vector2(-64, 0)
+position = Vector2(-48, 0)
 target_position = Vector2(0, -500)
 collision_mask = 2
 collide_with_areas = true
@@ -60,7 +60,7 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="right" type="RayCast2D" parent="rays"]
-position = Vector2(64, 0)
+position = Vector2(48, 0)
 target_position = Vector2(0, -500)
 collision_mask = 2
 collide_with_areas = true

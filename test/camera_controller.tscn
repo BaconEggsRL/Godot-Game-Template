@@ -3,5 +3,9 @@
 [ext_resource type="Script" uid="uid://fyo3nrrk48vo" path="res://test/camera_controller.gd" id="1_xxmnu"]
 
 [node name="CameraController" type="Camera2D"]
+limit_left = -360
+limit_top = -360
+limit_right = 1640
+limit_bottom = 1080
 position_smoothing_enabled = true
 script = ExtResource("1_xxmnu")

@@ -18,7 +18,7 @@ func check_collision() -> void:
 			# var normal: Vector2 = ray.get_collision_normal()
 			# var _angle: float = normal.angle()  # in radians
 			# var push = Vector2(0, -normal.y) * PUSH_FORCE
-			var push = Vector2(0, -100)
+			var push = Vector2(0, -PUSH_FORCE)
 			player.wind_velocity = push
 			return
 	player.wind_velocity = Vector2.ZERO
