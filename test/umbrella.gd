@@ -16,6 +16,11 @@ var touching_spike := false
 		hp_changed.emit(value)
 
 
+
+#func _ready() -> void:
+	#reparent.call_deferred(player)
+
+
 func _physics_process(_delta):
 	if hp <= 0.0:
 		queue_free()
@@ -23,7 +28,9 @@ func _physics_process(_delta):
 
 	# Follow player
 	var to_player = (player.global_position - self.global_position).normalized()
-	velocity = player.velocity + to_player*200
+	velocity = player.velocity + to_player*100
+	# var target_velocity = (player.global_position - global_position) * 4
+	# velocity = velocity.lerp(target_velocity, 0.2)
 
 	# Desired rotation toward mouse
 	var mouse_pos = get_global_mouse_position()

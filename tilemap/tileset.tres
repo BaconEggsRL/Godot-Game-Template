@@ -1,0 +1,29 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://o12s6a4rq25n"]
+
+[ext_resource type="Texture2D" uid="uid://r1w6gru5a3eg" path="res://tilemap/tilemap.png" id="1_fth6p"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c6hhn"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhxfa"]
+texture = ExtResource("1_fth6p")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_c6hhn")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, 0, 16, 0, 16, 16)
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 16, -16, 0, 16, 0, 16, 16)
+1:0/0/custom_data_0 = "spike"
+0:1/0 = 0
+1:1/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 512
+physics_layer_1/collision_mask = 2050
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_hhxfa")
