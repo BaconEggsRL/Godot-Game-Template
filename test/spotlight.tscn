@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bf1uufdc51v2b"]
+[gd_scene load_steps=3 format=3 uid="uid://bf1uufdc51v2b"]
 
 [ext_resource type="Texture2D" uid="uid://bcc83e0io1dkj" path="res://test/cone_light.png" id="1_brcy0"]
+[ext_resource type="Script" uid="uid://dfj73jruo4pb" path="res://test/spotlight.gd" id="1_dd5c7"]
 
 [node name="spotlight" type="Node2D"]
+script = ExtResource("1_dd5c7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(641, -327.5)

@@ -4,6 +4,13 @@ extends RigidBody2D
 
 @onready var light_occluder_2d := $LightOccluder2D
 @onready var sprite_2d := $Sprite2D
+@onready var glass: Sprite2D = $glass
+
+
+const REGULAR_CRATE = preload("uid://dt4gib8a3eisa")
+const GLASS_CRATE = preload("uid://b75qhw22ph5xd")
+const GLASS_OUTLINE = preload("uid://4xnn87v2uirf")
+
 
 var _is_glass := false
 
@@ -22,14 +29,19 @@ func _update_glass() -> void:
 		return
 	
 	light_occluder_2d.visible = not _is_glass
-	sprite_2d.self_modulate.a = 0.5 if is_glass else 1.0
+	sprite_2d.self_modulate.a = 1.0
+	# sprite_2d.self_modulate.a = 0.5 if is_glass else 1.0
 	
 	if _is_glass:
 		set_collision_layer_value(4, false)  # normal layer off
 		set_collision_layer_value(7, true)   # glass layer on
+		sprite_2d.texture = GLASS_OUTLINE
+		glass.show()
 	else:
 		set_collision_layer_value(7, false)
 		set_collision_layer_value(4, true)
+		sprite_2d.texture = REGULAR_CRATE
+		glass.hide()
 
 
 func _ready():
