@@ -5,11 +5,12 @@ signal restart_pressed
 
 signal level_lost
 signal level_won
-signal level_won_and_changed(level_path : String)
+signal level_won_prev
+# signal level_won_and_changed(level_path : String)
 
 ## Optional path to the next level if using an open world level system.
-@export_file("*.tscn") var prev_level_path : String
-@export_file("*.tscn") var next_level_path : String
+# @export_file("*.tscn") var prev_level_path : String
+# @export_file("*.tscn") var next_level_path : String
 
 @onready var filename := get_scene_file_path().get_file().get_basename()
 @onready var level_num := filename.trim_prefix("level_").to_int()
@@ -31,10 +32,10 @@ func _on_lose_button_pressed() -> void:
 	level_lost.emit()
 
 func _on_win_button_pressed() -> void:
-	if not next_level_path.is_empty():
-		level_won_and_changed.emit(next_level_path)
-	else:
-		level_won.emit()
+	#if not next_level_path.is_empty():
+		#level_won_and_changed.emit(next_level_path)
+	#else:
+	level_won.emit()
 
 func open_tutorials() -> void:
 	%TutorialManager.open_tutorials()
@@ -92,10 +93,10 @@ func _on_level_ui_pause() -> void:
 	pause_pressed.emit()
 
 func _on_level_ui_prev() -> void:
-	if not prev_level_path.is_empty():
-		level_won_and_changed.emit(prev_level_path)
-	else:
-		level_won.emit()
+	#if not prev_level_path.is_empty():
+		#level_won_and_changed.emit(prev_level_path)
+	#else:
+	level_won_prev.emit()
 
 func _on_level_ui_restart() -> void:
 	print("hello?")

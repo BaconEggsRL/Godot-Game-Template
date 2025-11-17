@@ -48,7 +48,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_623lg")
-next_level_path = "uid://c7mh16ic2xq57"
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0

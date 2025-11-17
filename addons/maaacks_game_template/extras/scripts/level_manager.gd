@@ -77,9 +77,19 @@ func has_next_level() -> bool:
 		return current_level_id < scene_lister.files.size() - 1
 	return (not next_level_path.is_empty()) and next_level_path != current_level_path
 
+func has_prev_level() -> bool:
+	if scene_lister:
+		var current_level_id = _find_in_scene_lister(current_level_path)
+		return current_level_id > 0
+	return (not next_level_path.is_empty()) and next_level_path != current_level_path
+	
 func is_on_last_level() -> bool:
 	return not has_next_level()
 
+func is_on_first_level() -> bool:
+	return not has_prev_level()
+	
+	
 func _advance_level() -> bool:
 	if is_on_last_level(): return false
 	var current_level_id := _find_in_scene_lister(current_level_path)
@@ -91,6 +101,18 @@ func _advance_level() -> bool:
 	next_level_path = ""
 	return true
 
+func _prev_level() -> bool:
+	if is_on_first_level(): return false
+	var current_level_id := _find_in_scene_lister(current_level_path)
+	if current_level_id > -1:
+		current_level_id -= 1
+		current_level_path = scene_lister.files[current_level_id]
+		return true
+	current_level_path = next_level_path
+	next_level_path = ""
+	return true
+	
+	
 func _advance_and_load_main_menu() -> void:
 	_advance_level()
 	_load_main_menu()
@@ -140,6 +162,10 @@ func _load_next_level() -> void:
 	_advance_level()
 	load_current_level()
 
+func _load_prev_level() -> void:
+	_prev_level()
+	load_current_level()
+	
 func _reload_level() -> void:
 	load_current_level()
 
@@ -153,21 +179,21 @@ func _load_win_screen_or_ending() -> void:
 	else:
 		_load_ending()
 
-func _load_level_won_screen_or_next_level() -> void:
+func _load_level_won_screen_or_next_level(next:bool=true) -> void:
 	if level_won_scene:
 		var instance = level_won_scene.instantiate()
 		get_tree().current_scene.add_child(instance)
-		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_next_level)
+		_try_connecting_signal_to_node(instance, &"continue_pressed", _load_next_level if next else _load_prev_level)
 		_try_connecting_signal_to_node(instance, &"restart_pressed", _advance_and_reload_level)
 		_try_connecting_signal_to_node(instance, &"main_menu_pressed", _advance_and_load_main_menu)
 	else:
 		_load_next_level()
 
-func _on_level_won():
+func _on_level_won(next:bool=true):
 	if is_on_last_level():
 		_load_win_screen_or_ending()
 	else:
-		_load_level_won_screen_or_next_level()
+		_load_level_won_screen_or_next_level(next)
 
 func _on_level_won_and_changed(next_level : String):
 	next_level_path = next_level
@@ -182,6 +208,7 @@ func _connect_level_signals() -> void:
 	_try_connecting_signal_to_level(&"pause_pressed", _on_pause_pressed)
 	_try_connecting_signal_to_level(&"level_lost", _on_level_lost)
 	_try_connecting_signal_to_level(&"level_won", _on_level_won)
+	_try_connecting_signal_to_level(&"level_won_prev", _on_level_won.bind(false))
 	_try_connecting_signal_to_level(&"level_won_and_changed", _on_level_won_and_changed)
 	_try_connecting_signal_to_level(&"level_changed", _on_level_changed)
 	_try_connecting_signal_to_level(&"level_passed", _load_next_level)

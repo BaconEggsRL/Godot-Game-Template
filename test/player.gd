@@ -76,7 +76,14 @@ func _physics_process(delta):
 	# Check collision
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
+		
+		if not collision:
+			continue
+			
 		var collider = collision.get_collider()
+		
+		if not collider:
+			continue
 		
 		if collider.is_in_group("crate") or collider.is_in_group("wheel") and collider is RigidBody2D:
 			if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
