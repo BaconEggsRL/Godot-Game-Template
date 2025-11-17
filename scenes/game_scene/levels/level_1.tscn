@@ -135,6 +135,8 @@ position = Vector2(1112, 77)
 
 [node name="spotlight" parent="level/lights" instance=ExtResource("6_m77gi")]
 position = Vector2(640, 0)
+should_rotate = true
+rotate_amount = 30.0
 
 [node name="reflectors" type="Node2D" parent="level"]
 

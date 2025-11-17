@@ -6,7 +6,15 @@
 [node name="spotlight" type="Node2D"]
 script = ExtResource("1_dd5c7")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -244.0
+offset_top = -226.0
+offset_right = 218.0
+offset_bottom = 1082.0
+color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+
+[node name="light" type="PointLight2D" parent="."]
 position = Vector2(-1.2999115, -82.52623)
 rotation = -0.0015088329
 scale = Vector2(1.019, 4)
@@ -15,18 +23,21 @@ texture = ExtResource("1_brcy0")
 offset = Vector2(0, 128)
 
 [node name="rays" type="Node2D" parent="."]
+position = Vector2(0, -128)
 
 [node name="left" type="RayCast2D" parent="rays"]
-target_position = Vector2(-128, 720)
+position = Vector2(-56, 0)
+target_position = Vector2(-72, 1020)
 collision_mask = 130
 collide_with_areas = true
 
 [node name="center" type="RayCast2D" parent="rays"]
-target_position = Vector2(0, 720)
+target_position = Vector2(0, 1064)
 collision_mask = 130
 collide_with_areas = true
 
 [node name="right" type="RayCast2D" parent="rays"]
-target_position = Vector2(128, 720)
+position = Vector2(56, 0)
+target_position = Vector2(72, 1020)
 collision_mask = 130
 collide_with_areas = true

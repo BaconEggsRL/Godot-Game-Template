@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c7mh16ic2xq57"]
+[gd_scene load_steps=14 format=4 uid="uid://c7mh16ic2xq57"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_xgqhu"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_jwndf"]
@@ -11,16 +11,21 @@
 [ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="13_r6abn"]
 [ext_resource type="Texture2D" uid="uid://r1w6gru5a3eg" path="res://tilemap/tilemap.png" id="14_xg5px"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c6hhn"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhxfa"]
 texture = ExtResource("14_xg5px")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_c6hhn")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
 1:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_t62rc"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_hhxfa")
 
@@ -59,9 +64,10 @@ tile_set = SubResource("TileSet_t62rc")
 [node name="lights" type="Node2D" parent="level"]
 
 [node name="spotlight" parent="level/lights" instance=ExtResource("6_pu0aw")]
-position = Vector2(384, 412.99997)
+position = Vector2(319, 336)
 rotation = 1.5707964
 scale = Vector2(0.53, 0.53)
+offset = 70.0
 should_rotate = true
 rotate_amount = 10.0
 rotate_time = 0.5
