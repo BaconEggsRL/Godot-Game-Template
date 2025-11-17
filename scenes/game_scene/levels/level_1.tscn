@@ -174,8 +174,7 @@ is_glass = true
 [node name="player" parent="level" instance=ExtResource("9_5hj03")]
 position = Vector2(84, 662)
 
-[node name="Camera2D" parent="level/player" instance=ExtResource("10_1wmy8")]
-position = Vector2(0, -64)
+[node name="CameraController" parent="level/player" instance=ExtResource("10_1wmy8")]
 
 [node name="star" parent="level" instance=ExtResource("7_pmyid")]
 position = Vector2(1210, 68)
