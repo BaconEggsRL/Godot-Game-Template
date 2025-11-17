@@ -11,10 +11,12 @@ const MAX_WHEEL_VEL = 300
 
 signal hp_changed
 
-@export var hp:float = 50.0:
+@export var hp:float = 50.0:# 50.0:
 	set(value):
 		hp = value
 		hp_changed.emit(value)
+		if hp <= 0.0:
+			dead.emit()
 		
 # @export var hp_bar:LifeBar
 # @export var umbrella_bar:LifeBar
@@ -44,10 +46,10 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	# Death check
-	if self.hp <= 0.0:
-		# await get_tree().process_frame
-		level.restart_pressed.emit()
-		return
+	#if self.hp <= 0.0:
+		## await get_tree().process_frame
+		#level.restart_pressed.emit()
+		#return
 		
 	# Umbrella
 	#if umbrella:
@@ -107,7 +109,6 @@ func _physics_process(delta):
 			var data := tilemap.get_cell_tile_data(tile_pos)
 
 			if data and data.get_custom_data("type") == "spike":
-				AudioManager.play_sound("spike_splatt", 0.0, 1.0, true)
 				dead.emit()
 				return
 

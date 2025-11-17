@@ -100,4 +100,5 @@ func _on_hit_spike() -> void:
 	restart_pressed.emit()
 	
 func _on_player_dead() -> void:
+	AudioManager.play_sound("spike_splatt", 0.0, 1.0, true)
 	restart_pressed.emit()
