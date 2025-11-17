@@ -8,6 +8,7 @@ var touching_spike := false
 @onready var player:Player = get_tree().get_first_node_in_group("player")
 @onready var collision_shape: CollisionPolygon2D = $collision_shape
 
+@export var pogo_damage:float = 5.0
 
 @export var hp:float = 25.0:
 	set(value):
@@ -61,4 +62,5 @@ func _physics_process(_delta):
 	if pogo_now:
 		# print("pogo!")
 		AudioManager.play_sound("spike_pogo", 0.0, 1.0, true)
+		self.hp -= pogo_damage
 		player._do_jump()
