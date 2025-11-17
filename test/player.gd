@@ -11,7 +11,7 @@ const MAX_WHEEL_VEL = 300
 
 signal hp_changed
 
-@export var hp:float = 1.0:# 50.0:
+@export var hp:float = 50.0:# 50.0:
 	set(value):
 		hp = value
 		hp_changed.emit(value)
