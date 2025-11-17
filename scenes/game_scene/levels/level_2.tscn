@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://c7mh16ic2xq57"]
+[gd_scene load_steps=15 format=4 uid="uid://c7mh16ic2xq57"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_xgqhu"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_jwndf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://scenes/game_scene/levels/level_border.tscn" id="6_c6hhn"]
 [ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="6_pu0aw"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="11_h1q7v"]
+[ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="11_yh8gr"]
 [ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_2d.tscn" id="12_x7qrw"]
 [ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="13_r6abn"]
 [ext_resource type="Texture2D" uid="uid://r1w6gru5a3eg" path="res://tilemap/tilemap.png" id="14_xg5px"]
@@ -33,40 +34,6 @@ physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_hhxfa")
-
-[sub_resource type="Gradient" id="Gradient_c6hhn"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yh8gr"]
-gradient = SubResource("Gradient_c6hhn")
-width = 32
-height = 32
-
-[sub_resource type="Curve" id="Curve_yh8gr"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.49438208), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_urmku"]
-curve = SubResource("Curve_yh8gr")
-
-[sub_resource type="Curve" id="Curve_c6hhn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.50561804), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_yh8gr"]
-curve = SubResource("Curve_c6hhn")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c6hhn"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(64, 1, 1)
-direction = Vector3(0, -1, 0)
-spread = 0.0
-initial_velocity_min = 500.0
-initial_velocity_max = 500.0
-gravity = Vector3(0, 98, 0)
-scale_curve = SubResource("CurveTexture_yh8gr")
-alpha_curve = SubResource("CurveTexture_urmku")
 
 [node name="Level2" type="Control"]
 layout_mode = 3
@@ -124,7 +91,7 @@ rotate_amount = 10.0
 rotate_time = 0.5
 
 [node name="player" parent="level" instance=ExtResource("11_h1q7v")]
-position = Vector2(58, 95)
+position = Vector2(828, 89)
 
 [node name="Camera2D" parent="level/player" node_paths=PackedStringArray("player") instance=ExtResource("12_x7qrw")]
 position = Vector2(0, -64)
@@ -137,10 +104,7 @@ player = NodePath("..")
 [node name="star" parent="level" instance=ExtResource("13_r6abn")]
 position = Vector2(1210, 68)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(1029, 705)
-texture = SubResource("GradientTexture2D_yh8gr")
-visibility_rect = Rect2(-300, -300, 600, 600)
-process_material = SubResource("ParticleProcessMaterial_c6hhn")
+[node name="wind" parent="." instance=ExtResource("11_yh8gr")]
+position = Vector2(1028, 692)
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

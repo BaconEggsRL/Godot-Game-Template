@@ -30,11 +30,16 @@ var _jump_buffer_timer: float = 0.0
 @onready var parent:Node = get_parent()
 @onready var level:Node = parent.get_parent()
 
+var wind_velocity := Vector2.ZERO
+
+
+
 
 func _ready() -> void:
 	# umbrella_bar.setup(umbrella)
 	pass
-	
+
+
 func _physics_process(delta):
 	# Death check
 	if self.hp <= 0.0:
@@ -75,8 +80,12 @@ func _physics_process(delta):
 	# Input affects x axis only
 	velocity.x = Input.get_axis("move_left", "move_right") * speed
 
+	# Apply wind velocity
+	velocity += wind_velocity
+
 	# Check collision
 	for i in get_slide_collision_count():
+		
 		var collision = get_slide_collision(i)
 		
 		if not collision:
@@ -98,7 +107,7 @@ func _physics_process(delta):
 				dead.emit()
 				return
 
-
+			
 		if collider.is_in_group("crate") or collider.is_in_group("wheel") and collider is RigidBody2D:
 			if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
 				var normal = collision.get_normal()
