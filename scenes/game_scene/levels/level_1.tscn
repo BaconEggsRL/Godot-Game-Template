@@ -173,7 +173,6 @@ is_glass = true
 position = Vector2(84, 662)
 
 [node name="Camera2D" parent="level/player" instance=ExtResource("10_1wmy8")]
-visible = true
 position = Vector2(0, -64)
 
 [node name="star" parent="level" instance=ExtResource("7_pmyid")]

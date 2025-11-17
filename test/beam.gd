@@ -77,7 +77,7 @@ func cast_beam(_delta):
 
 
 	# reflect if collider is a mirror/reflector
-	if collider and collider.is_in_group("reflector"):
+	if collider and collider.is_in_group("static_reflector"):
 		var reflected_dir = dir.bounce(hit_normal).normalized()
 		
 		# rotate by global (parent)

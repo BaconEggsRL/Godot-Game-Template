@@ -57,10 +57,14 @@ tile_set = SubResource("TileSet_t62rc")
 [node name="level_border" parent="level" instance=ExtResource("6_c6hhn")]
 
 [node name="lights" type="Node2D" parent="level"]
-visible = false
 
 [node name="spotlight" parent="level/lights" instance=ExtResource("6_pu0aw")]
-position = Vector2(640, 0)
+position = Vector2(384, 412.99997)
+rotation = 1.5707964
+scale = Vector2(0.53, 0.53)
+should_rotate = true
+rotate_amount = 10.0
+rotate_time = 0.5
 
 [node name="player" parent="level" instance=ExtResource("11_h1q7v")]
 position = Vector2(58, 95)

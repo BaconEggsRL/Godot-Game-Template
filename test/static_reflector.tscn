@@ -17,7 +17,7 @@ fill_to = Vector2(0, 1)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67yjh"]
 polygon = PackedVector2Array(-32, -16, -32, 16, 32, 16, 32, -16)
 
-[node name="static_reflector" type="StaticBody2D" groups=["reflector"]]
+[node name="static_reflector" type="StaticBody2D" groups=["static_reflector"]]
 script = ExtResource("1_67yjh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
