@@ -7,13 +7,13 @@
 script = ExtResource("1_dd5c7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(641, -327.5)
-scale = Vector2(0.75781244, 2.5429688)
+position = Vector2(-1.2999115, -82.52623)
+rotation = -0.0015088329
+scale = Vector2(1.019, 4)
 shadow_enabled = true
 texture = ExtResource("1_brcy0")
-offset = Vector2(0, 256)
+offset = Vector2(0, 128)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(640, 0)
 target_position = Vector2(0, 720)
 collision_mask = 128

@@ -4,8 +4,8 @@ extends CharacterBody2D
 const CRATE_PUSH_FORCE = 100
 const MAX_CRATE_VEL = 300
 
-const WHEEL_PUSH_FORCE = 10
-const MAX_WHEEL_VEL = 25
+const WHEEL_PUSH_FORCE = 100
+const MAX_WHEEL_VEL = 300
 
 
 @export var hp:float = 50.0
@@ -15,7 +15,7 @@ const MAX_WHEEL_VEL = 25
 @onready var umbrella: Umbrella = $umbrella
 
 
-@export var speed = 1200
+@export var speed = 1000 # 1200
 @export var jump_speed = -1500
 @export var gravity = 4000
 
@@ -43,6 +43,8 @@ func _physics_process(delta):
 		# Rotate umbrella toward mouse
 		var mouse_pos = get_global_mouse_position()
 		var dir = (mouse_pos - umbrella.global_position).angle()
+		# var center = Vector2(1280/2.0, 720/2.0)
+		# var dir = (mouse_pos - center).angle()
 		
 		# Check umbrella death
 		umbrella.rotation = dir + PI/2

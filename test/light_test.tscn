@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://d0oscrsyixgyx"]
+[gd_scene load_steps=17 format=3 uid="uid://d0oscrsyixgyx"]
 
 [ext_resource type="Script" uid="uid://dkn8d6xrbenv8" path="res://test/hp_bar.gd" id="1_0vcph"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="1_sq04a"]
 [ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="2_sq04a"]
 [ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="5_2lx3s"]
 [ext_resource type="PackedScene" uid="uid://b3ud20wyvvkoe" path="res://test/rotating_reflector.tscn" id="6_sq04a"]
+[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_2d.tscn" id="7_qi5yx"]
 [ext_resource type="PackedScene" uid="uid://blf6u2qahxm37" path="res://test/crumble_wall.tscn" id="10_kcwul"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uchsv"]
@@ -40,18 +41,20 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.20511743, 0.20511743, 0.20511743, 1)
 
-[node name="hp_bars" type="VBoxContainer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="hp_bars" type="VBoxContainer" parent="CanvasLayer"]
 offset_right = 252.0
 offset_bottom = 72.0
 
-[node name="hp_bar" type="ProgressBar" parent="hp_bars" node_paths=PackedStringArray("entity")]
+[node name="hp_bar" type="ProgressBar" parent="CanvasLayer/hp_bars" node_paths=PackedStringArray("entity")]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 value = 100.0
 script = ExtResource("1_0vcph")
-entity = NodePath("../../player")
+entity = NodePath("../../../player")
 
-[node name="umbrella_bar" type="ProgressBar" parent="hp_bars"]
+[node name="umbrella_bar" type="ProgressBar" parent="CanvasLayer/hp_bars"]
 layout_mode = 2
 value = 100.0
 script = ExtResource("1_0vcph")
@@ -154,6 +157,7 @@ position = Vector2(1112, 77)
 [node name="lights" type="Node2D" parent="."]
 
 [node name="spotlight" parent="lights" instance=ExtResource("2_sq04a")]
+position = Vector2(640, 0)
 
 [node name="reflectors" type="Node2D" parent="."]
 
@@ -169,9 +173,12 @@ position = Vector2(389, 16)
 
 [node name="rotating_reflector" parent="reflectors/rotating_reflectors" instance=ExtResource("6_sq04a")]
 position = Vector2(642, 499)
-rotate_torque = 50.0
 
 [node name="player" parent="." node_paths=PackedStringArray("hp_bar", "umbrella_bar") instance=ExtResource("1_sq04a")]
 position = Vector2(84, 662)
-hp_bar = NodePath("../hp_bars/hp_bar")
-umbrella_bar = NodePath("../hp_bars/umbrella_bar")
+hp_bar = NodePath("../CanvasLayer/hp_bars/hp_bar")
+umbrella_bar = NodePath("../CanvasLayer/hp_bars/umbrella_bar")
+
+[node name="Camera2D" parent="player" instance=ExtResource("7_qi5yx")]
+visible = true
+position = Vector2(0, -64)

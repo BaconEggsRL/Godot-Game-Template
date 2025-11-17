@@ -92,38 +92,38 @@ tutorial_scenes = Array[PackedScene]([ExtResource("5_fmabn")])
 
 [node name="light_test" parent="." instance=ExtResource("6_sycfm")]
 
-[node name="Label" type="Label" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
 visible = false
-layout_mode = 0
 offset_right = 270.0
 offset_bottom = 30.0
 text = "this is level 1"
 
-[node name="UI" type="HBoxContainer" parent="."]
+[node name="UI" type="HBoxContainer" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.5)
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -158.0
+offset_left = -284.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="prev_btn" type="Button" parent="UI"]
+[node name="prev_btn" type="Button" parent="CanvasLayer/UI"]
 visible = false
 layout_mode = 2
 text = "PREV"
 
-[node name="restart_btn" type="Button" parent="UI"]
+[node name="restart_btn" type="Button" parent="CanvasLayer/UI"]
 layout_mode = 2
 text = "restart"
 
-[node name="skip_btn" type="Button" parent="UI"]
+[node name="skip_btn" type="Button" parent="CanvasLayer/UI"]
 visible = false
 layout_mode = 2
 text = "SKIP"
 
-[node name="pause_btn" type="Button" parent="UI"]
+[node name="pause_btn" type="Button" parent="CanvasLayer/UI"]
 layout_mode = 2
 text = "pause"
 
@@ -150,7 +150,7 @@ is_glass = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="pressed" from="UI/restart_btn" to="." method="_on_restart_btn_pressed"]
-[connection signal="pressed" from="UI/skip_btn" to="." method="_on_skip_btn_pressed"]
-[connection signal="pressed" from="UI/pause_btn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/restart_btn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/skip_btn" to="." method="_on_skip_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/pause_btn" to="." method="_on_pause_btn_pressed"]
 [connection signal="reached_star" from="star" to="." method="_on_star_reached_star"]

@@ -3,6 +3,16 @@ extends Node2D
 @onready var ray: RayCast2D = $RayCast2D
 var active_reflectors := {}
 
+@onready var light: PointLight2D = $PointLight2D
+
+var light_tween:Tween
+
+func _ready() -> void:
+	light_tween = create_tween()
+	light_tween.set_loops()
+	light_tween.tween_property(self, "rotation_degrees", 30.0, 1.0)
+	light_tween.tween_property(self, "rotation_degrees", -30.0, 1.0)
+
 
 func add_reflector(r: Node) -> void:
 	active_reflectors[r] = true  # Key is the reflector, value is dummy

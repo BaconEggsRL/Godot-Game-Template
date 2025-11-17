@@ -19,6 +19,6 @@ shape = SubResource("RectangleShape2D_fmabn")
 texture_repeat = 2
 texture = ExtResource("1_ra1wt")
 region_enabled = true
-region_rect = Rect2(0, 0, 192, 64)
+region_rect = Rect2(0, 0.641, 192, 64)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
