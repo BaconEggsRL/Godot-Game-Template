@@ -133,7 +133,6 @@ text = "pause"
 position = Vector2(1022, 694)
 
 [node name="spike2" parent="spikes" instance=ExtResource("7_bsimd")]
-process_mode = 4
 position = Vector2(268, 688)
 
 [node name="star" parent="." instance=ExtResource("7_pmyid")]
