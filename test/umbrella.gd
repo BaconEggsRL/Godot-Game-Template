@@ -61,4 +61,4 @@ func _physics_process(_delta):
 	if pogo_now:
 		print("pogo!")
 		AudioManager.play_sound("spike_pogo", 0.0, 1.0, true)
-		player._do_jump(player.jump_speed / 2.0)
+		player._do_jump()
