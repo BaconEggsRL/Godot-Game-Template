@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3ud20wyvvkoe"]
 
-[ext_resource type="Script" uid="uid://boy6qto1h36qv" path="res://test/spotlight.gd" id="1_5ujov"]
-[ext_resource type="Texture2D" uid="uid://chh7xh0x3gqm1" path="res://test/spotlight_body.png" id="2_g0sd3"]
-[ext_resource type="Texture2D" uid="uid://bhc7f72wr7xky" path="res://test/spotlight_head.png" id="3_7e7lp"]
+[ext_resource type="Script" uid="uid://boy6qto1h36qv" path="res://test/rotating_reflector.gd" id="1_5ujov"]
+[ext_resource type="Texture2D" uid="uid://chh7xh0x3gqm1" path="res://test/reflector_body.png" id="2_g0sd3"]
+[ext_resource type="Texture2D" uid="uid://bhc7f72wr7xky" path="res://test/reflector_head.png" id="3_7e7lp"]
 [ext_resource type="PackedScene" uid="uid://omj4w5foosv6" path="res://test/beam.tscn" id="4_sxvka"]
 [ext_resource type="PackedScene" uid="uid://cs1cbwh8uiu3s" path="res://test/wheel.tscn" id="5_g0sd3"]
 
@@ -11,6 +11,7 @@ radius = 164.0
 
 [node name="rotating_reflector" type="Node2D" node_paths=PackedStringArray("wheels")]
 script = ExtResource("1_5ujov")
+rotate_torque = null
 wheels = NodePath("wheels")
 has_wheels = true
 

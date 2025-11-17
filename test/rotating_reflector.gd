@@ -2,6 +2,7 @@
 class_name RotatingReflector
 extends Node2D
 
+@export var rotate_torque := 50.0
 
 @export var wheels: Node2D
 
@@ -52,12 +53,24 @@ func _on_body_exited(_body):
 
 
 func _process(delta):
-	if not player_inside:
-		active = false
-		return
-	else:
-		active = true
+	# Player inside toggle active
+	#if not player_inside:
+		#active = false
+		#return
+	#else:
+		#active = true
+	
+	# Light hitting head toggle active
 
+	
+	# Do nothing else if in the editor
+	if Engine.is_editor_hint():
+		return
+	
+	# Do not allow rotation if not inside interact area
+	if not player_inside:
+		return
+		
 	# Rotate right
 	if Input.is_action_pressed("rotate_right"):
 		head.rotation += rotation_speed * delta

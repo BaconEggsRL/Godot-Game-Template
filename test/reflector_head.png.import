@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8abvovcgd5va"
-path="res://.godot/imported/spotlight_body_wheels.png-3975698df372c641abe1472a65d84505.ctex"
+uid="uid://bhc7f72wr7xky"
+path="res://.godot/imported/reflector_head.png-278c8228ea659637cc407a41159a561e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://test/spotlight_body_wheels.png"
-dest_files=["res://.godot/imported/spotlight_body_wheels.png-3975698df372c641abe1472a65d84505.ctex"]
+source_file="res://test/reflector_head.png"
+dest_files=["res://.godot/imported/reflector_head.png-278c8228ea659637cc407a41159a561e.ctex"]
 
 [params]
 

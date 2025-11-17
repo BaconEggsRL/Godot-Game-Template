@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://chh7xh0x3gqm1"
-path="res://.godot/imported/spotlight_body.png-1ee18c150b6e5c68b47a962fed4172e2.ctex"
+path="res://.godot/imported/reflector_body.png-64f6be8dfc7bc85dfcac646d3ea68bb4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://test/spotlight_body.png"
-dest_files=["res://.godot/imported/spotlight_body.png-1ee18c150b6e5c68b47a962fed4172e2.ctex"]
+source_file="res://test/reflector_body.png"
+dest_files=["res://.godot/imported/reflector_body.png-64f6be8dfc7bc85dfcac646d3ea68bb4.ctex"]
 
 [params]
 
