@@ -166,4 +166,4 @@ position = Vector2(891, 16)
 position = Vector2(389, 16)
 
 [node name="rotating_reflector" parent="." instance=ExtResource("6_sq04a")]
-position = Vector2(640, 524)
+position = Vector2(642, 499)
