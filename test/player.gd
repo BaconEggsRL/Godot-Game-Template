@@ -9,8 +9,8 @@ const MAX_WHEEL_VEL = 300
 
 
 @export var hp:float = 50.0
-@export var hp_bar:LifeBar
-@export var umbrella_bar:LifeBar
+# @export var hp_bar:LifeBar
+# @export var umbrella_bar:LifeBar
 
 @onready var umbrella: Umbrella = $umbrella
 
@@ -30,7 +30,8 @@ var _jump_buffer_timer: float = 0.0
 
 
 func _ready() -> void:
-	umbrella_bar.setup(umbrella)
+	# umbrella_bar.setup(umbrella)
+	pass
 	
 func _physics_process(delta):
 	# Death check

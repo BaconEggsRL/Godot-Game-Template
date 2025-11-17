@@ -1,10 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://danrqx83o0lal"]
+[gd_scene load_steps=23 format=3 uid="uid://c7mh16ic2xq57"]
 
-[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_rgywr"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_8s04l"]
-[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game_scene/input_display_label.gd" id="3_kjg0a"]
-[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="4_w8c7f"]
+[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_xgqhu"]
+[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_jwndf"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://scenes/game_scene/levels/level_ui.tscn" id="4_t62rc"]
+[ext_resource type="PackedScene" uid="uid://blf6u2qahxm37" path="res://test/crumble_wall.tscn" id="5_08myb"]
 [ext_resource type="PackedScene" uid="uid://dv5cs1lbxmxva" path="res://scenes/game_scene/tutorials/tutorial_2.tscn" id="5_i1l6d"]
+[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="6_pu0aw"]
+[ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="7_x2n6q"]
+[ext_resource type="PackedScene" uid="uid://b3ud20wyvvkoe" path="res://test/rotating_reflector.tscn" id="8_b45wn"]
+[ext_resource type="PackedScene" uid="uid://ctxg1yp27kyil" path="res://test/spike.tscn" id="9_v4xsg"]
+[ext_resource type="PackedScene" uid="uid://pdseefr663hp" path="res://test/crate.tscn" id="10_3rwk0"]
+[ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="11_h1q7v"]
+[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_2d.tscn" id="12_x7qrw"]
+[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="13_r6abn"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uchsv"]
+
+[sub_resource type="Gradient" id="Gradient_1678g"]
+colors = PackedColorArray(0.11119685, 0.11119684, 0.11119684, 1, 0.10980392, 0.10980392, 0.10980392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fs73y"]
+gradient = SubResource("Gradient_1678g")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1678g"]
+polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1678g"]
+size = Vector2(558, 128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fs73y"]
+polygon = PackedVector2Array(-27.941002, -31.70642, -27.941002, 33.467896, 32, 32, 32, -32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fs73y"]
+size = Vector2(476, 108)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tco37"]
+polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tco37"]
+size = Vector2(511, 106)
 
 [node name="Level2" type="Control"]
 layout_mode = 3
@@ -13,91 +47,166 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rgywr")
-next_level_path = "res://scenes/game_scene/levels/level_3.tscn"
+script = ExtResource("1_xgqhu")
+prev_level_path = null
+next_level_path = "res://scenes/game_scene/levels/level_2.tscn"
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 32
-script = ExtResource("2_8s04l")
-
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Win"
-
-[node name="LoseButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Tutorial"
-
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-script = ExtResource("3_kjg0a")
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Change Level Color: "
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Change Color"
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.20511743, 0.20511743, 0.20511743, 1)
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("4_w8c7f")
+script = ExtResource("2_jwndf")
 tutorial_scenes = Array[PackedScene]([ExtResource("5_i1l6d")])
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 30.0
-text = "this is level 2"
+[node name="LevelUI" parent="." instance=ExtResource("4_t62rc")]
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton2" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[node name="level" type="Node2D" parent="."]
+
+[node name="platforms" type="Node2D" parent="level"]
+
+[node name="border" type="Node2D" parent="level/platforms"]
+position = Vector2(640, 0)
+rotation = -3.1415925
+
+[node name="left_wall" type="StaticBody2D" parent="level/platforms/border"]
+position = Vector2(639.99994, -360.00006)
+rotation = 3.1415925
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/platforms/border/left_wall"]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_uchsv")
+
+[node name="bottom_wall" type="StaticBody2D" parent="level/platforms/border"]
+position = Vector2(-6.1035156e-05, -720)
+rotation = 3.1415925
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/platforms/border/bottom_wall"]
+shape = SubResource("WorldBoundaryShape2D_uchsv")
+
+[node name="top_wall" type="StaticBody2D" parent="level/platforms/border"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/platforms/border/top_wall"]
+shape = SubResource("WorldBoundaryShape2D_uchsv")
+
+[node name="right_wall" type="StaticBody2D" parent="level/platforms/border"]
+position = Vector2(-640, -359.99994)
+rotation = 1.5707963
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/platforms/border/right_wall"]
+shape = SubResource("WorldBoundaryShape2D_uchsv")
+
+[node name="static" type="Node2D" parent="level/platforms"]
+
+[node name="platforms" type="Node2D" parent="level/platforms/static"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="level/platforms/static/platforms"]
+position = Vector2(397, 643)
+
+[node name="Sprite2D" type="Sprite2D" parent="level/platforms/static/platforms/StaticBody2D"]
+position = Vector2(246.5, 35)
+scale = Vector2(8.703125, 2.09375)
+texture = SubResource("GradientTexture2D_fs73y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="level/platforms/static/platforms/StaticBody2D"]
+position = Vector2(246.5, 35)
+scale = Vector2(8.703125, 2.09375)
+occluder = SubResource("OccluderPolygon2D_1678g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/platforms/static/platforms/StaticBody2D"]
+position = Vector2(245, 31)
+shape = SubResource("RectangleShape2D_1678g")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="level/platforms/static/platforms"]
+position = Vector2(1120, 141)
+
+[node name="Sprite2D2" type="Sprite2D" parent="level/platforms/static/platforms/StaticBody2D2"]
+position = Vector2(262.12503, 40.999992)
+scale = Vector2(7.472656, 1.7031248)
+texture = SubResource("GradientTexture2D_fs73y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="level/platforms/static/platforms/StaticBody2D2"]
+position = Vector2(247, 40.999992)
+scale = Vector2(7.9453125, 1.7031248)
+occluder = SubResource("OccluderPolygon2D_fs73y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/platforms/static/platforms/StaticBody2D2"]
+position = Vector2(262, 41)
+shape = SubResource("RectangleShape2D_fs73y")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="level/platforms/static/platforms"]
+position = Vector2(-135, 286)
+
+[node name="Sprite2D2" type="Sprite2D" parent="level/platforms/static/platforms/StaticBody2D3"]
+position = Vector2(246.25002, 45.499992)
+scale = Vector2(7.992188, 1.7031248)
+texture = SubResource("GradientTexture2D_fs73y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="level/platforms/static/platforms/StaticBody2D3"]
+position = Vector2(246.25002, 45.499992)
+scale = Vector2(7.992188, 1.7031248)
+occluder = SubResource("OccluderPolygon2D_tco37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/platforms/static/platforms/StaticBody2D3"]
+position = Vector2(245.5, 45)
+shape = SubResource("RectangleShape2D_tco37")
+
+[node name="breakable" type="Node2D" parent="level/platforms"]
+
+[node name="crumble_wall" parent="level/platforms/breakable" instance=ExtResource("5_08myb")]
+position = Vector2(1112, 77)
+
+[node name="moving" type="Node2D" parent="level/platforms"]
+
+[node name="lights" type="Node2D" parent="level"]
+
+[node name="spotlight" parent="level/lights" instance=ExtResource("6_pu0aw")]
+position = Vector2(640, 0)
+
+[node name="reflectors" type="Node2D" parent="level"]
+
+[node name="static_reflectors" type="Node2D" parent="level/reflectors"]
+
+[node name="static_reflector2" parent="level/reflectors/static_reflectors" instance=ExtResource("7_x2n6q")]
+position = Vector2(891, 16)
+
+[node name="static_reflector" parent="level/reflectors/static_reflectors" instance=ExtResource("7_x2n6q")]
+position = Vector2(389, 16)
+
+[node name="rotating_reflectors" type="Node2D" parent="level/reflectors"]
+
+[node name="rotating_reflector" parent="level/reflectors/rotating_reflectors" instance=ExtResource("8_b45wn")]
+position = Vector2(642, 499)
+
+[node name="spikes" type="Node2D" parent="level"]
+
+[node name="spike" parent="level/spikes" instance=ExtResource("9_v4xsg")]
+position = Vector2(1022, 694)
+
+[node name="spike2" parent="level/spikes" instance=ExtResource("9_v4xsg")]
+position = Vector2(268, 688)
+
+[node name="crates" type="Node2D" parent="level"]
+
+[node name="crate" parent="level/crates" instance=ExtResource("10_3rwk0")]
+position = Vector2(298, 232)
+
+[node name="crate2" parent="level/crates" instance=ExtResource("10_3rwk0")]
+position = Vector2(121, 231)
+collision_layer = 64
+is_glass = true
+
+[node name="player" parent="level" instance=ExtResource("11_h1q7v")]
+position = Vector2(84, 662)
+
+[node name="Camera2D" parent="level/player" instance=ExtResource("12_x7qrw")]
+visible = true
+position = Vector2(0, -64)
+
+[node name="star" parent="level" instance=ExtResource("13_r6abn")]
+position = Vector2(1210, 68)
+
+[connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

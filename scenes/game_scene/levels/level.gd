@@ -8,11 +8,13 @@ signal level_won
 signal level_won_and_changed(level_path : String)
 
 ## Optional path to the next level if using an open world level system.
+@export_file("*.tscn") var prev_level_path : String
 @export_file("*.tscn") var next_level_path : String
 
 var level: Node2D
 var spikes: Node2D
-
+var level_ui: LevelUI
+var player: Player
 
 var level_state : LevelState
 
@@ -39,12 +41,18 @@ func open_tutorials() -> void:
 
 func _ready() -> void:
 	level = get_node_or_null("level")
+	level_ui = get_node_or_null("LevelUI")
 	if level:
 		spikes = level.get_node_or_null("spikes")
+		player = level.get_node_or_null("player")
 	if spikes:
 		for spike in spikes.get_children():
 			spike.hit_spike.connect(_on_hit_spike)
-		
+	#if player:
+		#if level_ui:
+			#level_ui.umbrella_bar.setup(player.umbrella)
+	
+	
 	level_state = GameState.get_level_state(scene_file_path)
 	# %ColorPickerButton.color = level_state.color
 	# %BackgroundColor.color = level_state.color
@@ -79,3 +87,10 @@ func _on_pause_btn_pressed() -> void:
 
 func _on_hit_spike() -> void:
 	restart_pressed.emit()
+
+
+func _on_prev_btn_pressed() -> void:
+	if not prev_level_path.is_empty():
+		level_won_and_changed.emit(prev_level_path)
+	else:
+		level_won.emit()
