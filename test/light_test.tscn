@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkn8d6xrbenv8" path="res://test/hp_bar.gd" id="1_0vcph"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="1_sq04a"]
-[ext_resource type="Texture2D" uid="uid://bcc83e0io1dkj" path="res://test/cone_light.png" id="2_2lx3s"]
+[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="2_sq04a"]
 [ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="5_2lx3s"]
 [ext_resource type="PackedScene" uid="uid://b3ud20wyvvkoe" path="res://test/rotating_reflector.tscn" id="6_sq04a"]
 [ext_resource type="PackedScene" uid="uid://blf6u2qahxm37" path="res://test/crumble_wall.tscn" id="10_kcwul"]
@@ -40,135 +40,138 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.20511743, 0.20511743, 0.20511743, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="hp_bars" type="VBoxContainer" parent="."]
 offset_right = 252.0
 offset_bottom = 72.0
 
-[node name="hp_bar" type="ProgressBar" parent="VBoxContainer" node_paths=PackedStringArray("entity")]
+[node name="hp_bar" type="ProgressBar" parent="hp_bars" node_paths=PackedStringArray("entity")]
 self_modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 value = 100.0
 script = ExtResource("1_0vcph")
 entity = NodePath("../../player")
 
-[node name="umbrella_bar" type="ProgressBar" parent="VBoxContainer"]
+[node name="umbrella_bar" type="ProgressBar" parent="hp_bars"]
 layout_mode = 2
 value = 100.0
 script = ExtResource("1_0vcph")
 
-[node name="level_border" type="Node2D" parent="."]
+[node name="level" type="Node2D" parent="."]
+
+[node name="border" type="Node2D" parent="level"]
 position = Vector2(640, 0)
 rotation = -3.1415925
 
-[node name="left_wall" type="StaticBody2D" parent="level_border"]
+[node name="left_wall" type="StaticBody2D" parent="level/border"]
 position = Vector2(639.99994, -360.00006)
 rotation = 3.1415925
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level_border/left_wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/border/left_wall"]
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_uchsv")
 
-[node name="bottom_wall" type="StaticBody2D" parent="level_border"]
+[node name="bottom_wall" type="StaticBody2D" parent="level/border"]
 position = Vector2(-6.1035156e-05, -720)
 rotation = 3.1415925
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level_border/bottom_wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/border/bottom_wall"]
 shape = SubResource("WorldBoundaryShape2D_uchsv")
 
-[node name="top_wall" type="StaticBody2D" parent="level_border"]
+[node name="top_wall" type="StaticBody2D" parent="level/border"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level_border/top_wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/border/top_wall"]
 shape = SubResource("WorldBoundaryShape2D_uchsv")
 
-[node name="right_wall" type="StaticBody2D" parent="level_border"]
+[node name="right_wall" type="StaticBody2D" parent="level/border"]
 position = Vector2(-640, -359.99994)
 rotation = 1.5707963
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="level_border/right_wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/border/right_wall"]
 shape = SubResource("WorldBoundaryShape2D_uchsv")
 
-[node name="platforms" type="Node2D" parent="."]
+[node name="static" type="Node2D" parent="level"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="platforms"]
+[node name="platforms" type="Node2D" parent="level/static"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="level/static/platforms"]
 position = Vector2(397, 643)
 
-[node name="Sprite2D" type="Sprite2D" parent="platforms/StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="level/static/platforms/StaticBody2D"]
 position = Vector2(246.5, 35)
 scale = Vector2(8.703125, 2.09375)
 texture = SubResource("GradientTexture2D_fs73y")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="platforms/StaticBody2D"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="level/static/platforms/StaticBody2D"]
 position = Vector2(246.5, 35)
 scale = Vector2(8.703125, 2.09375)
 occluder = SubResource("OccluderPolygon2D_1678g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/static/platforms/StaticBody2D"]
 position = Vector2(245, 31)
 shape = SubResource("RectangleShape2D_1678g")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="platforms"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="level/static/platforms"]
 position = Vector2(1120, 141)
 
-[node name="Sprite2D2" type="Sprite2D" parent="platforms/StaticBody2D2"]
+[node name="Sprite2D2" type="Sprite2D" parent="level/static/platforms/StaticBody2D2"]
 position = Vector2(262.12503, 40.999992)
 scale = Vector2(7.472656, 1.7031248)
 texture = SubResource("GradientTexture2D_fs73y")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="platforms/StaticBody2D2"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="level/static/platforms/StaticBody2D2"]
 position = Vector2(247, 40.999992)
 scale = Vector2(7.9453125, 1.7031248)
 occluder = SubResource("OccluderPolygon2D_fs73y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/static/platforms/StaticBody2D2"]
 position = Vector2(262, 41)
 shape = SubResource("RectangleShape2D_fs73y")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="platforms"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="level/static/platforms"]
 position = Vector2(-135, 286)
 
-[node name="Sprite2D2" type="Sprite2D" parent="platforms/StaticBody2D3"]
+[node name="Sprite2D2" type="Sprite2D" parent="level/static/platforms/StaticBody2D3"]
 position = Vector2(246.25002, 45.499992)
 scale = Vector2(7.992188, 1.7031248)
 texture = SubResource("GradientTexture2D_fs73y")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="platforms/StaticBody2D3"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="level/static/platforms/StaticBody2D3"]
 position = Vector2(246.25002, 45.499992)
 scale = Vector2(7.992188, 1.7031248)
 occluder = SubResource("OccluderPolygon2D_tco37")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms/StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/static/platforms/StaticBody2D3"]
 position = Vector2(245.5, 45)
 shape = SubResource("RectangleShape2D_tco37")
 
+[node name="breakable" type="Node2D" parent="level"]
+
+[node name="crumble_wall" parent="level/breakable" instance=ExtResource("10_kcwul")]
+position = Vector2(1112, 77)
+
+[node name="moving" type="Node2D" parent="level"]
+
 [node name="lights" type="Node2D" parent="."]
 
-[node name="spotlight" type="Node2D" parent="lights"]
+[node name="spotlight" parent="lights" instance=ExtResource("2_sq04a")]
 
-[node name="PointLight2D" type="PointLight2D" parent="lights/spotlight"]
-position = Vector2(641, -327.5)
-scale = Vector2(0.75781244, 2.5429688)
-shadow_enabled = true
-texture = ExtResource("2_2lx3s")
-offset = Vector2(0, 256)
+[node name="reflectors" type="Node2D" parent="."]
 
-[node name="RayCast2D" type="RayCast2D" parent="lights/spotlight"]
-position = Vector2(640, 0)
-target_position = Vector2(0, 720)
-collision_mask = 128
+[node name="static_reflectors" type="Node2D" parent="reflectors"]
+
+[node name="static_reflector2" parent="reflectors/static_reflectors" instance=ExtResource("5_2lx3s")]
+position = Vector2(891, 16)
+
+[node name="static_reflector" parent="reflectors/static_reflectors" instance=ExtResource("5_2lx3s")]
+position = Vector2(389, 16)
+
+[node name="rotating_reflectors" type="Node2D" parent="reflectors"]
+
+[node name="rotating_reflector" parent="reflectors/rotating_reflectors" instance=ExtResource("6_sq04a")]
+position = Vector2(642, 499)
+rotate_torque = 50.0
 
 [node name="player" parent="." node_paths=PackedStringArray("hp_bar", "umbrella_bar") instance=ExtResource("1_sq04a")]
 position = Vector2(84, 662)
-hp_bar = NodePath("../VBoxContainer/hp_bar")
-umbrella_bar = NodePath("../VBoxContainer/umbrella_bar")
-
-[node name="crumble_wall" parent="." instance=ExtResource("10_kcwul")]
-position = Vector2(1112, 77)
-
-[node name="static_reflector2" parent="." instance=ExtResource("5_2lx3s")]
-position = Vector2(891, 16)
-
-[node name="static_reflector" parent="." instance=ExtResource("5_2lx3s")]
-position = Vector2(389, 16)
-
-[node name="rotating_reflector" parent="." instance=ExtResource("6_sq04a")]
-position = Vector2(642, 499)
+hp_bar = NodePath("../hp_bars/hp_bar")
+umbrella_bar = NodePath("../hp_bars/umbrella_bar")
