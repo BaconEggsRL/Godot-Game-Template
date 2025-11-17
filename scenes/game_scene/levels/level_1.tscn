@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://da00hutaakwk6"]
+[gd_scene load_steps=22 format=3 uid="uid://da00hutaakwk6"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_623lg"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="4_bsimd"]
@@ -11,9 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="7_pmyid"]
 [ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="7_tukvp"]
 [ext_resource type="PackedScene" uid="uid://b3ud20wyvvkoe" path="res://test/rotating_reflector.tscn" id="8_8a31v"]
-[ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="9_5hj03"]
 [ext_resource type="PackedScene" uid="uid://pdseefr663hp" path="res://test/crate.tscn" id="9_fmabn"]
-[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_controller.tscn" id="10_1wmy8"]
+[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="13_hehv2"]
 
 [sub_resource type="Gradient" id="Gradient_1678g"]
 colors = PackedColorArray(0.11119685, 0.11119684, 0.11119684, 1, 0.10980392, 0.10980392, 0.10980392, 1)
@@ -171,12 +170,10 @@ position = Vector2(121, 231)
 collision_layer = 64
 is_glass = true
 
-[node name="player" parent="level" instance=ExtResource("9_5hj03")]
-position = Vector2(84, 662)
-
-[node name="CameraController" parent="level/player" instance=ExtResource("10_1wmy8")]
-
 [node name="star" parent="level" instance=ExtResource("7_pmyid")]
 position = Vector2(1210, 68)
+
+[node name="player_umbrella" parent="." instance=ExtResource("13_hehv2")]
+position = Vector2(8, 355)
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]
