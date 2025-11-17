@@ -190,10 +190,16 @@ func _load_level_won_screen_or_next_level(next:bool=true) -> void:
 		_load_next_level()
 
 func _on_level_won(next:bool=true):
-	if is_on_last_level():
-		_load_win_screen_or_ending()
+	if next:
+		if is_on_last_level():
+			_load_win_screen_or_ending()
+		else:
+			_load_level_won_screen_or_next_level(next)
 	else:
-		_load_level_won_screen_or_next_level(next)
+		if is_on_first_level():
+			_load_win_screen_or_ending()
+		else:
+			_load_level_won_screen_or_next_level(next)
 
 func _on_level_won_and_changed(next_level : String):
 	next_level_path = next_level

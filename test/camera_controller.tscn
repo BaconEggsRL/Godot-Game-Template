@@ -9,4 +9,5 @@ limit_right = 1640
 limit_bottom = 1080
 position_smoothing_enabled = true
 script = ExtResource("1_xxmnu")
+enable_camera = false
 enable_limits = true

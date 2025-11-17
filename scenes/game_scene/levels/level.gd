@@ -32,9 +32,6 @@ func _on_lose_button_pressed() -> void:
 	level_lost.emit()
 
 func _on_win_button_pressed() -> void:
-	#if not next_level_path.is_empty():
-		#level_won_and_changed.emit(next_level_path)
-	#else:
 	level_won.emit()
 
 func open_tutorials() -> void:
@@ -80,24 +77,22 @@ func _on_tutorial_button_pressed() -> void:
 
 
 func _on_star_reached_star() -> void:
-	_on_win_button_pressed()
+	level_won.emit()
 
 
 func _on_level_ui_pause() -> void:
 	pause_pressed.emit()
 
-func _on_level_ui_prev() -> void:
-	#if not prev_level_path.is_empty():
-		#level_won_and_changed.emit(prev_level_path)
-	#else:
-	level_won_prev.emit()
-
 func _on_level_ui_restart() -> void:
-	print("hello?")
 	restart_pressed.emit()
 
+
+
+func _on_level_ui_prev() -> void:
+	level_won_prev.emit()
+	
 func _on_level_ui_skip() -> void:
-	_on_win_button_pressed()
+	level_won.emit()
 
 
 

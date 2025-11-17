@@ -1,12 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://rpyqx1valdin"]
+[gd_scene load_steps=14 format=4 uid="uid://b1egjtwfno8oj"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
-[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_satlj"]
-[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game_scene/input_display_label.gd" id="3_4popk"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="4_mdq82"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://scenes/game_scene/levels/level_ui.tscn" id="4_x342e"]
 [ext_resource type="PackedScene" uid="uid://b444n7xu3j48v" path="res://scenes/game_scene/tutorials/tutorial_3.tscn" id="5_32y40"]
+[ext_resource type="Texture2D" uid="uid://r1w6gru5a3eg" path="res://tilemap/tilemap.png" id="5_s8hpv"]
+[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://scenes/game_scene/levels/level_border.tscn" id="6_qqrq0"]
+[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="7_u6nfu"]
+[ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="8_ps8dp"]
+[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_controller.tscn" id="9_ce5ly"]
+[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="10_qmvo6"]
 
-[node name="Level3" type="Control"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c6hhn"]
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhxfa"]
+texture = ExtResource("5_s8hpv")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_c6hhn")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, 0, 16, 0, 16, 16)
+1:0/0/custom_data_0 = "spike"
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_t62rc"]
+tile_size = Vector2i(32, 32)
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_hhxfa")
+
+[node name="Level2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,89 +42,69 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3s8h5")
+metadata/_edit_lock_ = true
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 32
-script = ExtResource("2_satlj")
-
-[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Win"
-
-[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="LoseButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="LoseButton3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Lose"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Tutorial"
-
-[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
-script = ExtResource("3_4popk")
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Change Level Color: "
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Change Color"
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.20511743, 0.20511743, 0.20511743, 1)
+metadata/_edit_lock_ = true
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_mdq82")
 tutorial_scenes = Array[PackedScene]([ExtResource("5_32y40")])
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton2" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton3" to="." method="_on_lose_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
-[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[node name="LevelUI" parent="." instance=ExtResource("4_x342e")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA8AAAAAAAAAAAAAABAAAAAAAAAAAAAAABEAAAAAAAAAAAAAABIAAAAAAAAAAAAAABMAAAAAAAAAAAAAABQAAAAAAAAAAAAAABUAAAAAAAAAAAAAABYAAAAAAAAAAAABAAsAAAAAAAAAAAABAAwAAAAAAAAAAAABAA0AAAAAAAAAAAABAA4AAAAAAAAAAAABAA8AAAAAAAAAAAABABAAAAAAAAAAAAABABEAAAAAAAAAAAABABIAAAAAAAAAAAABABMAAAAAAAAAAAABABQAAAAAAAAAAAABABUAAAAAAAAAAAABABYAAAAAAAAAAAACAAsAAAAAAAAAAAACAAwAAAAAAAAAAAACAA0AAAAAAAAAAAACAA4AAAAAAAAAAAACAA8AAAAAAAAAAAACABAAAAAAAAAAAAACABEAAAAAAAAAAAACABIAAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAACABUAAAAAAAAAAAACABYAAAAAAAAAAAAlAAsAAAAAAAAAAAAlAAwAAAAAAAAAAAAlAA0AAAAAAAAAAAAlAA4AAAAAAAAAAAAlAA8AAAAAAAAAAAAlABAAAAAAAAAAAAAlABEAAAAAAAAAAAAlABIAAAAAAAAAAAAlABMAAAAAAAAAAAAlABQAAAAAAAAAAAAlABUAAAAAAAAAAAAlABYAAAAAAAAAAAAmAAsAAAAAAAAAAAAmAAwAAAAAAAAAAAAmAA0AAAAAAAAAAAAmAA4AAAAAAAAAAAAmAA8AAAAAAAAAAAAmABAAAAAAAAAAAAAmABEAAAAAAAAAAAAmABIAAAAAAAAAAAAmABMAAAAAAAAAAAAmABQAAAAAAAAAAAAmABUAAAAAAAAAAAAmABYAAAAAAAAAAAAnAAsAAAAAAAAAAAAnAAwAAAAAAAAAAAAnAA0AAAAAAAAAAAAnAA4AAAAAAAAAAAAnAA8AAAAAAAAAAAAnABAAAAAAAAAAAAAnABEAAAAAAAAAAAAnABIAAAAAAAAAAAAnABMAAAAAAAAAAAAnABQAAAAAAAAAAAAnABUAAAAAAAAAAAAnABYAAAAAAAAAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAAMAA4AAAAAAAAAAAAMAA8AAAAAAAAAAAAMABAAAAAAAAAAAAAMABEAAAAAAAAAAAAMABIAAAAAAAAAAAAMABMAAAAAAAAAAAAMABQAAAAAAAAAAAAMABUAAAAAAAAAAAAMABYAAAAAAAAAAAAUAAsAAAAAAAAAAAAUAAwAAAAAAAAAAAAUAA0AAAAAAAAAAAAUAA4AAAAAAAAAAAAUAA8AAAAAAAAAAAAUABAAAAAAAAAAAAAUABEAAAAAAAAAAAAUABIAAAAAAAAAAAAUABMAAAAAAAAAAAAUABQAAAAAAAAAAAAUABUAAAAAAAAAAAAUABYAAAAAAAAAAAAcAAsAAAAAAAAAAAAcAAwAAAAAAAAAAAAcAA0AAAAAAAAAAAAcAA4AAAAAAAAAAAAcAA8AAAAAAAAAAAAcABAAAAAAAAAAAAAcABEAAAAAAAAAAAAcABIAAAAAAAAAAAAcABMAAAAAAAAAAAAcABQAAAAAAAAAAAAcABUAAAAAAAAAAAAcABYAAAAAAAAAAAADAAsAAAAAAAAAAAADAAwAAAAAAAAAAAADAA0AAAAAAAAAAAADAA4AAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAEAA0AAAAAAAAAAAAEAA4AAAAAAAAAAAADAA8AAAAAAAAAAAADABAAAAAAAAAAAAADABEAAAAAAAAAAAADABIAAAAAAAAAAAADABMAAAAAAAAAAAADABQAAAAAAAAAAAADABUAAAAAAAAAAAADABYAAAAAAAAAAAAEAA8AAAAAAAAAAAAEABAAAAAAAAAAAAAEABEAAAAAAAAAAAAEABIAAAAAAAAAAAAEABMAAAAAAAAAAAAEABQAAAAAAAAAAAAEABUAAAAAAAAAAAAEABYAAAAAAAAAAAAkAAsAAAAAAAAAAAAkAAwAAAAAAAAAAAAkAA0AAAAAAAAAAAAkAA4AAAAAAAAAAAAkAA8AAAAAAAAAAAAkABAAAAAAAAAAAAAkABEAAAAAAAAAAAAkABIAAAAAAAAAAAAkABMAAAAAAAAAAAAkABQAAAAAAAAAAAAkABUAAAAAAAAAAAAkABYAAAAAAAAAAAAjAAsAAAAAAAAAAAAjAAwAAAAAAAAAAAAjAA0AAAAAAAAAAAAjAA4AAAAAAAAAAAAjAA8AAAAAAAAAAAAjABAAAAAAAAAAAAAjABEAAAAAAAAAAAAjABIAAAAAAAAAAAAjABMAAAAAAAAAAAAjABQAAAAAAAAAAAAjABUAAAAAAAAAAAAjABYAAAAAAAAAAAALAAsAAAAAAAAAAAALAAwAAAAAAAAAAAALAA0AAAAAAAAAAAALAA4AAAAAAAAAAAALAA8AAAAAAAAAAAALABAAAAAAAAAAAAALABEAAAAAAAAAAAALABIAAAAAAAAAAAALABMAAAAAAAAAAAALABQAAAAAAAAAAAALABUAAAAAAAAAAAALABYAAAAAAAAAAAATAAsAAAAAAAAAAAATAAwAAAAAAAAAAAATAA0AAAAAAAAAAAATAA4AAAAAAAAAAAATAA8AAAAAAAAAAAATABAAAAAAAAAAAAATABEAAAAAAAAAAAATABIAAAAAAAAAAAATABMAAAAAAAAAAAATABQAAAAAAAAAAAATABUAAAAAAAAAAAATABYAAAAAAAAAAAAbAAsAAAAAAAAAAAAbAAwAAAAAAAAAAAAbAA0AAAAAAAAAAAAbAA4AAAAAAAAAAAAbAA8AAAAAAAAAAAAbABAAAAAAAAAAAAAbABEAAAAAAAAAAAAbABIAAAAAAAAAAAAbABMAAAAAAAAAAAAbABQAAAAAAAAAAAAbABUAAAAAAAAAAAAbABYAAAAAAAAAAAAAABkAAAABAAAAAAAAABoAAAABAAAAAAABABkAAAABAAAAAAABABoAAAABAAAAAAACABkAAAABAAAAAAACABoAAAABAAAAAAADABkAAAABAAAAAAADABoAAAABAAAAAAAEABkAAAABAAAAAAAEABoAAAABAAAAAAAFABkAAAABAAAAAAAFABoAAAABAAAAAAAGABkAAAABAAAAAAAGABoAAAABAAAAAAAHABkAAAABAAAAAAAHABoAAAABAAAAAAAIABkAAAABAAAAAAAIABoAAAABAAAAAAAJABkAAAABAAAAAAAJABoAAAABAAAAAAAKABkAAAABAAAAAAAKABoAAAABAAAAAAALABkAAAABAAAAAAALABoAAAABAAAAAAAMABkAAAABAAAAAAAMABoAAAABAAAAAAANABkAAAABAAAAAAANABoAAAABAAAAAAAOABkAAAABAAAAAAAOABoAAAABAAAAAAAPABkAAAABAAAAAAAPABoAAAABAAAAAAAQABkAAAABAAAAAAAQABoAAAABAAAAAAARABkAAAABAAAAAAARABoAAAABAAAAAAASABkAAAABAAAAAAASABoAAAABAAAAAAATABkAAAABAAAAAAATABoAAAABAAAAAAAUABkAAAABAAAAAAAUABoAAAABAAAAAAAVABkAAAABAAAAAAAVABoAAAABAAAAAAAWABkAAAABAAAAAAAWABoAAAABAAAAAAAXABkAAAABAAAAAAAXABoAAAABAAAAAAAYABkAAAABAAAAAAAYABoAAAABAAAAAAAZABkAAAABAAAAAAAZABoAAAABAAAAAAAaABkAAAABAAAAAAAaABoAAAABAAAAAAAbABkAAAABAAAAAAAbABoAAAABAAAAAAAcABkAAAABAAAAAAAcABoAAAABAAAAAAAdABkAAAABAAAAAAAdABoAAAABAAAAAAAeABkAAAABAAAAAAAeABoAAAABAAAAAAAfABkAAAABAAAAAAAfABoAAAABAAAAAAAgABkAAAABAAAAAAAgABoAAAABAAAAAAAhABkAAAABAAAAAAAhABoAAAABAAAAAAAiABkAAAABAAAAAAAiABoAAAABAAAAAAAjABkAAAABAAAAAAAjABoAAAABAAAAAAAkABkAAAABAAAAAAAkABoAAAABAAAAAAAlABkAAAABAAAAAAAlABoAAAABAAAAAAAmABkAAAABAAAAAAAmABoAAAABAAAAAAAnABkAAAABAAAAAAAnABoAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_t62rc")
+rendering_quadrant_size = 32
+physics_quadrant_size = 32
+
+[node name="level" type="Node2D" parent="."]
+
+[node name="level_border" parent="level" instance=ExtResource("6_qqrq0")]
+ground_enabled = false
+
+[node name="lights" type="Node2D" parent="level"]
+
+[node name="spotlight" parent="level/lights" instance=ExtResource("7_u6nfu")]
+position = Vector2(257, 155)
+scale = Vector2(0.53, 0.53)
+offset = 70.0
+rotate_amount = 10.0
+rotate_time = 0.5
+
+[node name="spotlight2" parent="level/lights" instance=ExtResource("7_u6nfu")]
+position = Vector2(510, 144)
+scale = Vector2(0.53, 0.53)
+offset = 70.0
+rotate_amount = 10.0
+rotate_time = 0.5
+
+[node name="spotlight3" parent="level/lights" instance=ExtResource("7_u6nfu")]
+position = Vector2(760.99994, 150)
+scale = Vector2(0.53, 0.53)
+offset = 70.0
+rotate_amount = 10.0
+rotate_time = 0.5
+
+[node name="spotlight4" parent="level/lights" instance=ExtResource("7_u6nfu")]
+position = Vector2(1028, 155)
+scale = Vector2(0.53, 0.53)
+offset = 70.0
+rotate_amount = 10.0
+rotate_time = 0.5
+
+[node name="player" parent="level" instance=ExtResource("8_ps8dp")]
+position = Vector2(79, 287)
+
+[node name="CameraController" parent="level/player" instance=ExtResource("9_ce5ly")]
+
+[node name="star" parent="level" instance=ExtResource("10_qmvo6")]
+position = Vector2(1205, 297)
+
+[connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]
