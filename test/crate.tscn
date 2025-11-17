@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck5xa6ntioxbh" path="res://test/crate.gd" id="1_y82iw"]
 [ext_resource type="Texture2D" uid="uid://b75qhw22ph5xd" path="res://test/glass_crate.png" id="3_34r00"]
-[ext_resource type="Texture2D" uid="uid://4xnn87v2uirf" path="res://test/glass_outline.png" id="3_ahwyp"]
+[ext_resource type="Texture2D" uid="uid://dt4gib8a3eisa" path="res://test/regular_crate.png" id="3_ahwyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g53gq"]
 size = Vector2(64, 64)
@@ -20,6 +20,7 @@ script = ExtResource("1_y82iw")
 shape = SubResource("RectangleShape2D_g53gq")
 
 [node name="glass" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0.2)
 texture = ExtResource("3_34r00")
 

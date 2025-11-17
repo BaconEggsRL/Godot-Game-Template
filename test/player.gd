@@ -114,7 +114,7 @@ func _physics_process(delta):
 				return
 
 			
-		if collider.is_in_group("crate") or collider.is_in_group("wheel") and collider is RigidBody2D:
+		if (collider.is_in_group("crate") or collider.is_in_group("wheel")) and collider is RigidBody2D:
 			if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
 				var normal = collision.get_normal()
 				var PUSH_FORCE = CRATE_PUSH_FORCE if collider.is_in_group("crate") else WHEEL_PUSH_FORCE

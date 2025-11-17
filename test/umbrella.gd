@@ -3,6 +3,14 @@ extends CharacterBody2D
 
 signal hp_changed
 
+
+const CRATE_PUSH_FORCE = 100
+const MAX_CRATE_VEL = 300
+
+const WHEEL_PUSH_FORCE = 100
+const MAX_WHEEL_VEL = 300
+
+
 var touching_spike := false
 
 @onready var player:Player = get_tree().get_first_node_in_group("player")
@@ -55,6 +63,17 @@ func _physics_process(_delta):
 			if data and data.get_custom_data("type") == "spike":
 				spike_hit_this_frame = true
 				break
+				
+		#if collider.is_in_group("crate") or collider.is_in_group("wheel") and collider is RigidBody2D:
+			#if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
+				#var normal = collision.get_normal()
+				#var PUSH_FORCE = CRATE_PUSH_FORCE if collider.is_in_group("crate") else WHEEL_PUSH_FORCE
+				## Only push if the collision is mostly horizontal
+				#if abs(normal.x) > 0.7:
+					#var push = Vector2(-normal.x, 0) * PUSH_FORCE
+					#collider.apply_central_impulse(push)
+				## collider.apply_central_impulse(normal * -PUSH_FORCE)
+
 
 	# No collision, safe to rotate
 	rotation = desired_rotation
