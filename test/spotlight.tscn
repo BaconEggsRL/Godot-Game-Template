@@ -28,16 +28,16 @@ position = Vector2(0, -128)
 [node name="left" type="RayCast2D" parent="rays"]
 position = Vector2(-56, 0)
 target_position = Vector2(-72, 1020)
-collision_mask = 130
+collision_mask = 911
 collide_with_areas = true
 
 [node name="center" type="RayCast2D" parent="rays"]
 target_position = Vector2(0, 1064)
-collision_mask = 130
+collision_mask = 911
 collide_with_areas = true
 
 [node name="right" type="RayCast2D" parent="rays"]
 position = Vector2(56, 0)
 target_position = Vector2(72, 1020)
-collision_mask = 130
+collision_mask = 911
 collide_with_areas = true

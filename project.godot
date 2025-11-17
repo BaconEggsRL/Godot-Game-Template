@@ -137,6 +137,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 2d_physics/layer_7="glass_crates"
 2d_physics/layer_8="reflector_head"
 2d_physics/layer_9="wheels"
+2d_physics/layer_10="spike"
 
 [maaacks_game_template]
 
