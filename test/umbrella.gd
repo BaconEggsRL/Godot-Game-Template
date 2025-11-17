@@ -59,6 +59,6 @@ func _physics_process(_delta):
 	touching_spike = spike_hit_this_frame  # remember for next frame
 
 	if pogo_now:
-		print("pogo!")
+		# print("pogo!")
 		AudioManager.play_sound("spike_pogo", 0.0, 1.0, true)
 		player._do_jump()

@@ -15,6 +15,7 @@ func check_collision() -> void:
 	for ray in ray_children:
 		if ray.is_colliding():
 			# var collider = ray.get_collider()
+			# print(collider)
 			# var normal: Vector2 = ray.get_collision_normal()
 			# var _angle: float = normal.angle()  # in radians
 			# var push = Vector2(0, -normal.y) * PUSH_FORCE

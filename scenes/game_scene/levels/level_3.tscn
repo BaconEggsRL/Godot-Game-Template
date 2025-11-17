@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b1egjtwfno8oj"]
+[gd_scene load_steps=13 format=4 uid="uid://b1egjtwfno8oj"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_3s8h5"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="4_mdq82"]
@@ -7,10 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://r1w6gru5a3eg" path="res://tilemap/tilemap.png" id="5_s8hpv"]
 [ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_qqrq0"]
 [ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="7_u6nfu"]
-[ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="8_ps8dp"]
-[ext_resource type="PackedScene" uid="uid://bjmecy3ua5468" path="res://test/camera_controller.tscn" id="9_ce5ly"]
+[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="9_32y40"]
 [ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="10_qmvo6"]
-[ext_resource type="PackedScene" uid="uid://bffy3r2d8udky" path="res://test/umbrella.tscn" id="10_so5mi"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c6hhn"]
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -96,21 +94,6 @@ rotate_time = 0.5
 [node name="star" parent="level" instance=ExtResource("10_qmvo6")]
 position = Vector2(1205, 297)
 
-[node name="player" type="Node2D" parent="."]
-
-[node name="player" parent="player" instance=ExtResource("8_ps8dp")]
-position = Vector2(79, 287)
-
-[node name="CameraController" parent="player/player" instance=ExtResource("9_ce5ly")]
-
-[node name="umbrella" parent="player" instance=ExtResource("10_so5mi")]
-position = Vector2(79, 287)
-
-[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="player"]
-node_a = NodePath("../player")
-node_b = NodePath("../umbrella")
-length = 100.0
-rest_length = 100.0
-stiffness = 64.0
+[node name="player_umbrella" parent="." instance=ExtResource("9_32y40")]
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]
