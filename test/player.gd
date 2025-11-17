@@ -73,7 +73,12 @@ func _physics_process(delta):
 		var collider = collision.get_collider()
 		if collider.is_in_group("crate") and collider is RigidBody2D:
 			if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
-				collider.apply_central_impulse(collision.get_normal() * -PUSH_FORCE)
+				var normal = collision.get_normal()
+				# Only push if the collision is mostly horizontal
+				if abs(normal.x) > 0.7:
+					var push = Vector2(-normal.x, 0) * PUSH_FORCE
+					collider.apply_central_impulse(push)
+				# collider.apply_central_impulse(normal * -PUSH_FORCE)
 
 	move_and_slide()
 	
