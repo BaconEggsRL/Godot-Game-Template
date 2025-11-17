@@ -44,9 +44,9 @@ func open_tutorials() -> void:
 func _ready() -> void:
 	level = get_node_or_null("level")
 	level_ui = get_node_or_null("LevelUI")
+	player = get_tree().get_first_node_in_group("player")
 	if level:
 		spikes = level.get_node_or_null("spikes")
-		player = level.get_node_or_null("player")
 	if spikes:
 		for spike in spikes.get_children():
 			spike.hit_spike.connect(_on_hit_spike)

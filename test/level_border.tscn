@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://7xhi2yt0p7ws"]
 
-[ext_resource type="Script" uid="uid://cny5hal4ta8c3" path="res://scenes/game_scene/levels/level_border.gd" id="1_6sdoi"]
+[ext_resource type="Script" uid="uid://cny5hal4ta8c3" path="res://test/level_border.gd" id="1_6sdoi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uchsv"]
 

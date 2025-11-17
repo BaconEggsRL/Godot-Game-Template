@@ -19,7 +19,7 @@ signal hp_changed
 # @export var hp_bar:LifeBar
 # @export var umbrella_bar:LifeBar
 
-@onready var umbrella: Umbrella = $umbrella
+# @onready var umbrella: Umbrella = $umbrella
 
 
 @export_range(0, 1200, 1.0) var speed:float = 1000 # 1200
@@ -41,7 +41,6 @@ var wind_velocity := Vector2.ZERO
 
 
 func _ready() -> void:
-	# umbrella_bar.setup(umbrella)
 	pass
 
 
@@ -53,18 +52,19 @@ func _physics_process(delta):
 		return
 		
 	# Umbrella
-	if umbrella:
+	#if umbrella:
+		#pass
 		# Rotate umbrella toward mouse
-		var mouse_pos = get_global_mouse_position()
-		var dir = (mouse_pos - umbrella.global_position).angle()
+		# var mouse_pos = get_global_mouse_position()
+		# var dir = (mouse_pos - umbrella.global_position).angle()
 		# var center = Vector2(1280/2.0, 720/2.0)
 		# var dir = (mouse_pos - center).angle()
+		# umbrella.rotation = dir + PI/2
 		
 		# Check umbrella death
-		umbrella.rotation = dir + PI/2
-		if umbrella.hp <= 0.0:
-			umbrella.queue_free.call_deferred()
-			return
+		#if umbrella.hp <= 0.0:
+			#umbrella.queue_free.call_deferred()
+			#return
 		
 	################################
 	

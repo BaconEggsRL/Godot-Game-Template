@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_xgqhu"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_jwndf"]
-[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://scenes/game_scene/levels/level_ui.tscn" id="4_t62rc"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_t62rc"]
 [ext_resource type="PackedScene" uid="uid://dv5cs1lbxmxva" path="res://scenes/game_scene/tutorials/tutorial_2.tscn" id="5_i1l6d"]
-[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://scenes/game_scene/levels/level_border.tscn" id="6_c6hhn"]
+[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_c6hhn"]
 [ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="6_pu0aw"]
 [ext_resource type="PackedScene" uid="uid://lrfwgn1xotgo" path="res://test/player.tscn" id="11_h1q7v"]
 [ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="11_yh8gr"]

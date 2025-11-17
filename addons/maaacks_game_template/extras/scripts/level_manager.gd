@@ -74,6 +74,8 @@ func _find_in_scene_lister(level_path : String) -> int:
 func has_next_level() -> bool:
 	if scene_lister:
 		var current_level_id = _find_in_scene_lister(current_level_path)
+		print("current_level_id = %s" % current_level_id)
+		print("scene_lister.files.size() = %s" % scene_lister.files.size())
 		return current_level_id < scene_lister.files.size() - 1
 	return (not next_level_path.is_empty()) and next_level_path != current_level_path
 
@@ -84,6 +86,7 @@ func has_prev_level() -> bool:
 	return (not next_level_path.is_empty()) and next_level_path != current_level_path
 	
 func is_on_last_level() -> bool:
+	print("has_next_level = ", has_next_level())
 	return not has_next_level()
 
 func is_on_first_level() -> bool:

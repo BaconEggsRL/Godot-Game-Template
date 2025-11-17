@@ -141,6 +141,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 2d_physics/layer_9="wheels"
 2d_physics/layer_10="spike"
 2d_physics/layer_11="wind"
+2d_physics/layer_12="umbrella"
 
 [maaacks_game_template]
 

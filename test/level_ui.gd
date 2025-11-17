@@ -6,7 +6,8 @@ var level_num:int :
 		level_num = value
 		level_label.text = "Level %d" % level_num
 		
-var player:Player
+@onready var player:Player = get_tree().get_first_node_in_group("player")
+@onready var umbrella:Umbrella = get_tree().get_first_node_in_group("umbrella")
 
 @onready var hp_bar: LifeBar = $HealthBars/hp_bar
 @onready var umbrella_bar: LifeBar = $HealthBars/umbrella_bar
@@ -20,13 +21,10 @@ signal pause
 
 
 func _ready() -> void:
-	player = get_tree().get_first_node_in_group("player")
-	
-	await get_tree().process_frame
-	
-	hp_bar.setup(player)
-	umbrella_bar.setup(player.umbrella)
-
+	if player:
+		hp_bar.setup(player)
+	if umbrella:
+		umbrella_bar.setup(umbrella)
 
 
 func _on_prev_btn_pressed() -> void:

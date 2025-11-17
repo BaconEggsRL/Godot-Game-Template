@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://lrfwgn1xotgo"]
+[gd_scene load_steps=4 format=3 uid="uid://lrfwgn1xotgo"]
 
 [ext_resource type="Script" uid="uid://b7hqhc8kxkhuh" path="res://test/player.gd" id="1_wvbbu"]
 [ext_resource type="Texture2D" uid="uid://colm6hrbcevdc" path="res://test/player.png" id="2_jp3oe"]
-[ext_resource type="PackedScene" uid="uid://bffy3r2d8udky" path="res://test/umbrella.tscn" id="3_wvbbu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvbbu"]
 radius = 32.0
@@ -19,5 +18,3 @@ shape = SubResource("CapsuleShape2D_wvbbu")
 [node name="player" type="Sprite2D" parent="."]
 texture = ExtResource("2_jp3oe")
 offset = Vector2(0, -32)
-
-[node name="umbrella" parent="." instance=ExtResource("3_wvbbu")]
