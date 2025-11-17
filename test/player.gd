@@ -1,8 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
-const PUSH_FORCE = 100
+const CRATE_PUSH_FORCE = 100
 const MAX_CRATE_VEL = 300
+
+const WHEEL_PUSH_FORCE = 10
+const MAX_WHEEL_VEL = 25
 
 
 @export var hp:float = 50.0
@@ -75,6 +78,7 @@ func _physics_process(delta):
 		if collider.is_in_group("crate") or collider.is_in_group("wheel") and collider is RigidBody2D:
 			if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
 				var normal = collision.get_normal()
+				var PUSH_FORCE = CRATE_PUSH_FORCE if collider.is_in_group("crate") else WHEEL_PUSH_FORCE
 				# Only push if the collision is mostly horizontal
 				if abs(normal.x) > 0.7:
 					var push = Vector2(-normal.x, 0) * PUSH_FORCE

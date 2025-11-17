@@ -3,14 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://cglldq46x4g6i" path="res://test/wheel.png" id="1_3gj78"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ujov"]
-radius = 24.0
+radius = 32.0
 
 [node name="wheel" type="RigidBody2D" groups=["wheel"]]
 collision_layer = 256
 collision_mask = 335
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5ujov")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3gj78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5ujov")

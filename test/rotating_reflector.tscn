@@ -11,7 +11,6 @@ radius = 164.0
 
 [node name="rotating_reflector" type="Node2D" node_paths=PackedStringArray("wheels")]
 script = ExtResource("1_5ujov")
-rotate_torque = null
 wheels = NodePath("wheels")
 has_wheels = true
 
@@ -22,7 +21,7 @@ collision_mask = 207
 lock_rotation = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head"]
-polygon = PackedVector2Array(-83, -31, 66, -35, 78, -31, 83, -18, 76, -2, 49, 23, 8, 35, -33, 32, -66, 19, -87, -4, -89, -23)
+polygon = PackedVector2Array(-83, -31, 67, -31, 77, -27, 81, -18, 76, -2, 49, 23, 8, 35, -33, 32, -66, 19, -87, -4, -89, -23)
 
 [node name="Sprite2D" type="Sprite2D" parent="head"]
 texture = ExtResource("3_7e7lp")
