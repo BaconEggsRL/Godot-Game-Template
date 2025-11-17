@@ -1,0 +1,156 @@
+[gd_scene load_steps=10 format=3 uid="uid://gvpcwb0mojsq"]
+
+[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_5hft8"]
+[ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_8gv4p"]
+[ext_resource type="Script" uid="uid://ch8aaykixbwn5" path="res://scenes/game_scene/input_display_label.gd" id="3_ek3qb"]
+[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="4_uclk3"]
+[ext_resource type="PackedScene" uid="uid://ks83y4cfd5a5" path="res://scenes/game_scene/tutorials/tutorial_1.tscn" id="5_4ejsp"]
+[ext_resource type="PackedScene" uid="uid://d0oscrsyixgyx" path="res://test/light_test.tscn" id="6_33o5n"]
+[ext_resource type="PackedScene" uid="uid://ctxg1yp27kyil" path="res://test/spike.tscn" id="7_viuod"]
+[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="8_xfhp2"]
+[ext_resource type="PackedScene" uid="uid://pdseefr663hp" path="res://test/crate.tscn" id="9_6ldmu"]
+
+[node name="Level1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5hft8")
+next_level_path = "res://scenes/game_scene/levels/level_2.tscn"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_right = 270.0
+offset_bottom = 30.0
+text = "this is level 1"
+
+[node name="UI" type="HBoxContainer" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.5)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -284.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="prev_btn" type="Button" parent="CanvasLayer/UI"]
+visible = false
+layout_mode = 2
+text = "PREV"
+
+[node name="restart_btn" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 2
+text = "restart"
+
+[node name="skip_btn" type="Button" parent="CanvasLayer/UI"]
+visible = false
+layout_mode = 2
+text = "SKIP"
+
+[node name="pause_btn" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 2
+text = "pause"
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+script = ExtResource("2_8gv4p")
+
+[node name="LoseButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lose"
+
+[node name="WinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Win"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="InputDisplayLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+script = ExtResource("3_ek3qb")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Change Level Color: "
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Change Color"
+
+[node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_uclk3")
+tutorial_scenes = Array[PackedScene]([ExtResource("5_4ejsp")])
+
+[node name="light_test" parent="." instance=ExtResource("6_33o5n")]
+
+[node name="spikes" type="Node2D" parent="."]
+
+[node name="spike" parent="spikes" instance=ExtResource("7_viuod")]
+position = Vector2(1022, 694)
+
+[node name="spike2" parent="spikes" instance=ExtResource("7_viuod")]
+position = Vector2(268, 688)
+
+[node name="star" parent="." instance=ExtResource("8_xfhp2")]
+position = Vector2(1210, 68)
+
+[node name="crate" parent="." instance=ExtResource("9_6ldmu")]
+position = Vector2(298, 232)
+
+[node name="crate2" parent="." instance=ExtResource("9_6ldmu")]
+position = Vector2(121, 231)
+collision_layer = 64
+is_glass = true
+
+[connection signal="pressed" from="CanvasLayer/UI/restart_btn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/skip_btn" to="." method="_on_skip_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/pause_btn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoseButton" to="." method="_on_lose_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/WinButton" to="." method="_on_win_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="color_changed" from="MarginContainer/VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="reached_star" from="star" to="." method="_on_star_reached_star"]

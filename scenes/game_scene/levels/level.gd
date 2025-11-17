@@ -10,6 +10,7 @@ signal level_won_and_changed(level_path : String)
 ## Optional path to the next level if using an open world level system.
 @export_file("*.tscn") var next_level_path : String
 
+var level: Node2D
 var spikes: Node2D
 
 
@@ -37,20 +38,22 @@ func open_tutorials() -> void:
 
 
 func _ready() -> void:
-	spikes = get_node_or_null("spikes")
+	level = get_node_or_null("level")
+	if level:
+		spikes = level.get_node_or_null("spikes")
 	if spikes:
 		for spike in spikes.get_children():
 			spike.hit_spike.connect(_on_hit_spike)
 		
 	level_state = GameState.get_level_state(scene_file_path)
-	%ColorPickerButton.color = level_state.color
-	%BackgroundColor.color = level_state.color
+	# %ColorPickerButton.color = level_state.color
+	# %BackgroundColor.color = level_state.color
 	if not level_state.tutorial_read:
 		open_tutorials()
 
 
 func _on_color_picker_button_color_changed(color : Color) -> void:
-	%BackgroundColor.color = color
+	# %BackgroundColor.color = color
 	level_state.color = color
 	GlobalState.save()
 

@@ -15,8 +15,8 @@ const MAX_WHEEL_VEL = 300
 @onready var umbrella: Umbrella = $umbrella
 
 
-@export_range(0, 1200, 1.0) var speed:float = 600 # 1200
-@export_range(-1500, -200, 1.0) var jump_speed:float = -1200 # -1500
+@export_range(0, 1200, 1.0) var speed:float = 1000 # 1200
+@export_range(-1500, -200, 1.0) var jump_speed:float = -1500 # -1500
 @export var gravity = 4000
 
 @export var coyote_time: float = 0.12

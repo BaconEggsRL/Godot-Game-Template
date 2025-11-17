@@ -42,6 +42,7 @@ crumble_wall=""
 umbrella=""
 crate=""
 wheel=""
+spike=""
 
 [gui]
 
