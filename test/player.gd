@@ -38,8 +38,6 @@ var _jump_buffer_timer: float = 0.0
 var wind_velocity := Vector2.ZERO
 
 
-
-
 func _ready() -> void:
 	pass
 
@@ -86,7 +84,7 @@ func _physics_process(delta):
 	# Input affects x axis only
 	velocity.x = Input.get_axis("move_left", "move_right") * speed
 
-	# Apply wind velocity
+	# Apply modifier velocities
 	velocity += wind_velocity
 
 	# Check collision
@@ -135,5 +133,5 @@ func _physics_process(delta):
 		_coyote_timer = 0.0
 
 
-func _do_jump() -> void:
-	velocity.y = jump_speed
+func _do_jump(_jump_speed:float = jump_speed) -> void:
+	velocity.y = _jump_speed

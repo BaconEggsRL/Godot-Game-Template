@@ -70,17 +70,17 @@ physics_quadrant_size = 32
 ground_enabled = false
 
 [node name="star" parent="level" instance=ExtResource("10_de66m")]
-position = Vector2(1205, 297)
+position = Vector2(1062, 432)
 
 [node name="player" type="Node2D" parent="."]
 
 [node name="player" parent="player" instance=ExtResource("8_5mep6")]
-position = Vector2(79, 287)
+position = Vector2(287, 430)
 
 [node name="CameraController" parent="player/player" instance=ExtResource("9_ie83c")]
 
 [node name="umbrella" parent="player" instance=ExtResource("11_jfybp")]
-position = Vector2(79, 287)
+position = Vector2(287, 430)
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="player"]
 node_a = NodePath("../player")

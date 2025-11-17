@@ -8,7 +8,7 @@ polygon = PackedVector2Array(35, -47, -26.5, -47, -55, -29, -56, 3, 58, 3, 56, -
 
 [node name="umbrella" type="CharacterBody2D" groups=["umbrella"]]
 collision_layer = 2048
-collision_mask = 1536
+collision_mask = 1537
 script = ExtResource("1_wfpb0")
 
 [node name="collision_shape" type="CollisionPolygon2D" parent="."]
