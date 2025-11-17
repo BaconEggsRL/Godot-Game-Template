@@ -21,7 +21,6 @@ signal hp_changed
 				is_dying = true
 			
 
-
 @export_range(0, 1200, 1.0) var speed:float = 1000 # 1200
 @export_range(-1500, -200, 1.0) var jump_speed:float = -1500 # -1500
 @export var gravity = 4000
@@ -136,4 +135,12 @@ func _physics_process(delta):
 
 
 func _do_jump(_jump_speed:float = jump_speed) -> void:
+	# var pitch = 1.05
+	# AudioManager.play_sound("jump_pop", 0.0, pitch, true)
+	velocity.y = _jump_speed
+
+func _do_pogo(_jump_speed:float = jump_speed) -> void:
+	# var pitch = randf_range(0.9, 1.1)
+	var pitch = 1.0
+	AudioManager.play_sound("spike_pogo", 0.0, pitch, true)
 	velocity.y = _jump_speed

@@ -25,8 +25,10 @@ var touching_spike := false
 
 
 
-#func _ready() -> void:
-	#reparent.call_deferred(player)
+# How fast the umbrella tries to follow the player
+var follow_speed := 50.0
+# Maximum distance umbrella can be from player
+var max_follow_distance := 4.0
 
 
 func _physics_process(_delta):
@@ -35,10 +37,23 @@ func _physics_process(_delta):
 		return
 
 	# Follow player
-	var to_player = (player.global_position - self.global_position).normalized()
-	velocity = player.velocity + to_player*100
+	var to_player = (player.global_position - self.global_position)
+	var distance = to_player.length()
+	var dir = to_player.normalized()
+	# velocity = player.velocity + to_player.normalized()*100
 	# var target_velocity = (player.global_position - global_position) * 4
 	# velocity = velocity.lerp(target_velocity, 0.2)
+	
+	# Only move faster if we're too far
+	var target_velocity = Vector2.ZERO
+	if distance > max_follow_distance:
+		# Move toward player with smooth damping
+		target_velocity = dir * follow_speed * distance
+	
+	# Also add player velocity so it feels connected
+	velocity = velocity.lerp(player.velocity + target_velocity, 0.2)
+	
+	
 
 	# Desired rotation toward mouse
 	var mouse_pos = get_global_mouse_position()
@@ -87,6 +102,5 @@ func _physics_process(_delta):
 
 	if pogo_now:
 		# print("pogo!")
-		AudioManager.play_sound("spike_pogo", 0.0, 1.0, true)
 		self.hp -= pogo_damage
-		player._do_jump()
+		player._do_pogo()
