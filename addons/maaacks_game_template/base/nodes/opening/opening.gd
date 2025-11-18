@@ -5,7 +5,7 @@ extends Control
 ## Will attempt to read from AppConfig if left empty.
 @export_file("*.tscn") var next_scene_path : String
 ## The list of images to show in the opening sequence.
-@export var bg_color: Color = "101010"
+@export var bg_color: Color = "4d4d4d"
 @export var images : Array[Texture2D]
 @export_group("Animation")
 ## The time to fade-in the next image.

@@ -73,6 +73,6 @@ position = Vector2(1210, 68)
 position = Vector2(1030, 644)
 
 [node name="player_umbrella" parent="." instance=ExtResource("10_c6hhn")]
-position = Vector2(-4, -173)
+position = Vector2(87, 107)
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

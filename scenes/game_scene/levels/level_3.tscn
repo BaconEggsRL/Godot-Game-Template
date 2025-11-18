@@ -72,5 +72,6 @@ rotate_time = 0.5
 position = Vector2(1205, 297)
 
 [node name="player_umbrella" parent="." instance=ExtResource("9_32y40")]
+position = Vector2(83, 297)
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

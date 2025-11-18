@@ -30,6 +30,10 @@ extends Node2D
 @onready var bounce_light: PointLight2D = $lights/bounce_light
 @onready var bounce_ray: RayCast2D = $rays/bounce_ray
 
+@onready var bounce_light_2: PointLight2D = $lights/bounce_light_2
+@onready var bounce_ray_2: RayCast2D = $rays/bounce_ray_2
+
+
 
 
 @export var offset := 0.0  # small step to avoid self-hit
@@ -42,8 +46,19 @@ func _ready() -> void:
 	
 	
 func _process(_delta):
-	bounce_light.hide()
-	bounce_ray.hide()
+	if Engine.is_editor_hint():
+		return
+		
+	if bounce_light:
+		bounce_light.hide()
+	if bounce_ray:
+		bounce_ray.hide()
+	
+	if bounce_light_2:
+		bounce_light_2.hide()
+	if bounce_ray_2:
+		bounce_ray_2.hide()
+	
 	cast_beam(_delta)
 
 
@@ -66,7 +81,7 @@ func cast_beam(_delta):
 		line.add_point(dir.normalized() * max_distance)
 		return
 
-	# We hit something
+	# --- FIRST HIT ---
 	var hit_pos = ray.get_collision_point()
 	var hit_normal = ray.get_collision_normal()
 	var collider = ray.get_collider()
@@ -85,7 +100,7 @@ func cast_beam(_delta):
 			collider.hp -= beam_dps * _delta
 
 
-	# reflect if collider is a mirror/reflector
+	# --- FIRST REFLECTION ---
 	if collider and collider.is_in_group("static_reflector"):
 		var reflected_dir = dir.bounce(hit_normal).normalized()
 		
@@ -103,7 +118,9 @@ func cast_beam(_delta):
 		bounce_light.position = to_local(hit_pos)
 		bounce_light.global_rotation = reflected_dir.angle() + PI/2
 		
-		# draw the line
+		
+		
+		# --- SECOND HIT ---
 		var _bounce_hit_pos = reflect_origin + reflected_dir * max_distance
 		var _bounce_hit_normal = bounce_ray.get_collision_normal()
 		var _bounce_hit_collider = bounce_ray.get_collider()
@@ -115,7 +132,6 @@ func cast_beam(_delta):
 			_bounce_hit_pos = bounce_ray.get_collision_point()
 			line.add_point(to_local(_bounce_hit_pos))
 
-
 		if _bounce_hit_collider:
 			if _bounce_hit_collider.is_in_group("crumble_wall"):
 				# print("crumble 2")
@@ -126,7 +142,57 @@ func cast_beam(_delta):
 
 			if _bounce_hit_collider.is_in_group("umbrella") and _bounce_hit_collider is Umbrella:
 				_bounce_hit_collider.hp -= beam_dps * _delta
-				
+			
+			
+		# --- SECOND REFLECTION ---
+		if _bounce_hit_collider and _bounce_hit_collider.is_in_group("static_reflector"):
+			
+			var second_reflected_dir = reflected_dir.bounce(_bounce_hit_normal).normalized()
+		
+			# rotate by global (parent)
+			second_reflected_dir = second_reflected_dir.rotated(-self.global_rotation)
+			
+			var second_reflect_origin = _bounce_hit_pos + second_reflected_dir * offset
+			
+			# update bounce ray
+			bounce_ray_2.position = to_local(_bounce_hit_pos)
+			bounce_ray_2.global_rotation = second_reflected_dir.angle() + PI/2
+			bounce_ray_2.force_raycast_update()
+			
+			# draw the bounce light
+			bounce_light_2.position = to_local(_bounce_hit_pos)
+			bounce_light_2.global_rotation = second_reflected_dir.angle() + PI/2
+			
+			
+			# --- THIRD HIT ---
+			var _bounce_hit_pos_2 = second_reflect_origin + second_reflected_dir * max_distance
+			var _bounce_hit_normal_2 = bounce_ray_2.get_collision_normal()
+			var _bounce_hit_collider_2 = bounce_ray_2.get_collider()
+			
+			if not bounce_ray_2.is_colliding():
+				# Nothing hit → draw full beam
+				line.add_point(to_local(_bounce_hit_pos_2))
+			else:
+				_bounce_hit_pos_2 = bounce_ray_2.get_collision_point()
+				line.add_point(to_local(_bounce_hit_pos_2))
+
+			if _bounce_hit_collider_2:
+				if _bounce_hit_collider_2.is_in_group("crumble_wall"):
+					# print("crumble 2")
+					handle_crumble(_bounce_hit_collider_2, _delta)
+					
+				if _bounce_hit_collider_2.is_in_group("player") and _bounce_hit_collider_2 is Player:
+					_bounce_hit_collider_2.hp -= beam_dps * _delta
+
+				if _bounce_hit_collider_2.is_in_group("umbrella") and _bounce_hit_collider_2 is Umbrella:
+					_bounce_hit_collider_2.hp -= beam_dps * _delta
+			
+			
+			bounce_light_2.show()
+			bounce_ray_2.show()
+			
+			
+			
 				
 		# show
 		bounce_light.show()

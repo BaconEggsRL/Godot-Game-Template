@@ -158,9 +158,9 @@ func _physics_process(delta):
 				var normal = collision.get_normal()
 				var PUSH_FORCE = CRATE_PUSH_FORCE if collider.is_in_group("crate") else WHEEL_PUSH_FORCE
 				# Only push if the collision is mostly horizontal
-				if abs(normal.x) > 0.7:
-					var push = Vector2(-normal.x, 0) * PUSH_FORCE
-					collider.apply_central_impulse(push)
+				# if abs(normal.x) > 0.7:
+				var push = Vector2(-normal.x, -normal.y) * PUSH_FORCE
+				collider.apply_central_impulse(push)
 				# collider.apply_central_impulse(normal * -PUSH_FORCE)
 				
 				

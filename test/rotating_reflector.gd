@@ -53,16 +53,6 @@ func _on_body_exited(_body):
 
 
 func _process(delta):
-	# Player inside toggle active
-	#if not player_inside:
-		#active = false
-		#return
-	#else:
-		#active = true
-	
-	# Light hitting head toggle active
-
-	
 	# Do nothing else if in the editor
 	if Engine.is_editor_hint():
 		return

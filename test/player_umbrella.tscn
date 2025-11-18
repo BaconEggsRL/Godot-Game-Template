@@ -9,12 +9,10 @@
 script = ExtResource("1_prpqc")
 
 [node name="player" parent="." instance=ExtResource("1_netah")]
-position = Vector2(79, 287)
 
 [node name="CameraController" parent="player" instance=ExtResource("2_prpqc")]
 
 [node name="umbrella" parent="." instance=ExtResource("3_bnpq3")]
-position = Vector2(79, 287)
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
 node_a = NodePath("../player")
