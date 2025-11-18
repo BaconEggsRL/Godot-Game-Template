@@ -1,3 +1,4 @@
+@tool
 class_name Wind
 extends Node2D
 
@@ -12,23 +13,52 @@ extends Node2D
 @onready var player:Player = get_tree().get_first_node_in_group("player")
 @onready var umbrella:Umbrella = get_tree().get_first_node_in_group("umbrella")
 
-func check_collision(_delta) -> void:
-	#if player.is_on_floor():
-		#return
-	for ray in ray_children:
+
+
+@export var max_height:float = -500.0:  # from origin, ray target (local)
+	set(value):
+		max_height = value
+		for ray:RayCast2D in ray_children:
+			ray.target_position.y = value
+			
+var current_height:float = max_height
+# origin is position of self.
+
+
+func check_ray_collisions(_delta) -> void:
+	
+	for ray:RayCast2D in ray_children:
 		if ray.is_colliding():
-			# var collider = ray.get_collider()
-			# print(collider)
-			# var normal: Vector2 = ray.get_collision_normal()
-			# var _angle: float = normal.angle()  # in radians
-			# var push = Vector2(0, -normal.y) * PUSH_FORCE
-			var push = Vector2(0, -PUSH_FORCE)
-			player.wind_velocity = push
-			if recharge:
-				umbrella.hp += recharge_dps * _delta
-			return
+			
+			var collider = ray.get_collider()
+
+			# if not umbrella, block/reduce height of air stream
+			if collider is not Umbrella:
+				var ray_hit_global: Vector2 = ray.get_collision_point()
+				var ray_hit_local = ray.to_local(ray_hit_global)
+				var ray_collision_height = ray_hit_local.y  # <-- global Y of the collision
+				print(ray_collision_height)
+				
+				
+				pass
+				
+
+			# Only push if the player is ABOVE the collision point
+			#if player.global_position.y > ray_collision_height:
+				#
+				#player.wind_velocity = Vector2(0, -PUSH_FORCE)
+				#if recharge:
+					#umbrella.hp += recharge_dps * _delta
+				#else:
+					#player.wind_velocity = Vector2.ZERO
+
+			return  # Stop after first ray hit
+
 	player.wind_velocity = Vector2.ZERO
 
 
 func _process(_delta) -> void:
-	check_collision(_delta)
+	if Engine.is_editor_hint():
+		return
+	check_ray_collisions(_delta)
+	pass

@@ -12,6 +12,8 @@ var active_fx_players: Dictionary = {}  # Store FX players with names
 # list of all music
 const MUSIC_1 = preload("uid://b2j225xmqrrkd")
 const MUSIC_VIBE = preload("uid://yun6cbqqjevc")
+const MUSIC_VIBE_2 = preload("uid://celq2r7x0rtwp")
+
 
 
 
@@ -34,7 +36,7 @@ var polyphonic_player: AudioStreamPlayer
 
 func _ready() -> void:
 	# sound test
-	AudioManager.play_music("MUSIC_VIBE", 0.0, 0.5)
+	AudioManager.play_music("MUSIC_VIBE_2", 6.0, 0.5)
 	
 	# polyphonic player
 	polyphonic_player = AudioStreamPlayer.new()
@@ -532,6 +534,8 @@ func play_music(scene_name:String, final_db:float=0.0, fade_in_time=0.5) -> void
 			music = MUSIC_1  # insert music const here
 		"MUSIC_VIBE":
 			music = MUSIC_VIBE
+		"MUSIC_VIBE_2":
+			music = MUSIC_VIBE_2
 		_:
 			push_warning("'%s' has no resource listed in AudioManager" % scene_name)
 	

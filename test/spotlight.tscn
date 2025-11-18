@@ -43,6 +43,7 @@ collision_mask = 2959
 collide_with_areas = true
 
 [node name="FlickerTimer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="FlickerTimer" to="." method="_on_flicker_timer_timeout"]

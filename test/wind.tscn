@@ -35,30 +35,23 @@ initial_velocity_max = 500.0
 gravity = Vector3(0, 98, 0)
 scale_curve = SubResource("CurveTexture_yh8gr")
 alpha_curve = SubResource("CurveTexture_urmku")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
 
 [node name="wind" type="Node2D" groups=["wind"]]
 script = ExtResource("1_3lbpm")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
 texture = SubResource("GradientTexture2D_yh8gr")
 visibility_rect = Rect2(-300, -300, 600, 600)
 process_material = SubResource("ParticleProcessMaterial_c6hhn")
 
 [node name="rays" type="Node2D" parent="."]
 
-[node name="left" type="RayCast2D" parent="rays"]
-position = Vector2(-48, 0)
-target_position = Vector2(0, -500)
-collision_mask = 2048
-collide_with_areas = true
-
 [node name="center" type="RayCast2D" parent="rays"]
 target_position = Vector2(0, -500)
-collision_mask = 2048
-collide_with_areas = true
-
-[node name="right" type="RayCast2D" parent="rays"]
-position = Vector2(48, 0)
-target_position = Vector2(0, -500)
-collision_mask = 2048
+collision_mask = 2121
+hit_from_inside = true
 collide_with_areas = true

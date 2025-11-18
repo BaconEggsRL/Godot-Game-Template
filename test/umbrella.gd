@@ -70,6 +70,8 @@ func _physics_process(_delta):
 			continue
 			
 		var collider = collision.get_collider()
+		print(collider)
+		
 		if collider is TileMapLayer:
 			var tilemap := collider as TileMapLayer
 			var tile_pos = tilemap.local_to_map(collision.get_position())
@@ -78,7 +80,7 @@ func _physics_process(_delta):
 			if data and data.get_custom_data("type") == "spike":
 				spike_hit_this_frame = true
 				break
-				
+			
 		#if collider.is_in_group("crate") or collider.is_in_group("wheel") and collider is RigidBody2D:
 			#if abs(collider.get_linear_velocity().x) < MAX_CRATE_VEL:
 				#var normal = collision.get_normal()
