@@ -70,7 +70,6 @@ func _physics_process(_delta):
 			continue
 			
 		var collider = collision.get_collider()
-		print(collider)
 		
 		if collider is TileMapLayer:
 			var tilemap := collider as TileMapLayer
