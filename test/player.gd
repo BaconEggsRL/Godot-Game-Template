@@ -11,15 +11,7 @@ const MAX_WHEEL_VEL = 300
 
 signal hp_changed
 
-@export var hp:float = 50.0:# 50.0:
-	set(value):
-		hp = value
-		hp_changed.emit(value)
-		if not is_dying:
-			if hp <= 0.0:
-				dead.emit()
-				is_dying = true
-			
+@export var hp:float = 50.0: set = set_hp
 
 @export_range(0, 1200, 1.0) var speed:float = 1000 # 1200
 @export_range(-1500, -200, 1.0) var jump_speed:float = -1500 # -1500
@@ -37,9 +29,25 @@ var _jump_buffer_timer: float = 0.0
 var wind_velocity := Vector2.ZERO
 
 var is_dying:bool = false
+var time_since_damage := 0.0
 
 
 
+func set_hp(value: float) -> void:
+	var last_hp = hp
+	hp = max(value, 0.0)
+	
+	if hp < last_hp:  # took damage
+		time_since_damage = 0.0   # reset timer when damaged
+
+	hp_changed.emit(hp)
+	
+	if not is_dying:
+		if hp <= 0.0:
+			dead.emit()
+			is_dying = true
+		
+		
 func _ready() -> void:
 	pass
 
@@ -67,6 +75,8 @@ func _physics_process(delta):
 			#return
 		
 	################################
+	
+	time_since_damage += delta
 	
 	# Coyote timer
 	if is_on_floor():

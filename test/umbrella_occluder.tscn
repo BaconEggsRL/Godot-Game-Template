@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg0khcknmfpj4"]
+
+[ext_resource type="OccluderPolygon2D" uid="uid://yq81xoefu4c5" path="res://test/umbrella_occluder_polygon.tres" id="1_ryhnc"]
+
+[node name="umbrella_occluder" type="LightOccluder2D"]
+occluder = ExtResource("1_ryhnc")

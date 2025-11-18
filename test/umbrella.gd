@@ -10,8 +10,8 @@ const MAX_CRATE_VEL = 300
 const WHEEL_PUSH_FORCE = 100
 const MAX_WHEEL_VEL = 300
 
-
-var touching_spike := false
+const UMBRELLA_OCCLUDER_POLYGON = preload("uid://yq81xoefu4c5")
+@onready var umbrella_occluder: LightOccluder2D = $umbrella_occluder
 
 @onready var player:Player = get_tree().get_first_node_in_group("player")
 @onready var collision_shape: CollisionPolygon2D = $collision_shape
@@ -19,24 +19,93 @@ var touching_spike := false
 @onready var sprite: Sprite2D = $sprite
 @onready var mat := sprite.material
 
+var touching_spike := false
 @export var pogo_damage:float = 5.0
-
-const max_hp = 25.0
-@export var hp:float = max_hp:
-	set(value):
-		hp = value
-		update_decay(value/max_hp)
-		hp_changed.emit(value)
-
-
 
 # How fast the umbrella tries to follow the player
 var follow_speed := 50.0
 # Maximum distance umbrella can be from player
 var max_follow_distance := 4.0
 
+var time_since_damage := 0.0
+@export var regen_rate: float = 10.0
+@export var regen_delay: float = 1.0
+
+const max_hp = 25.0
+@export var hp:float = max_hp: set = set_hp
+
+@export var downtime_duration: float = 1.0      # how long to stay disabled
+@export var respawn_safe_delay: float = 1.0     # delay after last hit before respawn
+
+var is_disabled: bool = false
+var downtime_timer: float = 0.0
 
 
+
+func respawn_umbrella() -> void:
+	is_disabled = false
+	# hp = max_hp
+	# update_decay(1.0)
+
+	# Restore collision and sprite
+	collision_shape.disabled = false
+	sprite.visible = true
+
+	# Restore occluder
+	if not umbrella_occluder:
+		umbrella_occluder = LightOccluder2D.new()
+		umbrella_occluder.occluder = UMBRELLA_OCCLUDER_POLYGON
+		add_child(umbrella_occluder)
+
+
+func disable_umbrella() -> void:
+	is_disabled = true
+	downtime_timer = downtime_duration
+
+	# Stop collisions
+	collision_shape.disabled = true
+
+	# Remove occluder
+	if umbrella_occluder:
+		umbrella_occluder.queue_free()
+		umbrella_occluder = null
+
+	# Hide sprite
+	sprite.visible = false
+
+
+func set_hp(value: float) -> void:
+	var last_hp = hp
+	hp = max(value, 0.0)
+	
+	if hp < last_hp:  # took damage
+		time_since_damage = 0.0   # reset timer when damaged
+		
+	update_decay(hp/max_hp)
+	hp_changed.emit(hp)
+	
+	# Trigger downtime if HP hits zero
+	if hp <= 0.0 and not is_disabled:
+		disable_umbrella()
+		
+
+
+func handle_regen(delta: float) -> void:
+	if is_disabled:
+		return
+	
+	time_since_damage += delta
+	
+	# Not enough time passed → no regen
+	if time_since_damage < regen_delay:
+		return
+
+	# Regen until full
+	if hp < max_hp:
+		set_hp(hp + regen_rate * delta)
+		
+		
+		
 func update_decay(decay_ratio:float) -> void:
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("dissolve_value", decay_ratio)
@@ -46,11 +115,22 @@ func _ready() -> void:
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("dissolve_value", 1.0)
 
-func _physics_process(_deldta):
-	if hp <= 0.0:
-		queue_free()
-		return
+func _physics_process(delta):
+	#if hp <= 0.0:
+		#queue_free()
+		#return
+		
+	# Handle downtime
+	if is_disabled:
+		downtime_timer -= delta
 
+		# Only respawn if downtime finished AND time since last damage is enough
+		if downtime_timer <= 0.0 and player.time_since_damage >= respawn_safe_delay:
+			respawn_umbrella()
+	
+	
+	handle_regen(delta)
+	
 	# Follow player
 	var to_player = (player.global_position - self.global_position)
 	var distance = to_player.length()
@@ -116,7 +196,7 @@ func _physics_process(_deldta):
 
 	touching_spike = spike_hit_this_frame  # remember for next frame
 
-	if pogo_now:
+	if pogo_now and not is_disabled:
 		# print("pogo!")
 		self.hp -= pogo_damage
 		player._do_pogo()
