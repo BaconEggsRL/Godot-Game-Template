@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1chtl3gl1ip7"]
+[gd_scene load_steps=2 format=3 uid="uid://d1chtl3gl1ip7"]
 
 [ext_resource type="Script" uid="uid://dhvk2v0nd73uw" path="res://test/wind.gd" id="1_3lbpm"]
-[ext_resource type="PackedScene" uid="uid://wt4em2jiqsiu" path="res://test/wind_particle.tscn" id="2_onvjb"]
 
 [node name="wind" type="Node2D" groups=["wind"]]
 script = ExtResource("1_3lbpm")
@@ -13,5 +12,3 @@ target_position = Vector2(0, -500)
 collision_mask = 6217
 hit_from_inside = true
 collide_with_areas = true
-
-[node name="wind_particle" parent="." instance=ExtResource("2_onvjb")]

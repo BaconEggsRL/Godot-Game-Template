@@ -10,6 +10,10 @@ extends Node2D
 @onready var rays: Node2D = $rays
 @onready var ray_children: Array = rays.get_children()
 
+const WIND_PARTICLE_TEX = preload("uid://d28aj12nurijg")
+const WIND_PARTICLE_MAT = preload("uid://dvca1wuimr3ov")
+
+
 var player:Player
 var umbrella:Umbrella
 
@@ -23,6 +27,15 @@ var umbrella:Umbrella
 			
 var current_height:float = max_height
 # origin is position of self.
+
+
+func generate_wind_particles() -> void:
+	var particles = GPUParticles2D.new()
+	particles.texture = WIND_PARTICLE_TEX.duplicate(true)
+	particles.visibility_rect = Rect2(-300, -300, 600, 600)
+	particles.process_material = WIND_PARTICLE_MAT.duplicate(true)
+	self.add_child(particles)
+
 
 
 func check_ray_collisions(_delta) -> void:
@@ -70,6 +83,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		player = get_tree().get_first_node_in_group("player")
 		umbrella = get_tree().get_first_node_in_group("umbrella")
+		generate_wind_particles()
 	
 func _process(_delta) -> void:
 	if not Engine.is_editor_hint():

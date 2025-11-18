@@ -69,7 +69,9 @@ rotate_time = 0.5
 [node name="star" parent="level" instance=ExtResource("13_r6abn")]
 position = Vector2(1210, 68)
 
-[node name="wind" parent="." instance=ExtResource("11_yh8gr")]
+[node name="wind" type="Node2D" parent="."]
+
+[node name="wind" parent="wind" instance=ExtResource("11_yh8gr")]
 position = Vector2(1030, 644)
 
 [node name="player_umbrella" parent="." instance=ExtResource("10_c6hhn")]
