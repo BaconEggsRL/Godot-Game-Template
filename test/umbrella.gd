@@ -3,6 +3,12 @@ extends CharacterBody2D
 
 signal hp_changed
 
+@export var auto_regen:bool = false
+# regen_after_zero:
+# if auto_regen is enabled, will regen after delay even after hitting 0 hp
+# if auto_regen is disabled, will still regen on shadow wind.
+@export var regen_after_zero:bool = false  
+
 
 const CRATE_PUSH_FORCE = 100
 const MAX_CRATE_VEL = 300
@@ -43,22 +49,33 @@ var downtime_timer: float = 0.0
 
 
 func respawn_umbrella() -> void:
+	if is_disabled == false:
+		return
+		
 	is_disabled = false
 	# hp = max_hp
 	# update_decay(1.0)
 
-	# Restore collision and sprite
+	# Restore collision
 	collision_shape.disabled = false
-	sprite.visible = true
 
 	# Restore occluder
 	if not umbrella_occluder:
 		umbrella_occluder = LightOccluder2D.new()
 		umbrella_occluder.occluder = UMBRELLA_OCCLUDER_POLYGON
 		add_child(umbrella_occluder)
-
+	
+	# Show sprite
+	sprite.visible = true
+	
+	# Disable player area detect shadow wind
+	player.player_area_shape.disabled = true
+	
 
 func disable_umbrella() -> void:
+	if is_disabled == true:
+		return
+		
 	is_disabled = true
 	downtime_timer = downtime_duration
 
@@ -72,6 +89,9 @@ func disable_umbrella() -> void:
 
 	# Hide sprite
 	sprite.visible = false
+	
+	# Enable player area detect shadow wind
+	player.player_area_shape.disabled = false
 
 
 func set_hp(value: float) -> void:
@@ -96,6 +116,9 @@ func handle_regen(delta: float) -> void:
 	
 	time_since_damage += delta
 	
+	if auto_regen == false:
+		return
+	
 	# Not enough time passed → no regen
 	if time_since_damage < regen_delay:
 		return
@@ -116,17 +139,19 @@ func _ready() -> void:
 		mat.set_shader_parameter("dissolve_value", 1.0)
 
 func _physics_process(delta):
-	#if hp <= 0.0:
-		#queue_free()
-		#return
+	if not regen_after_zero:
+		if hp <= 0.0:
+			queue_free()
+			return
 		
 	# Handle downtime
-	if is_disabled:
-		downtime_timer -= delta
+	if auto_regen and regen_after_zero:
+		if is_disabled:
+			downtime_timer -= delta
 
-		# Only respawn if downtime finished AND time since last damage is enough
-		if downtime_timer <= 0.0 and player.time_since_damage >= respawn_safe_delay:
-			respawn_umbrella()
+			# Only respawn if downtime finished AND time since last damage is enough
+			if downtime_timer <= 0.0 and player.time_since_damage >= respawn_safe_delay:
+				respawn_umbrella()
 	
 	
 	handle_regen(delta)

@@ -35,6 +35,12 @@ func check_ray_collisions(_delta) -> void:
 			# if not umbrella, block/reduce height of air stream
 			var ray_collision_height = max_height
 			
+			if collider.is_in_group("player_area"):
+				if umbrella:
+					if umbrella.is_disabled and umbrella.regen_after_zero == true:
+						umbrella.respawn_umbrella()
+						return
+			
 			if collider is not Umbrella:
 				var ray_hit_global: Vector2 = ray.get_collision_point()
 				var ray_hit_local = ray.to_local(ray_hit_global)

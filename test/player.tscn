@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://lrfwgn1xotgo"]
+[gd_scene load_steps=5 format=3 uid="uid://lrfwgn1xotgo"]
 
 [ext_resource type="Script" uid="uid://b7hqhc8kxkhuh" path="res://test/player.gd" id="1_wvbbu"]
 [ext_resource type="Texture2D" uid="uid://colm6hrbcevdc" path="res://test/player.png" id="2_jp3oe"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvbbu"]
 radius = 32.0
 height = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqgw4"]
+size = Vector2(64, 64)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -18,3 +21,11 @@ shape = SubResource("CapsuleShape2D_wvbbu")
 [node name="player" type="Sprite2D" parent="."]
 texture = ExtResource("2_jp3oe")
 offset = Vector2(0, -32)
+
+[node name="player_area" type="Area2D" parent="." groups=["player_area"]]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_area"]
+shape = SubResource("RectangleShape2D_qqgw4")
+disabled = true

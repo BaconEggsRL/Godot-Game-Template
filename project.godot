@@ -46,6 +46,7 @@ spike=""
 static_reflector=""
 reflector_head=""
 wind=""
+player_area=""
 
 [gui]
 
@@ -135,7 +136,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 2d_physics/layer_2="player"
 2d_physics/layer_3="objects"
 2d_physics/layer_4="crates"
-2d_physics/layer_5="interact_area"
+2d_physics/layer_5="star"
 2d_physics/layer_6="chains"
 2d_physics/layer_7="glass_crates"
 2d_physics/layer_8="reflector_head"
@@ -143,6 +144,7 @@ locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/t
 2d_physics/layer_10="spike"
 2d_physics/layer_11="wind"
 2d_physics/layer_12="umbrella"
+2d_physics/layer_13="player_area"
 
 [maaacks_game_template]
 

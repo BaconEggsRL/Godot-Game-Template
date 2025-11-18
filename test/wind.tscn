@@ -10,7 +10,7 @@ script = ExtResource("1_3lbpm")
 
 [node name="center" type="RayCast2D" parent="rays"]
 target_position = Vector2(0, -500)
-collision_mask = 2121
+collision_mask = 6217
 hit_from_inside = true
 collide_with_areas = true
 

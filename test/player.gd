@@ -11,7 +11,12 @@ const MAX_WHEEL_VEL = 300
 
 signal hp_changed
 
-@export var hp:float = 50.0: set = set_hp
+@export var auto_regen:bool = true
+
+const max_hp = 50.0
+@export var hp:float = max_hp: set = set_hp
+@export var regen_rate: float = 5.0      # HP per second
+@export var regen_delay: float = 1.0     # Seconds after last damage before regen starts
 
 @export_range(0, 1200, 1.0) var speed:float = 1000 # 1200
 @export_range(-1500, -200, 1.0) var jump_speed:float = -1500 # -1500
@@ -26,10 +31,34 @@ var _jump_buffer_timer: float = 0.0
 @onready var parent:Node = get_parent()
 @onready var level:Node = parent.get_parent()
 
+@onready var player_area: Area2D = $player_area
+@onready var player_area_shape: CollisionShape2D = $player_area/CollisionShape2D
+
+
 var wind_velocity := Vector2.ZERO
 
 var is_dying:bool = false
 var time_since_damage := 0.0
+
+
+
+func handle_regen(delta: float) -> void:
+	time_since_damage += delta
+	
+	# Don't regen if dead
+	if hp <= 0.0:
+		return
+	
+	if auto_regen == false:
+		return
+	
+	# Not enough time passed → no regen
+	if time_since_damage < regen_delay:
+		return
+
+	# Regen until full
+	if hp < max_hp:  # or max_hp if you define one
+		set_hp(hp + regen_rate * delta)
 
 
 
@@ -49,6 +78,7 @@ func set_hp(value: float) -> void:
 		
 		
 func _ready() -> void:
+	player_area_shape.disabled = true
 	pass
 
 
@@ -76,7 +106,7 @@ func _physics_process(delta):
 		
 	################################
 	
-	time_since_damage += delta
+	handle_regen(delta)
 	
 	# Coyote timer
 	if is_on_floor():
