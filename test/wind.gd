@@ -10,6 +10,7 @@ extends Node2D
 @onready var rays: Node2D = $rays
 @onready var ray_children: Array = rays.get_children()
 
+@onready var wind_particle: GPUParticles2D = $wind_particle
 const WIND_PARTICLE_TEX = preload("uid://d28aj12nurijg")
 const WIND_PARTICLE_MAT = preload("uid://dvca1wuimr3ov")
 
@@ -30,11 +31,19 @@ var current_height:float = max_height
 
 
 func generate_wind_particles() -> void:
+	var pos = wind_particle.position
+	var rot = wind_particle.rotation
+	wind_particle.free()
+	
 	var particles = GPUParticles2D.new()
 	particles.texture = WIND_PARTICLE_TEX.duplicate(true)
 	particles.visibility_rect = Rect2(-300, -300, 600, 600)
 	particles.process_material = WIND_PARTICLE_MAT.duplicate(true)
+	particles.position = pos
+	particles.rotation = rot
 	self.add_child(particles)
+	
+	wind_particle = particles
 
 
 
@@ -57,26 +66,36 @@ func check_ray_collisions(_delta) -> void:
 			if collider is not Umbrella:
 				var ray_hit_global: Vector2 = ray.get_collision_point()
 				var ray_hit_local = ray.to_local(ray_hit_global)
-				ray_collision_height = ray_hit_local.y  # <-- global Y of the collision
+				ray_collision_height = ray_hit_local.y  # <-- local Y of the collision
 				
 			current_height = ray_collision_height
 
 			if collider is Umbrella:
 				# Only push if the player is BELOW the current height
-				# var global_height = ray.to_global(Vector2(0, current_height)).y
+				# var global_height = to_global(Vector2(0, current_height)).y
 				var global_height = to_global(Vector2(0, current_height)).y
 
 				if player.global_position.y > global_height:
 					
-					player.wind_velocity = Vector2(0, -PUSH_FORCE)
+					# player.wind_velocity = Vector2(0, -PUSH_FORCE)
+					var wind_vel = Vector2(0, -PUSH_FORCE).rotated(self.rotation)
+					print(wind_vel)
+					if wind_vel.y < 0.1:
+						wind_vel.x = wind_vel.x * 5
+					player.wind_accel = wind_vel
+					
+					
+					
 					if recharge:
 						umbrella.hp += recharge_dps * _delta
 					else:
 						player.wind_velocity = Vector2.ZERO
+						player.wind_accel = Vector2.ZERO
 
 				return  # Stop after first ray hit
 
 	player.wind_velocity = Vector2.ZERO
+	player.wind_accel = Vector2.ZERO
 
 
 func _ready() -> void:

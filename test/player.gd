@@ -36,6 +36,7 @@ var _jump_buffer_timer: float = 0.0
 
 
 var wind_velocity := Vector2.ZERO
+var wind_accel := Vector2.ZERO
 
 var is_dying:bool = false
 var time_since_damage := 0.0
@@ -127,6 +128,8 @@ func _physics_process(delta):
 	velocity.x = Input.get_axis("move_left", "move_right") * speed
 
 	# Apply modifier velocities
+	# velocity += wind_velocity
+	wind_velocity += wind_accel * delta
 	velocity += wind_velocity
 
 	# Check collision
