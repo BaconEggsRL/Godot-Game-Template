@@ -25,7 +25,7 @@ const max_hp = 25.0
 @export var hp:float = max_hp:
 	set(value):
 		hp = value
-		update_umbrella_decay(value/max_hp)
+		update_decay(value/max_hp)
 		hp_changed.emit(value)
 
 
@@ -37,7 +37,7 @@ var max_follow_distance := 4.0
 
 
 
-func update_umbrella_decay(decay_ratio:float) -> void:
+func update_decay(decay_ratio:float) -> void:
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("dissolve_value", decay_ratio)
 	

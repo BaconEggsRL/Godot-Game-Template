@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://blf6u2qahxm37"]
+[gd_scene load_steps=8 format=3 uid="uid://blf6u2qahxm37"]
 
 [ext_resource type="Texture2D" uid="uid://ddyokjy7w1urq" path="res://test/crumble_wall.png" id="1_hvero"]
+[ext_resource type="Script" uid="uid://olc1f1cdbngh" path="res://test/crumble_wall.gd" id="1_l54h1"]
 [ext_resource type="Shader" uid="uid://boo531bo7nqk8" path="res://shaders/dissolve.gdshader" id="1_wgung"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85t3v"]
@@ -18,12 +19,13 @@ shader_parameter/dissolve_value = 1.0
 shader_parameter/dissolve_tiling = Vector2(1, 1)
 
 [node name="crumble_wall" type="StaticBody2D" groups=["crumble_wall"]]
+script = ExtResource("1_l54h1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_85t3v")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_f4aog")
 texture = ExtResource("1_hvero")

@@ -48,8 +48,11 @@ func _process(_delta):
 
 
 
-func handle_crumble(collider) -> void:
-	collider.queue_free.call_deferred()
+func handle_crumble(collider, _delta) -> void:
+	# collider.queue_free.call_deferred()
+	if collider is CrumbleWall:
+		# collider.hp -= beam_dps * _delta
+		collider.take_light_damage(beam_dps, _delta)
 	
 	
 	
@@ -73,7 +76,7 @@ func cast_beam(_delta):
 	if collider:
 		if collider.is_in_group("crumble_wall"):
 			# print("crumble 1")
-			handle_crumble(collider)
+			handle_crumble(collider, _delta)
 			
 		if collider.is_in_group("player") and collider is Player:
 			collider.hp -= beam_dps * _delta
@@ -116,7 +119,7 @@ func cast_beam(_delta):
 		if _bounce_hit_collider:
 			if _bounce_hit_collider.is_in_group("crumble_wall"):
 				# print("crumble 2")
-				handle_crumble(_bounce_hit_collider)
+				handle_crumble(_bounce_hit_collider, _delta)
 				
 			if _bounce_hit_collider.is_in_group("player") and _bounce_hit_collider is Player:
 				_bounce_hit_collider.hp -= beam_dps * _delta
