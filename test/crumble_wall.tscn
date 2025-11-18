@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://blf6u2qahxm37"]
+[gd_scene load_steps=9 format=3 uid="uid://blf6u2qahxm37"]
 
 [ext_resource type="Texture2D" uid="uid://ddyokjy7w1urq" path="res://test/crumble_wall.png" id="1_hvero"]
 [ext_resource type="Script" uid="uid://olc1f1cdbngh" path="res://test/crumble_wall.gd" id="1_l54h1"]
 [ext_resource type="Shader" uid="uid://boo531bo7nqk8" path="res://shaders/dissolve.gdshader" id="1_wgung"]
+[ext_resource type="AudioStream" uid="uid://d3umcjdohoc2p" path="res://common/audio/SFX/light_damage.mp3" id="4_vf02n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85t3v"]
 size = Vector2(64, 320)
@@ -31,3 +32,8 @@ material = SubResource("ShaderMaterial_f4aog")
 texture = ExtResource("1_hvero")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 320)
+
+[node name="damage_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vf02n")
+volume_db = 18.0
+bus = &"SFX"
