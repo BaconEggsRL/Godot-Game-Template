@@ -43,7 +43,6 @@ collision_bounce = 0.0
 script = ExtResource("1_3lbpm")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
 texture = SubResource("GradientTexture2D_yh8gr")
 visibility_rect = Rect2(-300, -300, 600, 600)
 process_material = SubResource("ParticleProcessMaterial_c6hhn")

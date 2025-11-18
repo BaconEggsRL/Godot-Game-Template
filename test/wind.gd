@@ -41,21 +41,21 @@ func check_ray_collisions(_delta) -> void:
 				ray_collision_height = ray_hit_local.y  # <-- global Y of the collision
 				
 			current_height = ray_collision_height
-			# print(current_height)
-			
 
-			# Only push if the player is BELOW the current height
-			var global_height = ray.to_global(Vector2(0, current_height)).y
+			if collider is Umbrella:
+				# Only push if the player is BELOW the current height
+				# var global_height = ray.to_global(Vector2(0, current_height)).y
+				var global_height = to_global(Vector2(0, current_height)).y
 
-			if player.global_position.y > global_height:
-				
-				player.wind_velocity = Vector2(0, -PUSH_FORCE)
-				if recharge:
-					umbrella.hp += recharge_dps * _delta
-				else:
-					player.wind_velocity = Vector2.ZERO
+				if player.global_position.y > global_height:
+					
+					player.wind_velocity = Vector2(0, -PUSH_FORCE)
+					if recharge:
+						umbrella.hp += recharge_dps * _delta
+					else:
+						player.wind_velocity = Vector2.ZERO
 
-			return  # Stop after first ray hit
+				return  # Stop after first ray hit
 
 	player.wind_velocity = Vector2.ZERO
 

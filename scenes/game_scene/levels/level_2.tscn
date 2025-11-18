@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c7mh16ic2xq57"]
+[gd_scene load_steps=11 format=4 uid="uid://c7mh16ic2xq57"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_xgqhu"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_jwndf"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_c6hhn"]
 [ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="6_pu0aw"]
 [ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="10_c6hhn"]
-[ext_resource type="PackedScene" uid="uid://pdseefr663hp" path="res://test/crate.tscn" id="11_urmku"]
 [ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="11_yh8gr"]
 [ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="13_r6abn"]
 
@@ -69,9 +68,6 @@ rotate_time = 0.5
 
 [node name="star" parent="level" instance=ExtResource("13_r6abn")]
 position = Vector2(1210, 68)
-
-[node name="crate" parent="." instance=ExtResource("11_urmku")]
-position = Vector2(852, 606)
 
 [node name="player_umbrella" parent="." instance=ExtResource("10_c6hhn")]
 position = Vector2(674, -178)
