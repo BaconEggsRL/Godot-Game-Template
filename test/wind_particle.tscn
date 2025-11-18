@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://wt4em2jiqsiu"]
+[gd_scene load_steps=4 format=3 uid="uid://wt4em2jiqsiu"]
+
+[ext_resource type="Material" uid="uid://dvca1wuimr3ov" path="res://materials/wind_particle.tres" id="1_r7ghk"]
 
 [sub_resource type="Gradient" id="Gradient_c6hhn"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -8,36 +10,7 @@ gradient = SubResource("Gradient_c6hhn")
 width = 32
 height = 32
 
-[sub_resource type="Curve" id="Curve_yh8gr"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.49438208), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_urmku"]
-curve = SubResource("Curve_yh8gr")
-
-[sub_resource type="Curve" id="Curve_c6hhn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.50561804), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_yh8gr"]
-curve = SubResource("Curve_c6hhn")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c6hhn"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(64, 1, 1)
-direction = Vector3(0, -1, 0)
-spread = 0.0
-initial_velocity_min = 500.0
-initial_velocity_max = 500.0
-gravity = Vector3(0, 98, 0)
-scale_curve = SubResource("CurveTexture_yh8gr")
-alpha_curve = SubResource("CurveTexture_urmku")
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.0
-
 [node name="wind_particle" type="GPUParticles2D"]
 texture = SubResource("GradientTexture2D_yh8gr")
 visibility_rect = Rect2(-300, -300, 600, 600)
-process_material = SubResource("ParticleProcessMaterial_c6hhn")
+process_material = ExtResource("1_r7ghk")

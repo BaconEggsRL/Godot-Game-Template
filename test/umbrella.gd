@@ -16,11 +16,16 @@ var touching_spike := false
 @onready var player:Player = get_tree().get_first_node_in_group("player")
 @onready var collision_shape: CollisionPolygon2D = $collision_shape
 
+@onready var sprite: Sprite2D = $sprite
+@onready var mat := sprite.material
+
 @export var pogo_damage:float = 5.0
 
-@export var hp:float = 25.0:
+const max_hp = 25.0
+@export var hp:float = max_hp:
 	set(value):
 		hp = value
+		update_umbrella_decay(value/max_hp)
 		hp_changed.emit(value)
 
 
@@ -31,7 +36,17 @@ var follow_speed := 50.0
 var max_follow_distance := 4.0
 
 
-func _physics_process(_delta):
+
+func update_umbrella_decay(decay_ratio:float) -> void:
+	if mat is ShaderMaterial:
+		mat.set_shader_parameter("dissolve_value", decay_ratio)
+	
+
+func _ready() -> void:
+	if mat is ShaderMaterial:
+		mat.set_shader_parameter("dissolve_value", 1.0)
+
+func _physics_process(_deldta):
 	if hp <= 0.0:
 		queue_free()
 		return
