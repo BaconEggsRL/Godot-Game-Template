@@ -340,17 +340,26 @@ confirm_new_game = true
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
-[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 &"": SubResource("AnimationLibrary_2kqig")
 }
 
-[node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="MenuAnimationTree" type="AnimationTree" parent="." index="3"]
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="sway_shader_example" type="Node2D" parent="." index="5"]
+[node name="sway_shader_example" type="Node2D" parent="." index="6"]
 
 [node name="Sprite2D" type="Sprite2D" parent="sway_shader_example" index="0"]
 texture_repeat = 2
@@ -447,7 +456,7 @@ texture = ExtResource("10_x5bcm")
 stretch_mode = 5
 flip_h = true
 
-[node name="NewGameConfirmation" parent="." index="8" instance=ExtResource("5_6xh1d")]
+[node name="NewGameConfirmation" parent="." index="9" instance=ExtResource("5_6xh1d")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)
@@ -456,13 +465,16 @@ offset_left = -210.0
 offset_top = -100.0
 offset_right = 210.0
 offset_bottom = 100.0
+pauses_game = false
 update_content = true
 text = "Are you sure you want to start a new game?
 
 All progress in the current game will be lost."
 title = "New Game"
+title_font_size = 0
+title_visible = true
 
-[node name="MouseFilter" type="Control" parent="." index="9"]
+[node name="MouseFilter" type="Control" parent="." index="10"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -472,7 +484,7 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="falling_leaves" parent="." index="10" instance=ExtResource("8_vsp5b")]
+[node name="falling_leaves" parent="." index="11" instance=ExtResource("8_vsp5b")]
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]

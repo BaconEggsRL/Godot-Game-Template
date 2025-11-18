@@ -22,3 +22,5 @@ rest_length = 100.0
 stiffness = 64.0
 
 [node name="CameraController" parent="." instance=ExtResource("2_prpqc")]
+enable_drag = false
+enable_limits = false

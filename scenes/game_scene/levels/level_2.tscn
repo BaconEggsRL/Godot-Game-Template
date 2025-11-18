@@ -70,7 +70,7 @@ rotate_time = 0.5
 position = Vector2(1210, 68)
 
 [node name="wind" parent="." instance=ExtResource("11_yh8gr")]
-position = Vector2(1022, 649)
+position = Vector2(1030, 644)
 
 [node name="player_umbrella" parent="." instance=ExtResource("10_c6hhn")]
 position = Vector2(-4, -173)

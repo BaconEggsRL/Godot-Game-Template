@@ -10,8 +10,8 @@ extends Node2D
 @onready var rays: Node2D = $rays
 @onready var ray_children: Array = rays.get_children()
 
-@onready var player:Player = get_tree().get_first_node_in_group("player")
-@onready var umbrella:Umbrella = get_tree().get_first_node_in_group("umbrella")
+var player:Player
+var umbrella:Umbrella
 
 
 
@@ -60,8 +60,11 @@ func check_ray_collisions(_delta) -> void:
 	player.wind_velocity = Vector2.ZERO
 
 
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		player = get_tree().get_first_node_in_group("player")
+		umbrella = get_tree().get_first_node_in_group("umbrella")
+	
 func _process(_delta) -> void:
-	if Engine.is_editor_hint():
-		return
-	check_ray_collisions(_delta)
-	pass
+	if not Engine.is_editor_hint():
+		check_ray_collisions(_delta)
