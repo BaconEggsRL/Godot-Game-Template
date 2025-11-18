@@ -15,7 +15,7 @@ var heat_decay := 5.0   # how fast it cools when out of light
 var melt_threshold := 0.5 # if wall HP < 20% → auto melt
 
 func set_hp(value: float) -> void:
-	hp = value
+	hp = max(value, 0.0)
 	update_decay(max(0.0, hp / max_hp))
 	if hp <= 0.0:
 		queue_free()
@@ -32,6 +32,9 @@ func _process(delta: float) -> void:
 	apply_heat_behavior(delta)
 
 func apply_heat_behavior(delta: float) -> void:
+	if hp <= 0.0:
+		return
+		
 	# normal cooling
 	heat = max(0.0, heat - heat_decay * delta)
 
