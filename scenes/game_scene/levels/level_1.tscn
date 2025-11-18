@@ -146,6 +146,7 @@ position = Vector2(891, 16)
 
 [node name="static_reflector" parent="level/reflectors/static_reflectors" instance=ExtResource("7_tukvp")]
 position = Vector2(389, 16)
+scale = Vector2(0.99831444, 1)
 
 [node name="rotating_reflectors" type="Node2D" parent="level/reflectors"]
 

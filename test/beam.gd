@@ -47,6 +47,12 @@ func _process(_delta):
 	cast_beam(_delta)
 
 
+
+func handle_crumble(collider) -> void:
+	collider.queue_free.call_deferred()
+	
+	
+	
 func cast_beam(_delta):
 	# Clear old line
 	line.clear_points()
@@ -67,7 +73,7 @@ func cast_beam(_delta):
 	if collider:
 		if collider.is_in_group("crumble_wall"):
 			# print("crumble 1")
-			collider.queue_free.call_deferred()
+			handle_crumble(collider)
 			
 		if collider.is_in_group("player") and collider is Player:
 			collider.hp -= beam_dps * _delta
@@ -110,7 +116,7 @@ func cast_beam(_delta):
 		if _bounce_hit_collider:
 			if _bounce_hit_collider.is_in_group("crumble_wall"):
 				# print("crumble 2")
-				_bounce_hit_collider.queue_free.call_deferred()
+				handle_crumble(_bounce_hit_collider)
 				
 			if _bounce_hit_collider.is_in_group("player") and _bounce_hit_collider is Player:
 				_bounce_hit_collider.hp -= beam_dps * _delta
