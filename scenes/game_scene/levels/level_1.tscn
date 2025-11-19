@@ -99,7 +99,7 @@ offset_right = 126.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "MOVE: WASD
-JUMP: SPACEBAR"
+JUMP: W / SPACEBAR"
 vertical_alignment = 2
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

@@ -93,8 +93,11 @@ func check_ray_collisions(_delta) -> void:
 						wind_vel.x *= 2.0
 					print(wind_vel)
 					
-					player.wind_accel = wind_vel
+					player.is_on_wind_from = self
+					# player.wind_accel = wind_vel
 					player.wind_velocity = wind_vel
+					# player.wind_velocity += wind_vel   # allow multiple winds to stack!
+					player.is_on_wind = true
 					
 					
 					
@@ -102,15 +105,23 @@ func check_ray_collisions(_delta) -> void:
 					if recharge:
 						umbrella.hp += recharge_dps * _delta
 					else:
-						player.wind_velocity = Vector2.ZERO
-						player.wind_accel = Vector2.ZERO
+						reset_wind()
 
 				return  # Stop after first ray hit
 
-	player.wind_velocity = Vector2.ZERO
-	player.wind_accel = Vector2.ZERO
+	# Reset wind
+	reset_wind()
 
 
+
+func reset_wind() -> void:
+	if player.is_on_wind_from == self:
+		# player.wind_accel = Vector2.ZERO
+		player.wind_velocity = Vector2.ZERO
+		player.is_on_wind = false
+		player.is_on_wind_from = null
+	
+	
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		player = get_tree().get_first_node_in_group("player")

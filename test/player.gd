@@ -11,6 +11,9 @@ const MAX_WHEEL_VEL = 300
 
 signal hp_changed
 
+var is_on_wind:bool = false
+var is_on_wind_from:Wind
+
 @export var auto_regen:bool = true
 
 const max_hp = 25.0
@@ -128,9 +131,11 @@ func _physics_process(delta):
 	velocity.x = Input.get_axis("move_left", "move_right") * speed
 
 	# Apply modifier velocities
+	# wind_velocity += wind_accel * delta
 	# velocity += wind_velocity
-	wind_velocity += wind_accel * delta
-	velocity += wind_velocity
+	if is_on_wind:
+		# velocity = wind_velocity
+		velocity += wind_velocity * 0.6
 
 	# Check collision
 	for i in get_slide_collision_count():
