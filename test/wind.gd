@@ -2,6 +2,12 @@
 class_name Wind
 extends Node2D
 
+@export var enabled:bool = false:
+	set(value):
+		enabled = value
+		wind_particle.emitting = enabled
+		
+
 @export var recharge:bool = true
 @export var recharge_dps:float = 10.0
 
@@ -110,6 +116,7 @@ func _ready() -> void:
 		player = get_tree().get_first_node_in_group("player")
 		umbrella = get_tree().get_first_node_in_group("umbrella")
 		generate_wind_particles()
+	wind_particle.emitting = enabled
 	
 func _process(_delta) -> void:
 	if not Engine.is_editor_hint():
