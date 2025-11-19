@@ -5,7 +5,7 @@ extends Node2D
 @export var enabled:bool = false:
 	set(value):
 		enabled = value
-		wind_particle.emitting = enabled
+		toggle_wind(enabled)
 		
 
 @export var recharge:bool = true
@@ -116,8 +116,27 @@ func _ready() -> void:
 		player = get_tree().get_first_node_in_group("player")
 		umbrella = get_tree().get_first_node_in_group("umbrella")
 		generate_wind_particles()
-	wind_particle.emitting = enabled
+	toggle_wind(enabled)
 	
 func _process(_delta) -> void:
 	if not Engine.is_editor_hint():
 		check_ray_collisions(_delta)
+
+
+func enable_wind() -> void:
+	if wind_particle:
+		wind_particle.emitting = true
+	for ray:RayCast2D in ray_children:
+		ray.enabled = true
+
+func disable_wind() -> void:
+	if wind_particle:
+		wind_particle.emitting = false
+	for ray:RayCast2D in ray_children:
+		ray.enabled = false
+
+func toggle_wind(_enable:bool) -> void:
+	if _enable == false:
+		disable_wind()
+	else:
+		enable_wind()

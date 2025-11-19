@@ -43,3 +43,4 @@ hit_from_inside = true
 collide_with_areas = true
 
 [node name="wind_particle" parent="." instance=ExtResource("2_onvjb")]
+emitting = false
