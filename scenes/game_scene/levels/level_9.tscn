@@ -52,6 +52,7 @@ position = Vector2(253, 599)
 [node name="spotlight" parent="level" instance=ExtResource("8_1dbma")]
 position = Vector2(1291, 562)
 rotation = 1.5707964
+is_on = false
 
 [node name="wind" parent="level" instance=ExtResource("10_yxr7f")]
 position = Vector2(1174, 618)
@@ -70,6 +71,7 @@ position = Vector2(122, 599)
 
 [node name="PhysicsButton" parent="." node_paths=PackedStringArray("wind_toggle", "door_toggle") instance=ExtResource("11_v4kuc")]
 position = Vector2(640, 669)
+is_one_shot = false
 wind_toggle = NodePath("../level/wind")
 door_toggle = NodePath("../level/trap_door")
 

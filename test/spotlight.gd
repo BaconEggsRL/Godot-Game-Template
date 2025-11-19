@@ -3,6 +3,14 @@ class_name Spotlight
 extends Node2D
 
 
+@export var is_on:bool = true:
+	set(value):
+		is_on = value
+		if is_on:
+			enable_light()
+		else:
+			disable_light()
+
 @onready var color_rect: ColorRect = $ColorRect
 
 @onready var rays: Node2D = $rays
@@ -57,14 +65,16 @@ var starting_rotation:float
 
 
 func enable_light() -> void:
-	light.enabled = true
+	if light:
+		light.enabled = true
 	for ray:RayCast2D in ray_children:
 		ray.enabled = true
 
 func disable_light() -> void:
 	for ray:RayCast2D in ray_children:
 		ray.enabled = false
-	light.enabled = false
+	if light:
+		light.enabled = false
 
 func toggle_light() -> void:
 	if light.enabled == true:
@@ -85,6 +95,11 @@ func update_light() -> void:
 	if light:
 		light.offset.y = offset
 		rays.position.y = -offset - 64.0
+		if is_on:
+			enable_light()
+		else:
+			disable_light()
+		
 
 
 func start_preview_flicker() -> void:

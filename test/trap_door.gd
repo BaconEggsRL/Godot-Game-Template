@@ -22,14 +22,18 @@ func _ready() -> void:
 
 func open_door() -> void:
 	anim.play("open")
-	# anim.animation_finished.connect(set_collision.bind(false), CONNECT_ONE_SHOT)
 	set_collision(false)
 
 func close_door() -> void:
-	anim.play("open", -1, 1.0, true)
-	# anim.animation_finished.connect(set_collision.bind(true), CONNECT_ONE_SHOT)
-	set_collision(true)
+	var reverse := true
+	anim.play("open", -1, -1.0, reverse)
+	# set_collision(true)
+	anim.animation_finished.connect(_on_animation_finished.bind(reverse), CONNECT_ONE_SHOT)
 
 func set_collision(collision:bool) -> void:
 	left_collision.disabled = not collision
 	right_collision.disabled = not collision
+
+func _on_animation_finished(_anim_name:String, reverse:bool) -> void:
+	if reverse:
+		set_collision(true)
