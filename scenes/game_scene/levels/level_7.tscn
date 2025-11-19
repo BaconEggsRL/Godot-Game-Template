@@ -21,7 +21,6 @@ script = ExtResource("1_1w5u0")
 metadata/_edit_lock_ = true
 
 [node name="Background" parent="." instance=ExtResource("2_e3xw0")]
-layout_mode = 0
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true

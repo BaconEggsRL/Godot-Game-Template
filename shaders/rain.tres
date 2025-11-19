@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dg6e4l8c01udx"]
+
+[ext_resource type="Shader" uid="uid://buv3nov55afjk" path="res://shaders/rain.gdshader" id="1_qq5j1"]
+
+[resource]
+shader = ExtResource("1_qq5j1")
+shader_parameter/count = 150
+shader_parameter/slant = -0.01
+shader_parameter/speed = 50.0
+shader_parameter/blur = 0.002
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
