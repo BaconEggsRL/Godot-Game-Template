@@ -102,18 +102,17 @@ func check_ray_collisions(_delta) -> void:
 					
 					# player.wind_velocity = Vector2(0, -PUSH_FORCE)
 					var wind_vel := Vector2(1.0, -PUSH_FORCE).rotated(self.rotation)
-					var min_y := 25.0
+					var min_y := 100.0
 					if abs(wind_vel.y) < min_y:
-						wind_vel.y = sign(wind_vel.y) * min_y
-						wind_vel.x *= 2.0
-					print(wind_vel)
+						wind_vel.y = -min_y
+						#wind_vel.x *= 8
+					# print(wind_vel)
 					
 					player.is_on_wind_from = self
 					# player.wind_accel = wind_vel
 					player.wind_velocity = wind_vel
 					# player.wind_velocity += wind_vel   # allow multiple winds to stack!
 					player.is_on_wind = true
-					print(wind_vel)
 					
 					
 					

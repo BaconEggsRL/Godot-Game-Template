@@ -134,8 +134,8 @@ func _physics_process(delta):
 	# wind_velocity += wind_accel * delta
 	# velocity += wind_velocity
 	if is_on_wind:
-		velocity = wind_velocity
-		# velocity += wind_velocity * 0.6
+		# velocity = wind_velocity
+		velocity += wind_velocity * 0.6
 
 	# Check collision
 	for i in get_slide_collision_count():
