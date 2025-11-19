@@ -1,16 +1,16 @@
 [gd_scene load_steps=12 format=4 uid="uid://c0cjaxt0sbm22"]
 
-[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_tregq"]
-[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_et4lg"]
-[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_p5a4i"]
-[ext_resource type="PackedScene" uid="uid://dv5cs1lbxmxva" path="res://scenes/game_scene/tutorials/tutorial_2.tscn" id="3_48dto"]
-[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_dk18x"]
-[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="5_btnaj"]
-[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_5bltk"]
-[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="7_yfn8r"]
-[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="8_lkvs7"]
-[ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="9_q6pnr"]
-[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="10_j646o"]
+[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_6udly"]
+[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_0oq61"]
+[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_ce6dm"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_ljwdw"]
+[ext_resource type="PackedScene" uid="uid://dv5cs1lbxmxva" path="res://scenes/game_scene/tutorials/tutorial_2.tscn" id="4_my1qp"]
+[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="5_l1dbt"]
+[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="7_awcn8"]
+[ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="10_grdk8"]
+[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="11_fpcxn"]
+[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="12_6rob6"]
+[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="13_tccqy"]
 
 [node name="Level" type="Control"]
 layout_mode = 3
@@ -19,31 +19,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_tregq")
+script = ExtResource("1_6udly")
 metadata/_edit_lock_ = true
 
-[node name="Background" parent="." instance=ExtResource("2_p5a4i")]
+[node name="Background" parent="." instance=ExtResource("2_0oq61")]
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2_et4lg")
-tutorial_scenes = Array[PackedScene]([ExtResource("3_48dto")])
+script = ExtResource("2_ce6dm")
+tutorial_scenes = Array[PackedScene]([ExtResource("4_my1qp")])
 
-[node name="LevelUI" parent="." instance=ExtResource("4_dk18x")]
+[node name="LevelUI" parent="." instance=ExtResource("4_ljwdw")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAYAAAAAAAAAAAACAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA8AAAAAAAAAAAAAABAAAAAAAAAAAAAAABEAAAAAAAAAAAAAABIAAAAAAAAAAAAAABMAAAAAAAAAAAAAABQAAAAAAAAAAAAAABUAAAAAAAAAAAAAABYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAABAAsAAAAAAAAAAAABAAwAAAAAAAAAAAABAA0AAAAAAAAAAAABAA4AAAAAAAAAAAABAA8AAAAAAAAAAAABABAAAAAAAAAAAAABABEAAAAAAAAAAAABABIAAAAAAAAAAAABABMAAAAAAAAAAAABABQAAAAAAAAAAAABABUAAAAAAAAAAAABABYAAAAAAAAAAAACABUAAAAAAAAAAAACABYAAAAAAAAAAAADABUAAAAAAAAAAAADABYAAAAAAAAAAAAEABUAAAAAAAAAAAAEABYAAAAAAAAAAAAFABUAAAAAAAAAAAAFABYAAAAAAAAAAAAGABUAAAAAAAAAAAAGABYAAAAAAAAAAAAHABUAAAAAAAAAAAAHABYAAAAAAAAAAAAIABUAAAAAAAAAAAAIABYAAAAAAAAAAAAJABUAAAAAAAAAAAAJABYAAAAAAAAAAAAKABUAAAABAAAAAAAKABYAAAAAAAAAAAALABUAAAABAAAAAAALABYAAAAAAAAAAAAMABUAAAABAAAAAAAMABYAAAAAAAAAAAANABUAAAABAAAAAAANABYAAAAAAAAAAAAOABUAAAABAAAAAAAOABYAAAAAAAAAAAAPABUAAAABAAAAAAAPABYAAAAAAAAAAAAQABUAAAAAAAAAAAAQABYAAAAAAAAAAAARABUAAAAAAAAAAAARABYAAAAAAAAAAAASABUAAAAAAAAAAAASABYAAAAAAAAAAAATABUAAAAAAAAAAAATABYAAAAAAAAAAAAUABUAAAAAAAAAAAAUABYAAAAAAAAAAAAVABUAAAAAAAAAAAAVABYAAAAAAAAAAAAWABUAAAAAAAAAAAAWABYAAAAAAAAAAAAXABUAAAAAAAAAAAAXABYAAAAAAAAAAAAYABUAAAAAAAAAAAAYABYAAAAAAAAAAAAZABUAAAAAAAAAAAAZABYAAAAAAAAAAAAaABUAAAAAAAAAAAAaABYAAAAAAAAAAAAbABUAAAAAAAAAAAAbABYAAAAAAAAAAAAcABUAAAAAAAAAAAAcABYAAAAAAAAAAAAdABUAAAAAAAAAAAAdABYAAAAAAAAAAAAeABUAAAAAAAAAAAAeABYAAAAAAAAAAAAfABUAAAAAAAAAAAAfABYAAAAAAAAAAAAgABUAAAAAAAAAAAAgABYAAAAAAAAAAAAhABUAAAAAAAAAAAAhABYAAAAAAAAAAAAiABUAAAAAAAAAAAAiABYAAAAAAAAAAAAjABUAAAAAAAAAAAAjABYAAAAAAAAAAAAkABUAAAAAAAAAAAAkABYAAAAAAAAAAAAlABUAAAAAAAAAAAAlABYAAAAAAAAAAAAmABUAAAAAAAAAAAAmABYAAAAAAAAAAAAnABUAAAAAAAAAAAAnABYAAAAAAAAAAAAmAAUAAAAAAAAAAAAmAAYAAAAAAAAAAAAmAAcAAAAAAAAAAAAmAAgAAAAAAAAAAAAmAAkAAAAAAAAAAAAmAAoAAAAAAAAAAAAmAAsAAAAAAAAAAAAmAAwAAAAAAAAAAAAmAA0AAAAAAAAAAAAmAA4AAAAAAAAAAAAmAA8AAAAAAAAAAAAmABAAAAAAAAAAAAAmABEAAAAAAAAAAAAmABIAAAAAAAAAAAAmABMAAAAAAAAAAAAmABQAAAAAAAAAAAAnAAUAAAAAAAAAAAAnAAYAAAAAAAAAAAAnAAcAAAAAAAAAAAAnAAgAAAAAAAAAAAAnAAkAAAAAAAAAAAAnAAoAAAAAAAAAAAAnAAsAAAAAAAAAAAAnAAwAAAAAAAAAAAAnAA0AAAAAAAAAAAAnAA4AAAAAAAAAAAAnAA8AAAAAAAAAAAAnABAAAAAAAAAAAAAnABEAAAAAAAAAAAAnABIAAAAAAAAAAAAnABMAAAAAAAAAAAAnABQAAAAAAAAAAAAkAAUAAAAAAAAAAAAkAAYAAAAAAAAAAAAlAAUAAAAAAAAAAAAlAAYAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAAMAAoAAAAAAAAAAAAMAAsAAAAAAAAAAAAMAAwAAAAAAAAAAAAMAA0AAAAAAAAAAAANAAIAAAAAAAAAAAANAAMAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAANAAkAAAAAAAAAAAANAAoAAAAAAAAAAAANAAsAAAAAAAAAAAANAAwAAAAAAAAAAAANAA0AAAAAAAAAAAAMAAAAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAAKAA0AAAAAAAAAAAAKAA4AAAAAAAAAAAALAA0AAAAAAAAAAAALAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAOAA0AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAADABMAAAAAAAAAAAADABQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAZAAUAAAAAAAAAAAAZAAYAAAAAAAAAAAAZAAcAAAAAAAAAAAAZAAgAAAAAAAAAAAAZAAkAAAAAAAAAAAAZAAoAAAAAAAAAAAAZAAsAAAAAAAAAAAAZAAwAAAAAAAAAAAAZAA0AAAAAAAAAAAAWAAUAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAYAAAAAAAAAAAAaAAUAAAAAAAAAAAAaAAYAAAAAAAAAAAAbAAUAAAAAAAAAAAAbAAYAAAAAAAAAAAAYAA4AAAAAAAAAAAAZAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAAYABAAAAAAAAAAAAAZAA8AAAAAAAAAAAAZABAAAAAAAAAAAAA=")
-tile_set = ExtResource("5_btnaj")
+tile_set = ExtResource("12_6rob6")
 rendering_quadrant_size = 32
 physics_quadrant_size = 32
 
 [node name="level" type="Node2D" parent="."]
 
-[node name="level_border" parent="level" instance=ExtResource("6_5bltk")]
+[node name="level_border" parent="level" instance=ExtResource("5_l1dbt")]
 
 [node name="lights" type="Node2D" parent="level"]
 
-[node name="spotlight" parent="level/lights" instance=ExtResource("7_yfn8r")]
+[node name="spotlight" parent="level/lights" instance=ExtResource("7_awcn8")]
 position = Vector2(319, 357)
 rotation = 1.5707964
 scale = Vector2(0.53, 0.53)
@@ -52,7 +52,7 @@ should_rotate = true
 rotate_amount = 10.0
 rotate_time = 0.5
 
-[node name="spotlight2" parent="level/lights" instance=ExtResource("7_yfn8r")]
+[node name="spotlight2" parent="level/lights" instance=ExtResource("7_awcn8")]
 position = Vector2(499, 357)
 rotation = -1.5707964
 scale = Vector2(0.53, 0.53)
@@ -62,13 +62,13 @@ reverse_order = true
 rotate_amount = 10.0
 rotate_time = 0.5
 
-[node name="star" parent="level" instance=ExtResource("8_lkvs7")]
+[node name="star" parent="level" instance=ExtResource("11_fpcxn")]
 position = Vector2(1210, 68)
 
-[node name="wind" parent="level" instance=ExtResource("9_q6pnr")]
+[node name="wind" parent="level" instance=ExtResource("10_grdk8")]
 position = Vector2(1028, 395)
 
-[node name="player_umbrella" parent="." instance=ExtResource("10_j646o")]
+[node name="player_umbrella" parent="." instance=ExtResource("13_tccqy")]
 position = Vector2(87, 107)
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

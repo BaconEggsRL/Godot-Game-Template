@@ -1,19 +1,15 @@
-[gd_scene load_steps=15 format=4 uid="uid://da00hutaakwk6"]
+[gd_scene load_steps=11 format=4 uid="uid://coip3rqefi3m8"]
 
-[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_6udly"]
-[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_0oq61"]
-[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_ce6dm"]
-[ext_resource type="PackedScene" uid="uid://ks83y4cfd5a5" path="res://scenes/game_scene/tutorials/tutorial_1.tscn" id="3_0oq61"]
-[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_ljwdw"]
-[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="5_l1dbt"]
-[ext_resource type="PackedScene" uid="uid://blf6u2qahxm37" path="res://test/crumble_wall.tscn" id="6_df3np"]
-[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="7_awcn8"]
-[ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="8_eo4w0"]
-[ext_resource type="PackedScene" uid="uid://b3ud20wyvvkoe" path="res://test/rotating_reflector.tscn" id="9_8lmb7"]
-[ext_resource type="PackedScene" uid="uid://pdseefr663hp" path="res://test/crate.tscn" id="10_2yhjl"]
-[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="11_fpcxn"]
-[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="12_6rob6"]
-[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="13_tccqy"]
+[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_3bwbp"]
+[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_ks8gc"]
+[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="3_0yix4"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_my6sm"]
+[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="5_vdgg0"]
+[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_pma3y"]
+[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="7_gjbf2"]
+[ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="8_rv6yx"]
+[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="9_xe0oj"]
+[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="10_fgjcs"]
 
 [node name="Level" type="Control"]
 layout_mode = 3
@@ -22,76 +18,64 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6udly")
+script = ExtResource("1_3bwbp")
 metadata/_edit_lock_ = true
 
-[node name="Background" parent="." instance=ExtResource("2_0oq61")]
+[node name="Background" parent="." instance=ExtResource("2_ks8gc")]
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("2_ce6dm")
-tutorial_scenes = Array[PackedScene]([ExtResource("3_0oq61")])
+script = ExtResource("3_0yix4")
 
-[node name="LevelUI" parent="." instance=ExtResource("4_ljwdw")]
+[node name="LevelUI" parent="." instance=ExtResource("4_my6sm")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAsAAAAAAAAAAAABAAkAAAAAAAAAAAABAAoAAAAAAAAAAAABAAsAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAACAAsAAAAAAAAAAAADAAkAAAAAAAAAAAADAAoAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAkAAAAAAAAAAAAFAAoAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAoAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAkAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAsAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAJAAsAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAALABQAAAAAAAAAAAALABUAAAAAAAAAAAALABYAAAAAAAAAAAAMABQAAAAAAAAAAAAMABUAAAAAAAAAAAAMABYAAAAAAAAAAAANABQAAAAAAAAAAAANABUAAAAAAAAAAAANABYAAAAAAAAAAAAOABQAAAAAAAAAAAAOABUAAAAAAAAAAAAOABYAAAAAAAAAAAAPABQAAAAAAAAAAAAPABUAAAAAAAAAAAAPABYAAAAAAAAAAAAQABQAAAAAAAAAAAAQABUAAAAAAAAAAAAQABYAAAAAAAAAAAARABQAAAAAAAAAAAARABUAAAAAAAAAAAARABYAAAAAAAAAAAASABQAAAAAAAAAAAASABUAAAAAAAAAAAASABYAAAAAAAAAAAATABQAAAAAAAAAAAATABUAAAAAAAAAAAATABYAAAAAAAAAAAAUABQAAAAAAAAAAAAUABUAAAAAAAAAAAAUABYAAAAAAAAAAAAVABQAAAAAAAAAAAAVABUAAAAAAAAAAAAVABYAAAAAAAAAAAAWABQAAAAAAAAAAAAWABUAAAAAAAAAAAAWABYAAAAAAAAAAAAXABQAAAAAAAAAAAAXABUAAAAAAAAAAAAXABYAAAAAAAAAAAAYABQAAAAAAAAAAAAYABUAAAAAAAAAAAAYABYAAAAAAAAAAAAZABQAAAAAAAAAAAAZABUAAAAAAAAAAAAZABYAAAAAAAAAAAAaABQAAAAAAAAAAAAaABUAAAAAAAAAAAAaABYAAAAAAAAAAAAbABQAAAAAAAAAAAAbABUAAAAAAAAAAAAbABYAAAAAAAAAAAAcABQAAAAAAAAAAAAcABUAAAAAAAAAAAAcABYAAAAAAAAAAAAkAAQAAAABAAAAAwAkAAUAAAABAAAAAwAlAAQAAAAAAAAAAAAlAAUAAAAAAAAAAAAmAAQAAAAAAAAAAAAmAAUAAAAAAAAAAAAnAAQAAAAAAAAAAAAnAAUAAAAAAAAAAAAmAAYAAAAAAAAAAAAnAAYAAAAAAAAAAAALABMAAAAAAAAAAAAMABMAAAAAAAAAAAANABMAAAAAAAAAAAAOABMAAAAAAAAAAAAPABMAAAAAAAAAAAAQABMAAAAAAAAAAAARABMAAAAAAAAAAAASABMAAAAAAAAAAAATABMAAAAAAAAAAAAUABMAAAAAAAAAAAAVABMAAAAAAAAAAAAWABMAAAAAAAAAAAAXABMAAAAAAAAAAAAYABMAAAAAAAAAAAAZABMAAAAAAAAAAAAaABMAAAAAAAAAAAAbABMAAAAAAAAAAAAcABMAAAAAAAAAAAAAABUAAAAAAAAAAAAAABYAAAAAAAAAAAABABUAAAAAAAAAAAABABYAAAAAAAAAAAACABUAAAAAAAAAAAACABYAAAAAAAAAAAADABUAAAAAAAAAAAADABYAAAAAAAAAAAAEABUAAAAAAAAAAAAEABYAAAAAAAAAAAAFABUAAAAAAAAAAAAFABYAAAAAAAAAAAAGABUAAAABAAAAAAAGABYAAAAAAAAAAAAHABUAAAABAAAAAAAHABYAAAAAAAAAAAAIABUAAAABAAAAAAAIABYAAAAAAAAAAAAJABUAAAABAAAAAAAJABYAAAAAAAAAAAAKABUAAAABAAAAAAAKABYAAAAAAAAAAAAdABUAAAABAAAAAAAdABYAAAAAAAAAAAAeABUAAAABAAAAAAAeABYAAAAAAAAAAAAfABUAAAABAAAAAAAfABYAAAAAAAAAAAAgABUAAAABAAAAAAAgABYAAAAAAAAAAAAhABUAAAABAAAAAAAhABYAAAAAAAAAAAAiABUAAAAAAAAAAAAiABYAAAAAAAAAAAAjABUAAAAAAAAAAAAjABYAAAAAAAAAAAAkABUAAAAAAAAAAAAkABYAAAAAAAAAAAAlABUAAAAAAAAAAAAlABYAAAAAAAAAAAAmABUAAAAAAAAAAAAmABYAAAAAAAAAAAAnABUAAAAAAAAAAAAnABYAAAAAAAAAAAAmAAcAAAAAAAAAAAAmAAgAAAAAAAAAAAAmAAkAAAAAAAAAAAAmAAoAAAAAAAAAAAAmAAsAAAAAAAAAAAAmAAwAAAAAAAAAAAAmAA0AAAAAAAAAAAAmAA4AAAAAAAAAAAAmAA8AAAAAAAAAAAAmABAAAAAAAAAAAAAmABEAAAAAAAAAAAAmABIAAAAAAAAAAAAmABMAAAAAAAAAAAAmABQAAAAAAAAAAAAnAAcAAAAAAAAAAAAnAAgAAAAAAAAAAAAnAAkAAAAAAAAAAAAnAAoAAAAAAAAAAAAnAAsAAAAAAAAAAAAnAAwAAAAAAAAAAAAnAA0AAAAAAAAAAAAnAA4AAAAAAAAAAAAnAA8AAAAAAAAAAAAnABAAAAAAAAAAAAAnABEAAAAAAAAAAAAnABIAAAAAAAAAAAAnABMAAAAAAAAAAAAnABQAAAAAAAAAAAAKAAsAAAAAAAAAAAALAAkAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAkAAAABAAEAAQAMAAoAAAAAAAAAAAAMAAsAAAAAAAAAAAA=")
-tile_set = ExtResource("12_6rob6")
+tile_map_data = PackedByteArray("AAAAABUAAAAAAAAAAAABABUAAAAAAAAAAAACABUAAAAAAAAAAAADABUAAAAAAAAAAAAEABUAAAAAAAAAAAAFABUAAAAAAAAAAAAGABUAAAAAAAAAAAAHABUAAAAAAAAAAAAIABUAAAAAAAAAAAAJABUAAAAAAAAAAAAKABUAAAAAAAAAAAALABUAAAAAAAAAAAAMABUAAAAAAAAAAAANABUAAAAAAAAAAAAOABUAAAAAAAAAAAAPABUAAAAAAAAAAAAQABUAAAAAAAAAAAARABUAAAAAAAAAAAASABUAAAAAAAAAAAATABUAAAAAAAAAAAAUABUAAAAAAAAAAAAVABUAAAAAAAAAAAAWABUAAAAAAAAAAAAXABUAAAAAAAAAAAAYABUAAAAAAAAAAAAZABUAAAAAAAAAAAAaABUAAAAAAAAAAAAbABUAAAAAAAAAAAAcABUAAAAAAAAAAAAdABUAAAAAAAAAAAAeABUAAAAAAAAAAAAfABUAAAAAAAAAAAAgABUAAAAAAAAAAAAhABUAAAAAAAAAAAAiABUAAAAAAAAAAAAjABUAAAAAAAAAAAAkABUAAAAAAAAAAAAlABUAAAAAAAAAAAAmABUAAAAAAAAAAAAnABUAAAAAAAAAAAAAABYAAAAAAAAAAAABABYAAAAAAAAAAAACABYAAAAAAAAAAAADABYAAAAAAAAAAAAEABYAAAAAAAAAAAAFABYAAAAAAAAAAAAGABYAAAAAAAAAAAAHABYAAAAAAAAAAAAIABYAAAAAAAAAAAAJABYAAAAAAAAAAAAKABYAAAAAAAAAAAALABYAAAAAAAAAAAAMABYAAAAAAAAAAAANABYAAAAAAAAAAAAOABYAAAAAAAAAAAAPABYAAAAAAAAAAAAQABYAAAAAAAAAAAARABYAAAAAAAAAAAASABYAAAAAAAAAAAATABYAAAAAAAAAAAAUABYAAAAAAAAAAAAVABYAAAAAAAAAAAAWABYAAAAAAAAAAAAXABYAAAAAAAAAAAAYABYAAAAAAAAAAAAZABYAAAAAAAAAAAAaABYAAAAAAAAAAAAbABYAAAAAAAAAAAAcABYAAAAAAAAAAAAdABYAAAAAAAAAAAAeABYAAAAAAAAAAAAfABYAAAAAAAAAAAAgABYAAAAAAAAAAAAhABYAAAAAAAAAAAAiABYAAAAAAAAAAAAjABYAAAAAAAAAAAAkABYAAAAAAAAAAAAlABYAAAAAAAAAAAAmABYAAAAAAAAAAAAnABYAAAAAAAAAAAAAABQAAAAAAAAAAAABABQAAAAAAAAAAAACABQAAAAAAAAAAAADABQAAAAAAAAAAAAEABQAAAAAAAAAAAAFABQAAAAAAAAAAAAGABQAAAAAAAAAAAAHABQAAAAAAAAAAAAIABQAAAAAAAAAAAAJABQAAAAAAAAAAAAKABQAAAAAAAAAAAALABQAAAAAAAAAAAAMABQAAAAAAAAAAAANABQAAAAAAAAAAAAOABQAAAAAAAAAAAAPABQAAAAAAAAAAAAQABQAAAAAAAAAAAARABQAAAAAAAAAAAASABQAAAAAAAAAAAATABQAAAAAAAAAAAAUABQAAAAAAAAAAAAVABQAAAAAAAAAAAAWABQAAAAAAAAAAAAXABQAAAAAAAAAAAAYABQAAAAAAAAAAAAZABQAAAAAAAAAAAAaABQAAAAAAAAAAAAbABQAAAAAAAAAAAAcABQAAAAAAAAAAAAdABQAAAAAAAAAAAAeABQAAAAAAAAAAAAfABQAAAAAAAAAAAAgABQAAAAAAAAAAAAhABQAAAAAAAAAAAAiABQAAAAAAAAAAAAjABQAAAAAAAAAAAAkABQAAAAAAAAAAAAlABQAAAAAAAAAAAAmABQAAAAAAAAAAAAnABQAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAAAAAAPABAAAAAAAAAAAAAPABEAAAAAAAAAAAAPABIAAAAAAAAAAAAPABMAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAAYABAAAAAAAAAAAAAYABEAAAAAAAAAAAAYABIAAAAAAAAAAAAYABMAAAAAAAAAAAAQAAkAAAAAAAEAAAARAAkAAAAAAAEAAAAWAA4AAAAAAAEAAAAXAA4AAAAAAAEAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAPAAIAAAAAAAAAAAAPAAMAAAAAAAAAAAAPAAQAAAAAAAAAAAAPAAUAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAYAAIAAAAAAAAAAAAWAAIAAAAAAAEAAAAXAAIAAAAAAAEAAAA=")
+tile_set = ExtResource("5_vdgg0")
 rendering_quadrant_size = 32
 physics_quadrant_size = 32
+metadata/_edit_lock_ = true
 
 [node name="level" type="Node2D" parent="."]
 
-[node name="level_border" parent="level" instance=ExtResource("5_l1dbt")]
+[node name="level_border" parent="level" instance=ExtResource("6_pma3y")]
+ground_enabled = false
 
-[node name="platforms" type="Node2D" parent="level"]
+[node name="star" parent="level" instance=ExtResource("7_gjbf2")]
+position = Vector2(881, 574)
 
-[node name="breakable" type="Node2D" parent="level/platforms"]
+[node name="wind" parent="level" instance=ExtResource("8_rv6yx")]
+position = Vector2(95, 373)
 
-[node name="crumble_wall" parent="level/platforms/breakable" instance=ExtResource("6_df3np")]
-position = Vector2(1112, 77)
+[node name="wind2" parent="level" instance=ExtResource("8_rv6yx")]
+position = Vector2(1185, 357)
 
-[node name="moving" type="Node2D" parent="level/platforms"]
-
-[node name="lights" type="Node2D" parent="level"]
-
-[node name="spotlight" parent="level/lights" instance=ExtResource("7_awcn8")]
+[node name="spotlight" parent="level" instance=ExtResource("9_xe0oj")]
 position = Vector2(640, 0)
-should_flicker = true
-flicker_time = 0.5
-rotate_amount = 30.0
 
-[node name="reflectors" type="Node2D" parent="level"]
+[node name="spotlight2" parent="level" instance=ExtResource("9_xe0oj")]
+position = Vector2(640, 0)
 
-[node name="static_reflectors" type="Node2D" parent="level/reflectors"]
+[node name="player_umbrella" parent="." instance=ExtResource("10_fgjcs")]
+position = Vector2(634, 586)
 
-[node name="static_reflector2" parent="level/reflectors/static_reflectors" instance=ExtResource("8_eo4w0")]
-position = Vector2(891, 16)
-
-[node name="static_reflector" parent="level/reflectors/static_reflectors" instance=ExtResource("8_eo4w0")]
-position = Vector2(1102, 531)
-rotation = 2.3493085
-scale = Vector2(0.99831444, 1)
-
-[node name="rotating_reflectors" type="Node2D" parent="level/reflectors"]
-
-[node name="rotating_reflector" parent="level/reflectors/rotating_reflectors" instance=ExtResource("9_8lmb7")]
-position = Vector2(640, 493)
-
-[node name="crates" type="Node2D" parent="level"]
-
-[node name="crate2" parent="level/crates" instance=ExtResource("10_2yhjl")]
-position = Vector2(121, 233)
-collision_layer = 64
-is_glass = true
-
-[node name="crate" parent="level/crates" instance=ExtResource("10_2yhjl")]
-position = Vector2(273, 234)
-
-[node name="star" parent="level" instance=ExtResource("11_fpcxn")]
-position = Vector2(1210, 68)
-
-[node name="player_umbrella" parent="." instance=ExtResource("13_tccqy")]
-position = Vector2(85, 623)
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -129.0
+offset_right = 207.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "WHEN UMBRELLA GONE
+IT WON'T COME BACK"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

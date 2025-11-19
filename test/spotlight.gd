@@ -114,8 +114,9 @@ func start_preview_flicker() -> void:
 		add_flicker()
 	
 func stop_preview_flicker() -> void:
-	flicker_timer.stop()
-	light.enabled = true
+	if flicker_timer:
+		flicker_timer.stop()
+		light.enabled = true
 	
 	
 func start_preview_rotation() -> void:
