@@ -128,14 +128,22 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 
 	# Input affects x axis only
-	velocity.x = Input.get_axis("move_left", "move_right") * speed
+	var dir := Input.get_axis("move_left", "move_right")
+	# print(dir)
+	if dir == 0:
+		var accel = 10
+		velocity.x = lerp(velocity.x, 0.0, accel * delta)
+	else:
+		velocity.x = dir * speed
+	
 
 	# Apply modifier velocities
 	# wind_velocity += wind_accel * delta
 	# velocity += wind_velocity
 	if is_on_wind:
-		# velocity = wind_velocity
+		# velocity = wind_velocity * 0.6
 		velocity += wind_velocity * 0.6
+
 
 	# Check collision
 	for i in get_slide_collision_count():
