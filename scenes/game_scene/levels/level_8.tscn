@@ -46,14 +46,17 @@ position = Vector2(1178, 488)
 [node name="spotlight" parent="level" instance=ExtResource("7_il4xy")]
 position = Vector2(640, 0)
 scale = Vector2(2, 1)
+is_on = null
 
 [node name="spotlight2" parent="level" instance=ExtResource("7_il4xy")]
 position = Vector2(400, 0)
 scale = Vector2(2, 1)
+is_on = null
 
 [node name="spotlight3" parent="level" instance=ExtResource("7_il4xy")]
 position = Vector2(880, 0)
 scale = Vector2(2, 1)
+is_on = null
 
 [node name="player_umbrella" parent="." instance=ExtResource("8_skigc")]
 position = Vector2(94, 469)

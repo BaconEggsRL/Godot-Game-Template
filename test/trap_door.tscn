@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7tnkng0latb0"]
+[gd_scene load_steps=12 format=3 uid="uid://7tnkng0latb0"]
 
 [ext_resource type="Script" uid="uid://7mc484ypt0k6" path="res://test/trap_door.gd" id="1_8405y"]
 
@@ -79,9 +79,38 @@ tracks/1/keys = {
 "values": [0.0, -1.5707963267948966]
 }
 
+[sub_resource type="Animation" id="Animation_eq71w"]
+resource_name = "close"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pivot_left:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5707963267948966, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pivot_right:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5707963267948966, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c1qgr"]
 _data = {
 &"RESET": SubResource("Animation_c1qgr"),
+&"close": SubResource("Animation_eq71w"),
 &"open": SubResource("Animation_8405y")
 }
 
