@@ -53,6 +53,8 @@ func check_ray_collisions(_delta) -> void:
 		if ray.is_colliding():
 			
 			var collider = ray.get_collider()
+			if not collider:
+				continue
 
 			# if not umbrella, block/reduce height of air stream
 			var ray_collision_height = max_height
