@@ -7,7 +7,6 @@
 script = ExtResource("1_dd5c7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_left = -244.0
 offset_top = -226.0
 offset_right = 218.0
@@ -27,55 +26,55 @@ position = Vector2(0, -192)
 
 [node name="left" type="RayCast2D" parent="rays"]
 position = Vector2(-56, 0)
-target_position = Vector2(-72, 1020)
-collision_mask = 2958
+target_position = Vector2(-72, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="left2" type="RayCast2D" parent="rays"]
 position = Vector2(-42, 0)
-target_position = Vector2(-54, 1020)
-collision_mask = 2958
+target_position = Vector2(-54, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="left3" type="RayCast2D" parent="rays"]
 position = Vector2(-28, 0)
-target_position = Vector2(-36, 1020)
-collision_mask = 2958
+target_position = Vector2(-36, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="center_left" type="RayCast2D" parent="rays"]
 position = Vector2(-14, 0)
-target_position = Vector2(-18, 1064)
-collision_mask = 2958
+target_position = Vector2(-18, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="center" type="RayCast2D" parent="rays"]
-target_position = Vector2(0, 1064)
-collision_mask = 2958
+target_position = Vector2(0, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="center_right" type="RayCast2D" parent="rays"]
 position = Vector2(14, 0)
-target_position = Vector2(18, 1064)
-collision_mask = 2958
+target_position = Vector2(18, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="right3" type="RayCast2D" parent="rays"]
 position = Vector2(28, 0)
-target_position = Vector2(36, 1020)
-collision_mask = 2958
+target_position = Vector2(36, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="right2" type="RayCast2D" parent="rays"]
 position = Vector2(42, 0)
-target_position = Vector2(54, 1020)
-collision_mask = 2958
+target_position = Vector2(54, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="right" type="RayCast2D" parent="rays"]
 position = Vector2(56, 0)
-target_position = Vector2(72, 1020)
-collision_mask = 2958
+target_position = Vector2(72, 1130)
+collision_mask = 2959
 collide_with_areas = true
 
 [node name="FlickerTimer" type="Timer" parent="."]

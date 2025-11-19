@@ -3,6 +3,8 @@ class_name Spotlight
 extends Node2D
 
 
+@onready var color_rect: ColorRect = $ColorRect
+
 @onready var rays: Node2D = $rays
 @onready var ray_children: Array = rays.get_children()
 
@@ -73,6 +75,7 @@ func toggle_light() -> void:
 
 
 func _ready() -> void:
+	color_rect.hide()
 	update_light()
 	start_preview_rotation()
 	start_preview_flicker()
