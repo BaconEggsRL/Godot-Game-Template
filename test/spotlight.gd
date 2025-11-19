@@ -148,6 +148,9 @@ func clear_reflectors() -> void:
 
 func _physics_process(_delta):
 	var hit_reflectors := {}  # Keep track of reflectors hit this frame
+	var hit_player:Player
+	var hit_umbrella:Umbrella
+
 
 	for ray: RayCast2D in ray_children:
 		if not ray.enabled:
@@ -164,9 +167,20 @@ func _physics_process(_delta):
 		# Damage stuff
 		if collider:
 			if collider.is_in_group("player") and collider is Player:
-				collider.hp -= beam_dps * _delta
+				hit_player = collider  # store reference so we can dmg once
+				# collider.hp -= beam_dps * _delta
 			if collider.is_in_group("umbrella") and collider is Umbrella:
-				collider.hp -= beam_dps * _delta
+				hit_umbrella = collider
+				# collider.hp -= beam_dps * _delta
+	
+	
+	# Do damage
+	if hit_player:
+		hit_player.hp -= beam_dps * _delta
+
+	if hit_umbrella:
+		hit_umbrella.hp -= beam_dps * _delta
+	
 	
 	# Remove reflectors that are no longer hit
 	for r in active_reflectors.keys():

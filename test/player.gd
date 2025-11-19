@@ -13,7 +13,7 @@ signal hp_changed
 
 @export var auto_regen:bool = true
 
-const max_hp = 50.0
+const max_hp = 25.0
 @export var hp:float = max_hp: set = set_hp
 @export var regen_rate: float = 5.0      # HP per second
 @export var regen_delay: float = 1.0     # Seconds after last damage before regen starts
