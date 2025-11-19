@@ -63,7 +63,7 @@ offset_top = -63.0
 offset_right = 126.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "SPIKES KILL"
+text = "WATCH OUT FOR SPIKES"
 horizontal_alignment = 1
 vertical_alignment = 2
 
