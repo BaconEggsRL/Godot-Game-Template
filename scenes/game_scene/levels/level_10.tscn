@@ -44,13 +44,11 @@ ground_enabled = false
 position = Vector2(1201, 113)
 
 [node name="star2" parent="level" instance=ExtResource("7_fg54y")]
-position = Vector2(808, 303)
-
-[node name="wind" parent="level" instance=ExtResource("10_4kx6i")]
-position = Vector2(581, 584)
+position = Vector2(1178, 303)
 
 [node name="wind2" parent="level" instance=ExtResource("10_4kx6i")]
-position = Vector2(146, 578)
+position = Vector2(438, 415)
+rotation = -1.7453293
 
 [node name="player_umbrella" parent="." instance=ExtResource("11_gp1ca")]
 position = Vector2(1066, 624)
