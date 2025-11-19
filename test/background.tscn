@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctbc6hpsnkoa4"]
+
+[ext_resource type="Shader" uid="uid://buv3nov55afjk" path="res://shaders/rain.gdshader" id="1_sv8ip"]
+[ext_resource type="Texture2D" uid="uid://dt4gib8a3eisa" path="res://test/regular_crate.png" id="2_li8tk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b36j5"]
+shader = ExtResource("1_sv8ip")
+shader_parameter/count = 150
+shader_parameter/slant = -0.01
+shader_parameter/speed = 50.0
+shader_parameter/blur = 0.002
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
+[node name="Background" type="Sprite2D"]
+material = SubResource("ShaderMaterial_b36j5")
+scale = Vector2(20, 11.339)
+texture = ExtResource("2_li8tk")
+centered = false
+metadata/_edit_lock_ = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://duj20146uecvt"]
+[gd_scene load_steps=10 format=4 uid="uid://duj20146uecvt"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_1w5u0"]
+[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_e3xw0"]
 [ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="2_nr1ta"]
 [ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="3_e3xw0"]
 [ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="4_i0o67"]
@@ -19,12 +20,8 @@ grow_vertical = 2
 script = ExtResource("1_1w5u0")
 metadata/_edit_lock_ = true
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" parent="." instance=ExtResource("2_e3xw0")]
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.20511743, 0.20511743, 0.20511743, 1)
-metadata/_edit_lock_ = true
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
