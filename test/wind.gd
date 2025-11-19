@@ -5,7 +5,7 @@ extends Node2D
 @export var recharge:bool = true
 @export var recharge_dps:float = 10.0
 
-@export var PUSH_FORCE:float = 100.0
+@onready var PUSH_FORCE:float = 150.0
 
 @onready var rays: Node2D = $rays
 @onready var ray_children: Array = rays.get_children()
@@ -78,11 +78,16 @@ func check_ray_collisions(_delta) -> void:
 				if player.global_position.y > global_height:
 					
 					# player.wind_velocity = Vector2(0, -PUSH_FORCE)
-					var wind_vel = Vector2(0, -PUSH_FORCE).rotated(self.rotation)
+					var wind_vel := Vector2(1.0, -PUSH_FORCE).rotated(self.rotation)
+					var min_y := 25.0
+					if abs(wind_vel.y) < min_y:
+						wind_vel.y = sign(wind_vel.y) * min_y
+						wind_vel.x *= 2.0
 					print(wind_vel)
-					if wind_vel.y < 0.1:
-						wind_vel.x = wind_vel.x * 5
+					
 					player.wind_accel = wind_vel
+					player.wind_velocity = wind_vel
+					
 					
 					
 					
