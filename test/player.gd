@@ -129,12 +129,13 @@ func _physics_process(delta):
 
 	# Input affects x axis only
 	var dir := Input.get_axis("move_left", "move_right")
+	velocity.x = dir * speed
 	# print(dir)
-	if dir == 0:
-		var accel = 10
-		velocity.x = lerp(velocity.x, 0.0, accel * delta)
-	else:
-		velocity.x = dir * speed
+	#if dir == 0:
+		#var accel = 10
+		#velocity.x = lerp(velocity.x, 0.0, accel * delta)
+	#else:
+		#velocity.x = dir * speed
 	
 
 	# Apply modifier velocities
