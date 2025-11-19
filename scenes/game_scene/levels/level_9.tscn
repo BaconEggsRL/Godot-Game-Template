@@ -52,16 +52,13 @@ position = Vector2(253, 599)
 [node name="spotlight" parent="level" instance=ExtResource("8_1dbma")]
 position = Vector2(1291, 562)
 rotation = 1.5707964
-is_on = false
 
 [node name="wind" parent="level" instance=ExtResource("10_yxr7f")]
 position = Vector2(1174, 618)
+enabled = false
 
 [node name="crate2" parent="level" instance=ExtResource("9_aaniv")]
 position = Vector2(624, 287)
-
-[node name="crate3" parent="level" instance=ExtResource("9_aaniv")]
-position = Vector2(499, 300)
 
 [node name="trap_door" parent="level" instance=ExtResource("11_rea64")]
 position = Vector2(496, 344)
