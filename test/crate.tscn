@@ -1,18 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://pdseefr663hp"]
+[gd_scene load_steps=7 format=3 uid="uid://pdseefr663hp"]
 
 [ext_resource type="Script" uid="uid://ck5xa6ntioxbh" path="res://test/crate.gd" id="1_y82iw"]
 [ext_resource type="Texture2D" uid="uid://b75qhw22ph5xd" path="res://test/glass_crate.png" id="3_34r00"]
 [ext_resource type="Texture2D" uid="uid://dt4gib8a3eisa" path="res://test/regular_crate.png" id="3_ahwyp"]
+[ext_resource type="PackedScene" uid="uid://0872kvvre773" path="res://test/crate_rounded.tscn" id="4_ahwyp"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_34r00"]
+friction = 0.7
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_htay6"]
 polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_34r00"]
-size = Vector2(64, 64)
-
 [node name="crate" type="RigidBody2D" groups=["crate"]]
 collision_layer = 8
 collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_34r00")
 lock_rotation = true
 script = ExtResource("1_y82iw")
 
@@ -27,5 +29,4 @@ texture = ExtResource("3_ahwyp")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_htay6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_34r00")
+[node name="crate_rounded" parent="." instance=ExtResource("4_ahwyp")]

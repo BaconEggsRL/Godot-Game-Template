@@ -11,7 +11,7 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_c6hhn")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
-1:0/next_alternative_id = 4
+1:0/next_alternative_id = 5
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, -16, 0, 16, 0, 16, 16)
 1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 16, -16, 0, 16, 0, 16, 16)
@@ -35,7 +35,12 @@ texture_region_size = Vector2i(32, 32)
 0:1/0 = 0
 0:1/0/modulate = Color(0.012617188, 0.012617188, 0.012617188, 0.5)
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/next_alternative_id = 2
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, -16, 16, 16)
+1:1/1 = 1
+1:1/1/flip_h = true
+1:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, 16, -16, 16)
 
 [resource]
 tile_size = Vector2i(32, 32)

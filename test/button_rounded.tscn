@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://be1fa7ro60s6r"]
+
+[node name="button_rounded" type="CollisionPolygon2D"]

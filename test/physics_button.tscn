@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1s01n0ftfyfr"]
+
+[ext_resource type="Script" uid="uid://cmo4l5api5kkf" path="res://test/physics_button.gd" id="1_i7oyf"]
+[ext_resource type="PackedScene" uid="uid://be1fa7ro60s6r" path="res://test/button_rounded.tscn" id="2_a6rbo"]
+
+[sub_resource type="Gradient" id="Gradient_43ans"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i7oyf"]
+gradient = SubResource("Gradient_43ans")
+width = 32
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_i7oyf"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a6rbo"]
+gradient = SubResource("Gradient_i7oyf")
+width = 16
+height = 8
+
+[sub_resource type="Animation" id="Animation_43ans"]
+resource_name = "press"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i7oyf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i7oyf"]
+_data = {
+&"RESET": SubResource("Animation_i7oyf"),
+&"press": SubResource("Animation_43ans")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43ans"]
+size = Vector2(16, 6)
+
+[node name="PhysicsButton" type="Area2D"]
+collision_layer = 16
+collision_mask = 462
+script = ExtResource("1_i7oyf")
+
+[node name="base" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_i7oyf")
+
+[node name="button" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = SubResource("GradientTexture2D_a6rbo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i7oyf")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_43ans")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="button_rounded" parent="StaticBody2D" instance=ExtResource("2_a6rbo")]
+polygon = PackedVector2Array(-8, -4, 8, -4, 16, 4, -16, 4)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
