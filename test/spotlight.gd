@@ -108,6 +108,8 @@ func start_preview_flicker() -> void:
 			return
 		else:
 			flicker_timer.wait_time = self.flicker_time
+	else:
+		flicker_timer.wait_time = self.flicker_time
 	if should_flicker:
 		add_flicker()
 	
@@ -145,7 +147,8 @@ func add_rotation() -> void:
 
 
 func add_flicker() -> void:
-	flicker_timer.start()
+	if flicker_timer.is_stopped():
+		flicker_timer.start()
 
 
 func add_reflector(r: Node) -> void:
@@ -207,6 +210,7 @@ func _physics_process(_delta):
 
 
 func _on_flicker_timer_timeout() -> void:
+	print("hi")
 	toggle_light()
 	if should_flicker:
 		flicker_timer.start()

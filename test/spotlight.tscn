@@ -7,6 +7,7 @@
 script = ExtResource("1_dd5c7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = -244.0
 offset_top = -226.0
 offset_right = 218.0
@@ -78,7 +79,6 @@ collision_mask = 2959
 collide_with_areas = true
 
 [node name="FlickerTimer" type="Timer" parent="."]
-wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="FlickerTimer" to="." method="_on_flicker_timer_timeout"]
