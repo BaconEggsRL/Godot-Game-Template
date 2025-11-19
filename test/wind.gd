@@ -72,18 +72,33 @@ func check_ray_collisions(_delta) -> void:
 						return
 			
 			if collider is not Umbrella:
-				var ray_hit_global: Vector2 = ray.get_collision_point()
-				var ray_hit_local = ray.to_local(ray_hit_global)
-				ray_collision_height = ray_hit_local.y  # <-- local Y of the collision
+				# var ray_hit_global: Vector2 = ray.get_collision_point()
+				# var ray_hit_local = ray.to_local(ray_hit_global)
+				# ray_collision_height = ray_hit_local.y  # <-- local Y of the collision
+				
+				var origin = ray.global_position
+				var target = ray.to_global(ray.target_position)
+				var ray_dir = (target - origin).normalized()
+
+				var hit_pos = ray.get_collision_point()
+				# var dist_along_ray = ray_dir.dot(hit_pos - origin)
+				ray_collision_height = ray_dir.dot(hit_pos - origin)
+
 				
 			current_height = ray_collision_height
 
 			if collider is Umbrella:
+				var origin = global_position
+				var ray_dir = (to_global(Vector2(0, max_height)) - origin).normalized()
+
+				var player_offset = player.global_position - origin
+				var player_dist = ray_dir.dot(player_offset)
+	
 				# Only push if the player is BELOW the current height
 				# var global_height = to_global(Vector2(0, current_height)).y
-				var global_height = to_global(Vector2(0, current_height)).y
 
-				if player.global_position.y > global_height:
+				# if player.global_position.y > global_height:
+				if player_dist > current_height:
 					
 					# player.wind_velocity = Vector2(0, -PUSH_FORCE)
 					var wind_vel := Vector2(1.0, -PUSH_FORCE).rotated(self.rotation)
