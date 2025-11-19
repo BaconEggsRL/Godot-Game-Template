@@ -113,9 +113,7 @@ func check_ray_collisions(_delta) -> void:
 					player.wind_velocity = wind_vel
 					# player.wind_velocity += wind_vel   # allow multiple winds to stack!
 					player.is_on_wind = true
-					
-					
-					
+
 					
 					if recharge:
 						umbrella.hp += recharge_dps * _delta

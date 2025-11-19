@@ -96,7 +96,7 @@ func disable_umbrella() -> void:
 
 func set_hp(value: float) -> void:
 	var last_hp = hp
-	hp = max(value, 0.0)
+	hp = clamp(max(value, 0.0), 0.0, max_hp)
 	
 	if hp < last_hp:  # took damage
 		time_since_damage = 0.0   # reset timer when damaged
@@ -107,7 +107,6 @@ func set_hp(value: float) -> void:
 	# Trigger downtime if HP hits zero
 	if hp <= 0.0 and not is_disabled:
 		disable_umbrella()
-		
 
 
 func handle_regen(delta: float) -> void:
