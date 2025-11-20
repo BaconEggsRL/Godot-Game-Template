@@ -64,12 +64,8 @@ position = Vector2(1004, 715)
 is_one_shot = true
 spotlight_toggle = NodePath("../spotlight_corner")
 
-[node name="static_reflector" parent="level" instance=ExtResource("12_xlmrr")]
-position = Vector2(1278, 251.00006)
-rotation = 2.3561945
-
 [node name="static_reflector2" parent="level" instance=ExtResource("12_xlmrr")]
-position = Vector2(1250, 21.000008)
+position = Vector2(1250, 48)
 rotation = 0.7853982
 scale = Vector2(0.99999994, 0.99999994)
 
@@ -86,6 +82,7 @@ spotlight_toggle = NodePath("../spotlight_ceiling")
 [node name="spotlight_ceiling" parent="level" instance=ExtResource("7_71110")]
 position = Vector2(658, 514)
 scale = Vector2(0.5, 0.5)
+is_on = false
 
 [node name="reflector_ceiling" parent="level" instance=ExtResource("8_l7fa2")]
 position = Vector2(651, 635)
