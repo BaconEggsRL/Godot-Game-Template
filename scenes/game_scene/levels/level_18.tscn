@@ -75,13 +75,10 @@ position = Vector2(372, 223)
 [node name="wind" parent="level" instance=ExtResource("9_rg6jg")]
 position = Vector2(106, 397)
 
-[node name="crumble_wall" parent="level" instance=ExtResource("10_nnuhl")]
-position = Vector2(671, 515)
-rotation = 1.5707964
-
 [node name="crumble_wall2" parent="level" instance=ExtResource("10_nnuhl")]
 position = Vector2(585, 353)
 rotation = 1.5707964
+shadow_dps = 10.0
 wall_type = 1
 
 [node name="star" parent="." instance=ExtResource("9_87adk")]

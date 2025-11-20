@@ -26,6 +26,7 @@ load_path = "res://.godot/imported/crumble_wall.png-d3b5f0a6ae19e25be37afd43e33f
 
 [node name="crumble_wall" type="StaticBody2D" groups=["crumble_wall"]]
 script = ExtResource("1_l54h1")
+shadow_dps = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_85t3v")

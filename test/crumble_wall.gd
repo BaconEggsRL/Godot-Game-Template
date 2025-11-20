@@ -4,6 +4,8 @@ extends StaticBody2D
 
 enum WallType { DARK, LIGHT }
 
+@export var shadow_dps:float = 10.0
+
 @export var wall_type: WallType = WallType.DARK:
 	set(value):
 		wall_type = value
@@ -57,8 +59,12 @@ func set_hp(value: float) -> void:
 	var last_hp = hp
 	hp = max(value, 0.0)
 
-	if hp < last_hp:  # took damage
-		time_since_damage = 0.0
+	if wall_type == WallType.DARK:
+		if hp < last_hp:  # took damage
+			time_since_damage = 0.0
+	else:
+		if hp > last_hp:  # took hit from light
+			time_since_damage = 0.0
 
 	update_decay(hp / max_hp)
 
@@ -86,9 +92,10 @@ func _process(delta: float) -> void:
 	apply_heat_behavior(delta)
 	
 	# SHADOW DAMAGE: Light walls lose HP when out of light
-	if wall_type == WallType.LIGHT and time_since_damage > 0.05:
-		# lose shadow HP
-		set_hp(hp - 4.0 * delta)   # shadow DPS (tweakable)
+	if wall_type == WallType.LIGHT and time_since_damage > 0.2:
+		# lose HP if not being hit by raycast
+		set_hp(hp - shadow_dps * delta)   # shadow DPS (tweakable)
+		print("damage, hp = %f" % hp)
 
 
 func apply_heat_behavior(delta: float) -> void:
@@ -115,4 +122,4 @@ func take_light_damage(beam_dps: float, delta: float) -> void:
 	else:
 		# LIGHT WALL: Light heals instead of hurts
 		heat = max(0.0, heat - heat_decay * delta)  # cool down
-		set_hp(hp + beam_dps * 0.6 * delta)  # heal (slightly slower than damage)
+		set_hp(hp + beam_dps * 0.5 * delta)  # heal (slightly slower than damage)
