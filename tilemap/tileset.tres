@@ -47,7 +47,7 @@ texture_region_size = Vector2i(32, 32)
 1:2/1 = 1
 1:2/1/flip_h = true
 1:2/1/modulate = Color(0.011764706, 0.011764706, 0.011764706, 0.5019608)
-1:2/1/physics_layer_2/polygon_0/points = PackedVector2Array(-16, 16, 16, -16, 16, 16)
+1:2/1/physics_layer_2/polygon_0/points = PackedVector2Array(-16, 16, -16, -16, 16, 16)
 
 [resource]
 tile_size = Vector2i(32, 32)
