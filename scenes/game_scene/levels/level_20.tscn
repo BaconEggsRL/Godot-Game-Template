@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=4 uid="uid://ckgthh3wljg1r"]
+
+[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_oj4qw"]
+[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_pgock"]
+[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="3_dohjb"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_44rmd"]
+[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="5_modfp"]
+[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_1lheb"]
+[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="7_jn1hs"]
+[ext_resource type="PackedScene" uid="uid://b3ud20wyvvkoe" path="res://test/rotating_reflector.tscn" id="8_hw1to"]
+[ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="11_x5r5l"]
+[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="13_twcg3"]
+
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oj4qw")
+metadata/_edit_lock_ = true
+
+[node name="Background" parent="." instance=ExtResource("2_pgock")]
+
+[node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_dohjb")
+
+[node name="LevelUI" parent="." instance=ExtResource("4_44rmd")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAA4AAAAAAAEAAAAAAA8AAAAAAAEAAAABAA4AAAAAAAEAAAABAA8AAAAAAAEAAAACAA4AAAAAAAEAAAACAA8AAAAAAAEAAAADAA4AAAAAAAEAAAADAA8AAAAAAAEAAAAEAA4AAAAAAAEAAAAEAA8AAAAAAAEAAAAFAA4AAAAAAAEAAAAFAA8AAAAAAAEAAAAGAA4AAAAAAAEAAAAGAA8AAAAAAAEAAAAHAA4AAAAAAAEAAAAHAA8AAAAAAAEAAAAIAA4AAAAAAAEAAAAIAA8AAAAAAAEAAAAJAA4AAAAAAAEAAAAJAA8AAAAAAAEAAAAKAA4AAAAAAAEAAAAKAA8AAAAAAAEAAAALAA4AAAAAAAEAAAALAA8AAAAAAAEAAAAMAA4AAAAAAAEAAAAMAA8AAAAAAAEAAAANAA4AAAAAAAEAAAANAA8AAAAAAAEAAAAOAA4AAAAAAAEAAAAOAA8AAAAAAAEAAAAPAA4AAAAAAAEAAAAPAA8AAAAAAAEAAAAQAA4AAAAAAAEAAAAQAA8AAAAAAAEAAAARAA4AAAAAAAEAAAARAA8AAAAAAAEAAAASAA4AAAAAAAEAAAASAA8AAAAAAAEAAAATAA4AAAAAAAEAAAATAA8AAAAAAAEAAAAUAA4AAAAAAAEAAAAUAA8AAAAAAAEAAAAVAA4AAAAAAAEAAAAVAA8AAAAAAAEAAAAWAA4AAAAAAAEAAAAWAA8AAAAAAAEAAAAXAA4AAAAAAAEAAAAXAA8AAAAAAAEAAAAYAA4AAAAAAAEAAAAYAA8AAAAAAAEAAAAZAA4AAAAAAAEAAAAZAA8AAAAAAAEAAAAaAA4AAAAAAAEAAAAaAA8AAAAAAAEAAAAbAA4AAAAAAAEAAAAbAA8AAAAAAAEAAAAcAA4AAAAAAAEAAAAcAA8AAAAAAAEAAAAkAA4AAAAAAAEAAAAkAA8AAAAAAAEAAAAlAA4AAAAAAAEAAAAlAA8AAAAAAAEAAAAmAA4AAAAAAAEAAAAmAA8AAAAAAAEAAAAnAA4AAAAAAAEAAAAnAA8AAAAAAAEAAAAQAAsAAAAAAAEAAAAQAAwAAAAAAAEAAAAQAA0AAAAAAAEAAAARAAsAAAAAAAEAAAARAAwAAAAAAAEAAAARAA0AAAAAAAEAAAASAAsAAAAAAAEAAAASAAwAAAAAAAEAAAASAA0AAAAAAAEAAAATAAsAAAAAAAEAAAATAAwAAAAAAAEAAAATAA0AAAAAAAEAAAAUAAsAAAAAAAEAAAAUAAwAAAAAAAEAAAAUAA0AAAAAAAEAAAAVAAsAAAAAAAEAAAAVAAwAAAAAAAEAAAAVAA0AAAAAAAEAAAAWAAsAAAAAAAEAAAAWAAwAAAAAAAEAAAAWAA0AAAAAAAEAAAAXAAsAAAAAAAEAAAAXAAwAAAAAAAEAAAAXAA0AAAAAAAEAAAAPAAsAAAAAAAEAAAAPAAwAAAAAAAEAAAAPAA0AAAAAAAEAAAANAA0AAAAAAAEAAAAOAAsAAAABAAIAAAANAAwAAAABAAIAAAAMAA0AAAABAAIAAAAYAAsAAAABAAIAAQAZAAwAAAABAAIAAQAaAA0AAAABAAIAAQAOAA0AAAAAAAEAAAAOAAwAAAAAAAEAAAAYAAwAAAAAAAEAAAAYAA0AAAAAAAEAAAAZAA0AAAAAAAEAAAA=")
+tile_set = ExtResource("5_modfp")
+rendering_quadrant_size = 32
+physics_quadrant_size = 32
+
+[node name="level" type="Node2D" parent="."]
+
+[node name="level_border" parent="level" instance=ExtResource("6_1lheb")]
+
+[node name="spotlight" parent="level" instance=ExtResource("7_jn1hs")]
+position = Vector2(636, 56)
+scale = Vector2(0.25, 1)
+
+[node name="rotating_reflector" parent="level" instance=ExtResource("8_hw1to")]
+position = Vector2(632, 230)
+has_wheels = false
+
+[node name="static_reflector2" parent="level" instance=ExtResource("11_x5r5l")]
+position = Vector2(1038.0001, 179.00006)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+can_rotate = true
+
+[node name="static_reflector3" parent="level" instance=ExtResource("11_x5r5l")]
+position = Vector2(655, 659)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+can_rotate = true
+
+[node name="static_reflector" parent="level" instance=ExtResource("11_x5r5l")]
+position = Vector2(1085, 649)
+rotation = -0.7853982
+
+[node name="static_reflector4" parent="level" instance=ExtResource("11_x5r5l")]
+position = Vector2(485, 13)
+
+[node name="static_reflector5" parent="level" instance=ExtResource("11_x5r5l")]
+position = Vector2(113, 432)
+
+[node name="static_reflector6" parent="level" instance=ExtResource("11_x5r5l")]
+position = Vector2(69, 665)
+rotation = 0.7853982
+
+[node name="player_umbrella" parent="." instance=ExtResource("13_twcg3")]
+position = Vector2(240, 236)

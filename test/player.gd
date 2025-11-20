@@ -14,6 +14,8 @@ signal hp_changed
 var is_on_wind:bool = false
 var is_on_wind_from:Wind
 
+var is_immune:bool = false
+
 @export var auto_regen:bool = true
 
 const max_hp = 25.0
@@ -67,6 +69,9 @@ func handle_regen(delta: float) -> void:
 
 
 func set_hp(value: float) -> void:
+	if is_immune:
+		return
+		
 	var last_hp = hp
 	hp = max(value, 0.0)
 	

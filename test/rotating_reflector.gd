@@ -2,7 +2,6 @@
 class_name RotatingReflector
 extends Node2D
 
-@export var rotate_torque := 50.0
 
 @export var wheels: Node2D
 

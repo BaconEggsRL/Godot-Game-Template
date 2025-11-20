@@ -33,6 +33,9 @@ extends Node2D
 @onready var bounce_light_2: PointLight2D = $lights/bounce_light_2
 @onready var bounce_ray_2: RayCast2D = $rays/bounce_ray_2
 
+@onready var bounce_light_3: PointLight2D = $lights/bounce_light_3
+@onready var bounce_ray_3: RayCast2D = $rays/bounce_ray_3
+
 
 
 
@@ -70,8 +73,145 @@ func handle_crumble(collider, _delta) -> void:
 		collider.take_light_damage(beam_dps, _delta)
 	
 	
+
+
+
+
+
+
+
+
+
+func get_first_hit_data(_ray:RayCast2D, delta:float) -> Dictionary:
+	# --- FIRST HIT ---
+	var hit_pos := _ray.get_collision_point()
+	var hit_normal := _ray.get_collision_normal()
+	var collider := _ray.get_collider()
+
+	line.add_point(to_local(hit_pos))
 	
-func cast_beam(_delta):
+	if collider:
+		apply_damage_collider(collider, delta)
+		
+	return {
+		"hit_pos":hit_pos,
+		"hit_normal":hit_normal,
+		"collider":collider,
+		"dir":Vector2.UP.rotated(self.global_rotation),  # global pointing dir of rotating_reflector
+		"origin":Vector2.ZERO,
+	}
+
+
+func apply_damage_collider(collider:Object, delta:float) -> void:
+	if collider:
+		if collider.is_in_group("crumble_wall"):
+			# print("crumble 1")
+			handle_crumble(collider, delta)
+			
+		if collider.is_in_group("player") and collider is Player:
+			collider.hp -= beam_dps * delta
+		
+		if collider.is_in_group("umbrella") and collider is Umbrella:
+			collider.hp -= beam_dps * delta
+
+
+func get_reflect_data(hit_data:Dictionary, _bounce_ray:RayCast2D, _bounce_light:PointLight2D, delta:float) -> Dictionary:
+	if hit_data.is_empty():
+		return {}
+	
+	var hit_pos = hit_data.hit_pos
+	var hit_normal = hit_data.hit_normal
+	var collider = hit_data.collider
+	
+	if not collider:
+		return {}
+	
+	if not collider.is_in_group("static_reflector"):
+		return {}
+	
+	# --- FIRST REFLECTION ---
+	# dir is the normal, unrotated local reflection direction for the rotating_reflector object.
+	# if the reflector is not rotated, this is Vector2.UP
+	# var global_dir = dir.rotated(self.global_rotation)
+	var reflected_dir = hit_data.dir.bounce(hit_normal).normalized()
+	
+	########
+	# var reflected_dir = dir.bounce(hit_normal).normalized()
+	# rotate by global (parent)
+	# reflected_dir = reflected_dir.rotated(-self.global_rotation)
+	#######
+	
+	# offset is 0.0, might be able to just remove--supposed to avoid self-hit
+	var reflect_origin = hit_pos #+ (reflected_dir * offset)
+	
+	# update bounce ray
+	_bounce_ray.position = to_local(hit_pos)
+	_bounce_ray.global_rotation = reflected_dir.angle() + PI/2
+	_bounce_ray.force_raycast_update()
+	
+	# draw the bounce light
+	_bounce_light.position = to_local(hit_pos)
+	_bounce_light.global_rotation = reflected_dir.angle() + PI/2
+	
+	# show bounce light
+	_bounce_light.show()
+	_bounce_ray.show()
+	
+	###########################################
+	# --- SECOND HIT ---
+	return get_bounce_hit_data(_bounce_ray, reflect_origin, reflected_dir, delta)
+
+
+
+func get_bounce_hit_data(_bounce_ray:RayCast2D, reflect_origin:Vector2, reflected_dir:Vector2, delta:float) -> Dictionary:
+	var _bounce_hit_pos = reflect_origin + (reflected_dir * max_distance)
+	var _bounce_hit_normal = _bounce_ray.get_collision_normal()
+	var _bounce_hit_collider = _bounce_ray.get_collider()
+	
+	if not _bounce_ray.is_colliding():
+		# Nothing hit → draw full beam
+		line.add_point(to_local(_bounce_hit_pos))
+	else:
+		_bounce_hit_pos = _bounce_ray.get_collision_point()
+		line.add_point(to_local(_bounce_hit_pos))
+
+	if _bounce_hit_collider:
+		apply_damage_collider(_bounce_hit_collider, delta)
+	
+	return {
+		"hit_pos":_bounce_hit_pos, 
+		"hit_normal":_bounce_hit_normal, 
+		"collider":_bounce_hit_collider,
+		"dir": reflected_dir,
+		"origin": reflect_origin,
+	}
+
+
+
+
+
+func cast_beam(delta):
+	# Clear old line
+	line.clear_points()
+	line.add_point(Vector2.ZERO)
+
+	if not ray.is_colliding():
+		# Nothing hit → draw full beam
+		line.add_point(dir.normalized() * max_distance)
+		return
+
+	# --- FIRST HIT ---
+	var _hit_data := get_first_hit_data(ray, delta)
+	var _reflect_data := get_reflect_data(_hit_data, bounce_ray, bounce_light, delta)
+	var _reflect_data_2 := get_reflect_data(_reflect_data, bounce_ray_2, bounce_light_2, delta)
+	
+	# var bounce_hit_data := get_bounce_hit_data(bounce_ray)
+	
+
+
+
+
+func _cast_beam(_delta):
 	# Clear old line
 	line.clear_points()
 	line.add_point(Vector2.ZERO)
@@ -99,7 +239,7 @@ func cast_beam(_delta):
 		if collider.is_in_group("umbrella") and collider is Umbrella:
 			collider.hp -= beam_dps * _delta
 
-
+	#########################################
 	# --- FIRST REFLECTION ---
 	if collider and collider.is_in_group("static_reflector"):
 		var reflected_dir = dir.bounce(hit_normal).normalized()
@@ -150,7 +290,7 @@ func cast_beam(_delta):
 			var second_reflected_dir = reflected_dir.bounce(_bounce_hit_normal).normalized()
 		
 			# rotate by global (parent)
-			second_reflected_dir = second_reflected_dir.rotated(-self.global_rotation)
+			# second_reflected_dir = second_reflected_dir.rotated(-self.global_rotation)
 			
 			var second_reflect_origin = _bounce_hit_pos + second_reflected_dir * offset
 			

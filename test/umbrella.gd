@@ -19,6 +19,8 @@ const MAX_WHEEL_VEL = 300
 const UMBRELLA_OCCLUDER_POLYGON = preload("uid://yq81xoefu4c5")
 @onready var umbrella_occluder: LightOccluder2D = $umbrella_occluder
 
+var is_immune:bool = false
+
 @onready var player:Player = get_tree().get_first_node_in_group("player")
 @onready var collision_shape: CollisionPolygon2D = $collision_shape
 
@@ -95,6 +97,9 @@ func disable_umbrella() -> void:
 
 
 func set_hp(value: float) -> void:
+	if is_immune:
+		return
+		
 	var last_hp = hp
 	hp = clamp(max(value, 0.0), 0.0, max_hp)
 	

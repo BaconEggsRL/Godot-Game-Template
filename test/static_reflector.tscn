@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpra7angkhxrq"]
+[gd_scene load_steps=8 format=3 uid="uid://dpra7angkhxrq"]
 
 [ext_resource type="Script" uid="uid://cyh7cqcugg3wn" path="res://test/static_reflector.gd" id="1_67yjh"]
 [ext_resource type="Texture2D" uid="uid://cqf8ignmkdq2l" path="res://test/ray_light.tres" id="2_8guyd"]
@@ -16,6 +16,9 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_67yjh"]
 polygon = PackedVector2Array(-32, -16, -32, 16, 32, 16, 32, -16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_67yjh"]
+radius = 164.0
 
 [node name="static_reflector" type="StaticBody2D" groups=["static_reflector"]]
 script = ExtResource("1_67yjh")
@@ -38,3 +41,11 @@ offset = Vector2(0, -90)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 scale = Vector2(3.5, 1)
 occluder = SubResource("OccluderPolygon2D_67yjh")
+
+[node name="InteractArea" type="Area2D" parent="."]
+position = Vector2(-5, 7)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_67yjh")
