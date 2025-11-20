@@ -47,7 +47,6 @@ var heat_decay := 5.0
 var melt_threshold := 0.5
 
 var time_since_damage := 0.0
-@onready var damage_audio: AudioStreamPlayer2D = $damage_audio
 var max_vol := 18.0
 var min_vol := 0.0
 var target_volume_db := min_vol
@@ -59,8 +58,6 @@ func set_hp(value: float) -> void:
 	hp = max(value, 0.0)
 
 	if hp < last_hp:  # took damage
-		if not damage_audio.playing:
-			damage_audio.playing = true
 		time_since_damage = 0.0
 
 	update_decay(hp / max_hp)
@@ -71,9 +68,7 @@ func set_hp(value: float) -> void:
 
 
 func _ready() -> void:
-	if damage_audio:
-		damage_audio.volume_db = max_vol
-
+	hp = max_hp
 	if sprite:
 		_apply_wall_visuals()
 
@@ -84,16 +79,16 @@ func update_decay(decay_ratio: float) -> void:
 
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+		
 	time_since_damage += delta
 	apply_heat_behavior(delta)
-
-	# volume smoothing
-	damage_audio.volume_db = lerp(damage_audio.volume_db, target_volume_db, volume_smooth_speed * delta)
-
-	if time_since_damage > 0.1:
-		target_volume_db = lerp(target_volume_db, min_vol, heat_decay * delta)
-		if target_volume_db < min_vol + 0.1:
-			damage_audio.stop()
+	
+	# SHADOW DAMAGE: Light walls lose HP when out of light
+	if wall_type == WallType.LIGHT and time_since_damage > 0.05:
+		# lose shadow HP
+		set_hp(hp - 4.0 * delta)   # shadow DPS (tweakable)
 
 
 func apply_heat_behavior(delta: float) -> void:
@@ -121,6 +116,3 @@ func take_light_damage(beam_dps: float, delta: float) -> void:
 		# LIGHT WALL: Light heals instead of hurts
 		heat = max(0.0, heat - heat_decay * delta)  # cool down
 		set_hp(hp + beam_dps * 0.6 * delta)  # heal (slightly slower than damage)
-
-	# Update audio intensity
-	target_volume_db = lerp(min_vol, max_vol, clamp(beam_dps / 20.0, 0.0, 1.0))
