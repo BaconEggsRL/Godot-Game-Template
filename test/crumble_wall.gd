@@ -1,8 +1,12 @@
 class_name CrumbleWall
 extends StaticBody2D
 
+
+const CRUMBLE_WALL_MAT = preload("uid://d08bybqiu7vrn")
+
 @onready var sprite: Sprite2D = $sprite
-@onready var mat: ShaderMaterial = sprite.material
+var mat: ShaderMaterial
+
 
 const max_hp := 25.0
 @export var hp: float = max_hp: set = set_hp
@@ -42,6 +46,8 @@ func set_hp(value: float) -> void:
 		
 func _ready() -> void:
 	damage_audio.volume_db = max_vol
+	mat = CRUMBLE_WALL_MAT.duplicate(true)
+	sprite.material = mat
 	if mat is ShaderMaterial:
 		mat.set_shader_parameter("dissolve_value", 1.0)
 

@@ -172,6 +172,7 @@ func _physics_process(_delta):
 	var hit_reflectors := {}  # Keep track of reflectors hit this frame
 	var hit_player:Player
 	var hit_umbrella:Umbrella
+	var hit_crumble_wall:CrumbleWall
 
 
 	for ray: RayCast2D in ray_children:
@@ -194,6 +195,9 @@ func _physics_process(_delta):
 			if collider.is_in_group("umbrella") and collider is Umbrella:
 				hit_umbrella = collider
 				# collider.hp -= beam_dps * _delta
+			if collider.is_in_group("crumble_wall") and collider is CrumbleWall:
+				hit_crumble_wall = collider
+				# handle_crumble(_bounce_hit_collider_2, _delta)
 	
 	
 	# Do damage
@@ -203,6 +207,8 @@ func _physics_process(_delta):
 	if hit_umbrella:
 		hit_umbrella.hp -= beam_dps * _delta
 	
+	if hit_crumble_wall:
+		handle_crumble(hit_crumble_wall, _delta)
 	
 	# Remove reflectors that are no longer hit
 	for r in active_reflectors.keys():
@@ -210,8 +216,15 @@ func _physics_process(_delta):
 			remove_reflector(r)
 
 
+
+func handle_crumble(collider, _delta) -> void:
+	# collider.queue_free.call_deferred()
+	if collider is CrumbleWall:
+		# collider.hp -= beam_dps * _delta
+		collider.take_light_damage(beam_dps, _delta)
+		
+		
 func _on_flicker_timer_timeout() -> void:
-	print("hi")
 	toggle_light()
 	if should_flicker:
 		flicker_timer.start()

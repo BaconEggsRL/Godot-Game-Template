@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=4 uid="uid://c0slvs4weoj3"]
+[gd_scene load_steps=11 format=4 uid="uid://iqc0nen3p3ja"]
 
-[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_ey3x5"]
-[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_4keok"]
-[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="3_wsbaw"]
-[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_rg6jg"]
-[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="5_nnuhl"]
-[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_c21vg"]
-[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="7_fxo2s"]
-[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="8_spenr"]
+[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_1wbvi"]
+[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_6scdg"]
+[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="3_lnnnq"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_s0ync"]
+[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="5_1rhka"]
+[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_cgmai"]
+[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="8_u31t7"]
+[ext_resource type="PackedScene" uid="uid://bf1uufdc51v2b" path="res://test/spotlight.tscn" id="9_ow3qb"]
+[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="9_tln4j"]
+[ext_resource type="PackedScene" uid="uid://blf6u2qahxm37" path="res://test/crumble_wall.tscn" id="11_aiic4"]
 
 [node name="Level" type="Control"]
 layout_mode = 3
@@ -16,31 +18,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ey3x5")
+script = ExtResource("1_1wbvi")
 metadata/_edit_lock_ = true
 
-[node name="Background" parent="." instance=ExtResource("2_4keok")]
+[node name="Background" parent="." instance=ExtResource("2_6scdg")]
 
 [node name="TutorialManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_wsbaw")
+script = ExtResource("3_lnnnq")
 
-[node name="LevelUI" parent="." instance=ExtResource("4_rg6jg")]
+[node name="LevelUI" parent="." instance=ExtResource("4_s0ync")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAA8AAAAAAAAAAAAAABAAAAAAAAAAAAABAA8AAAAAAAAAAAABABAAAAAAAAAAAAACAA8AAAAAAAAAAAACABAAAAAAAAAAAAADAA8AAAAAAAAAAAADABAAAAAAAAAAAAAEAA8AAAAAAAAAAAAEABAAAAAAAAAAAAAFAA8AAAAAAAAAAAAFABAAAAAAAAAAAAAGAA8AAAAAAAAAAAAGABAAAAAAAAAAAAAHAA8AAAAAAAAAAAAHABAAAAAAAAAAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAAAAAAJAA8AAAAAAAAAAAAJABAAAAAAAAAAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAAAAAALAA8AAAAAAAAAAAALABAAAAAAAAAAAAAMAA8AAAAAAAAAAAAMABAAAAAAAAAAAAANAA8AAAAAAAAAAAANABAAAAAAAAAAAAAOAA8AAAAAAAAAAAAOABAAAAAAAAAAAAAPAA8AAAAAAAAAAAAPABAAAAAAAAAAAAAQAA8AAAAAAAAAAAAQABAAAAAAAAAAAAARAA8AAAAAAAAAAAARABAAAAAAAAAAAAASAA8AAAAAAAAAAAASABAAAAAAAAAAAAATAA8AAAAAAAAAAAATABAAAAAAAAAAAAAUAA8AAAAAAAAAAAAUABAAAAAAAAAAAAAVAA8AAAAAAAAAAAAVABAAAAAAAAAAAAAWAA8AAAAAAAAAAAAWABAAAAAAAAAAAAAXAA8AAAAAAAAAAAAXABAAAAAAAAAAAAAYAA8AAAAAAAAAAAAYABAAAAAAAAAAAAAZAA8AAAAAAAAAAAAZABAAAAAAAAAAAAAaAA8AAAAAAAAAAAAaABAAAAAAAAAAAAAbAA8AAAAAAAAAAAAbABAAAAAAAAAAAAAcAA8AAAAAAAAAAAAcABAAAAAAAAAAAAAdAA8AAAAAAAAAAAAdABAAAAAAAAAAAAAeAA8AAAAAAAAAAAAeABAAAAAAAAAAAAAfAA8AAAAAAAAAAAAfABAAAAAAAAAAAAAgAA8AAAAAAAAAAAAgABAAAAAAAAAAAAAhAA8AAAAAAAAAAAAhABAAAAAAAAAAAAAiAA8AAAAAAAAAAAAiABAAAAAAAAAAAAAjAA8AAAAAAAAAAAAjABAAAAAAAAAAAAAkAA8AAAAAAAAAAAAkABAAAAAAAAAAAAAlAA8AAAAAAAAAAAAlABAAAAAAAAAAAAAmAA8AAAAAAAAAAAAmABAAAAAAAAAAAAAnAA8AAAAAAAAAAAAnABAAAAAAAAAAAAA=")
-tile_set = ExtResource("5_nnuhl")
+tile_set = ExtResource("5_1rhka")
 rendering_quadrant_size = 32
 physics_quadrant_size = 32
 
 [node name="level" type="Node2D" parent="."]
 
-[node name="level_border" parent="level" instance=ExtResource("6_c21vg")]
+[node name="level_border" parent="level" instance=ExtResource("6_cgmai")]
 
-[node name="star" parent="level" instance=ExtResource("7_fxo2s")]
+[node name="spotlight" parent="level" instance=ExtResource("9_ow3qb")]
+position = Vector2(640, 0)
+
+[node name="crumble_wall" parent="level" instance=ExtResource("11_aiic4")]
+position = Vector2(630, 199)
+rotation = 1.5707964
+
+[node name="crumble_wall2" parent="level" instance=ExtResource("11_aiic4")]
+position = Vector2(626, 338)
+rotation = 1.5707964
+
+[node name="star" parent="level" instance=ExtResource("8_u31t7")]
 position = Vector2(1132, 413)
 
-[node name="player_umbrella" parent="." instance=ExtResource("8_spenr")]
+[node name="player_umbrella" parent="." instance=ExtResource("9_tln4j")]
 position = Vector2(190, 413)
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

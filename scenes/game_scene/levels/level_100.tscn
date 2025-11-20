@@ -43,7 +43,7 @@ metadata/_edit_lock_ = true
 [node name="level_border" parent="level" instance=ExtResource("6_2c1qs")]
 
 [node name="wind" parent="level" instance=ExtResource("10_4kx6i")]
-position = Vector2(639, 649)
+position = Vector2(639, 399)
 
 [node name="spotlight" parent="level" instance=ExtResource("9_ow3qb")]
 position = Vector2(633, -23)
