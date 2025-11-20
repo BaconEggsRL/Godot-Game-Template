@@ -20,6 +20,7 @@ extends Node2D
 			for c in wheels.get_children():
 				if c is RigidBody2D:
 					c.freeze = false if has_wheels else true
+					c.visible = has_wheels
 
 @export var rotation_speed := 2.0
 

@@ -57,19 +57,21 @@ node_b = NodePath("../body")
 [node name="wheels" type="Node2D" parent="."]
 
 [node name="wheel1" parent="wheels" instance=ExtResource("5_g0sd3")]
-position = Vector2(-57, 76)
+position = Vector2(-56, 57)
+lock_rotation = false
 
 [node name="wheel2" parent="wheels" instance=ExtResource("5_g0sd3")]
-position = Vector2(61, 78)
+position = Vector2(62, 57)
+lock_rotation = false
 
 [node name="joints" type="Node2D" parent="wheels"]
 
 [node name="wheel1" type="PinJoint2D" parent="wheels/joints"]
-position = Vector2(-57, 77)
+position = Vector2(-56, 57)
 node_a = NodePath("../../wheel1")
 node_b = NodePath("../../../body")
 
 [node name="wheel2" type="PinJoint2D" parent="wheels/joints"]
-position = Vector2(61, 78)
+position = Vector2(62, 57)
 node_a = NodePath("../../wheel2")
 node_b = NodePath("../../../body")
