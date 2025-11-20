@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://d4g8o07tsgb0q"]
+[gd_scene load_steps=13 format=4 uid="uid://cpv0cop355spf"]
 
 [ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_wgi72"]
 [ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_oj4qw"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://blf6u2qahxm37" path="res://test/crumble_wall.tscn" id="9_hw1to"]
 [ext_resource type="PackedScene" uid="uid://pdseefr663hp" path="res://test/crate.tscn" id="10_16dko"]
 [ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="11_o4i77"]
-[ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="11_oj4qw"]
 [ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="12_x5r5l"]
 
 [node name="Level" type="Control"]
@@ -46,6 +45,7 @@ ground_enabled = false
 
 [node name="spotlight" parent="level" instance=ExtResource("7_1lheb")]
 position = Vector2(640, 0)
+is_on = false
 
 [node name="PhysicsButton" parent="level" node_paths=PackedStringArray("spotlight_toggle") instance=ExtResource("8_jn1hs")]
 position = Vector2(1275, 498)
@@ -57,22 +57,9 @@ position = Vector2(640, 577)
 rotation = 1.5707964
 shadow_dps = 10.0
 
-[node name="crumble_wall2" parent="level" instance=ExtResource("9_hw1to")]
-position = Vector2(640, 216)
-rotation = 1.5707964
-shadow_dps = 10.0
-wall_type = 1
-
-[node name="crumble_wall3" parent="level" instance=ExtResource("9_hw1to")]
-position = Vector2(640, 398)
-rotation = 1.5707964
-shadow_dps = 10.0
-
 [node name="crate" parent="level" instance=ExtResource("10_16dko")]
-position = Vector2(635, 114)
-
-[node name="wind" parent="level" instance=ExtResource("11_oj4qw")]
-position = Vector2(96, 335)
+position = Vector2(635, 410)
+scale = Vector2(2, 2)
 
 [node name="star" parent="." instance=ExtResource("11_o4i77")]
 position = Vector2(642, 641)
@@ -93,7 +80,7 @@ offset_right = 207.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "LIGHT WALLS HATE DARK"
+text = "SHADOW WALLS HATE LIGHT"
 horizontal_alignment = 1
 vertical_alignment = 2
 metadata/_edit_lock_ = true

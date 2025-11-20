@@ -53,6 +53,7 @@ position = Vector2(1112, 145)
 
 [node name="crumble_wall" parent="level" instance=ExtResource("11_aiic4")]
 position = Vector2(227, 130)
+shadow_dps = 10.0
 
 [node name="star" parent="level" instance=ExtResource("7_fg54y")]
 position = Vector2(100, 141)
