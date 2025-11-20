@@ -9,6 +9,7 @@ extends Area2D
 
 @export var wind_toggle:Wind
 @export var door_toggle:TrapDoor
+@export var spotlight_toggle:Spotlight
 
 var colliders := {}  # acts like a Set
 
@@ -23,6 +24,8 @@ var is_pressed:bool = false:
 			wind_toggle.enabled = is_pressed
 		if door_toggle:
 			door_toggle.enabled = is_pressed
+		if spotlight_toggle:
+			spotlight_toggle.is_on = is_pressed
 		# confirm has activated
 		if is_pressed == true:
 			has_activated = true
