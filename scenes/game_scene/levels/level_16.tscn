@@ -47,24 +47,20 @@ position = Vector2(1028, 395)
 
 [node name="lights" type="Node2D" parent="level"]
 
-[node name="spotlight" parent="level/lights" instance=ExtResource("7_awcn8")]
-position = Vector2(291, 341)
+[node name="spotlight3" parent="level/lights" instance=ExtResource("7_awcn8")]
+position = Vector2(286, 347)
 rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
-offset = 70.0
+offset = 120.0
 should_rotate = true
-rotate_amount = 10.0
-rotate_time = 0.5
 
-[node name="spotlight2" parent="level/lights" instance=ExtResource("7_awcn8")]
-position = Vector2(541, 340)
+[node name="spotlight4" parent="level/lights" instance=ExtResource("7_awcn8")]
+position = Vector2(546, 343)
 rotation = -1.5707964
 scale = Vector2(0.5, 0.5)
-offset = 70.0
+offset = 120.0
 should_rotate = true
 reverse_order = true
-rotate_amount = 10.0
-rotate_time = 0.5
 
 [node name="player_umbrella" parent="." instance=ExtResource("13_tccqy")]
 position = Vector2(87, 107)
