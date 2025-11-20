@@ -15,9 +15,9 @@ offset_bottom = 1082.0
 color = Color(0.23392546, 0.23392546, 0.23392543, 1)
 
 [node name="light" type="PointLight2D" parent="."]
-position = Vector2(-1.4545441, -185.01102)
+position = Vector2(-1.4704369, -195.54425)
 rotation = -0.0015088329
-scale = Vector2(1.019, 4.4003315)
+scale = Vector2(1.019, 4.441477)
 shadow_enabled = true
 texture = ExtResource("1_brcy0")
 offset = Vector2(0, 128)
