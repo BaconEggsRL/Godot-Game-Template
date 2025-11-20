@@ -143,7 +143,12 @@ func _physics_process(delta):
 	# velocity += wind_velocity
 	if is_on_wind:
 		# velocity = wind_velocity * 0.6
-		velocity += wind_velocity * 0.6
+		# velocity.x = dir * speed
+		var ground_mod = Vector2(5, 1) # if is_on_floor() else Vector2.ONE
+		velocity += wind_velocity * 0.6 * ground_mod
+	else:
+		# velocity.x = dir * speed
+		pass
 
 
 	# Check collision
