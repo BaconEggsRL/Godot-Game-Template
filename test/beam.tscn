@@ -38,7 +38,6 @@ offset = Vector2(0, -750)
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, -2000)
-default_color = Color(1, 0, 0, 1)
 texture_mode = 2
 
 [node name="rays" type="Node2D" parent="."]

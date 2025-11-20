@@ -13,7 +13,7 @@ polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 
 [node name="crate" type="RigidBody2D" groups=["crate"]]
 collision_layer = 8
-collision_mask = 79
+collision_mask = 8655
 physics_material_override = SubResource("PhysicsMaterial_34r00")
 lock_rotation = true
 script = ExtResource("1_y82iw")

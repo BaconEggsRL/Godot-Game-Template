@@ -39,32 +39,32 @@ physics_quadrant_size = 32
 
 [node name="level_border" parent="level" instance=ExtResource("5_l1dbt")]
 
+[node name="star" parent="level" instance=ExtResource("11_fpcxn")]
+position = Vector2(1210, 68)
+
+[node name="wind" parent="level" instance=ExtResource("10_grdk8")]
+position = Vector2(1028, 395)
+
 [node name="lights" type="Node2D" parent="level"]
 
 [node name="spotlight" parent="level/lights" instance=ExtResource("7_awcn8")]
-position = Vector2(319, 357)
+position = Vector2(291, 341)
 rotation = 1.5707964
-scale = Vector2(0.53, 0.53)
+scale = Vector2(0.5, 0.5)
 offset = 70.0
 should_rotate = true
 rotate_amount = 10.0
 rotate_time = 0.5
 
 [node name="spotlight2" parent="level/lights" instance=ExtResource("7_awcn8")]
-position = Vector2(499, 357)
+position = Vector2(541, 340)
 rotation = -1.5707964
-scale = Vector2(0.53, 0.53)
+scale = Vector2(0.5, 0.5)
 offset = 70.0
 should_rotate = true
 reverse_order = true
 rotate_amount = 10.0
 rotate_time = 0.5
-
-[node name="star" parent="level" instance=ExtResource("11_fpcxn")]
-position = Vector2(1210, 68)
-
-[node name="wind" parent="level" instance=ExtResource("10_grdk8")]
-position = Vector2(1028, 395)
 
 [node name="player_umbrella" parent="." instance=ExtResource("13_tccqy")]
 position = Vector2(87, 107)

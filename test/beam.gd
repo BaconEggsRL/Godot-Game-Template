@@ -211,9 +211,6 @@ func cast_beam(delta):
 	var _reflect_data := get_reflect_data(_hit_data, bounce_ray, bounce_light, delta)
 	var _reflect_data_2 := get_reflect_data(_reflect_data, bounce_ray_2, bounce_light_2, delta)
 	var _reflect_data_3 := get_reflect_data(_reflect_data_2, bounce_ray_3, bounce_light_3, delta)
-	
-	# var bounce_hit_data := get_bounce_hit_data(bounce_ray)
-	
 
 
 

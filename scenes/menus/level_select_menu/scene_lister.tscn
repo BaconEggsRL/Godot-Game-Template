@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1tplx6ad4pta"]
+
+[ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="1_kvq61"]
+
+[node name="SceneLister" type="Node"]
+script = ExtResource("1_kvq61")
+files = Array[String](["res://scenes/game_scene/levels/level_01.tscn", "res://scenes/game_scene/levels/level_02.tscn", "res://scenes/game_scene/levels/level_03.tscn", "res://scenes/game_scene/levels/level_04.tscn", "res://scenes/game_scene/levels/level_05.tscn", "res://scenes/game_scene/levels/level_06.tscn", "res://scenes/game_scene/levels/level_07.tscn", "res://scenes/game_scene/levels/level_08.tscn", "res://scenes/game_scene/levels/level_09.tscn", "res://scenes/game_scene/levels/level_10.tscn", "res://scenes/game_scene/levels/level_11.tscn", "res://scenes/game_scene/levels/level_12.tscn", "res://scenes/game_scene/levels/level_13.tscn", "res://scenes/game_scene/levels/level_14.tscn", "res://scenes/game_scene/levels/level_15.tscn", "res://scenes/game_scene/levels/level_16.tscn", "res://scenes/game_scene/levels/level_17.tscn"])

@@ -13,6 +13,8 @@ right_enabled = true
 
 [node name="ground" type="StaticBody2D" parent="."]
 position = Vector2(640, 720)
+collision_layer = 8192
+collision_mask = 0
 
 [node name="ground_collider" type="CollisionShape2D" parent="ground"]
 shape = SubResource("WorldBoundaryShape2D_uchsv")
@@ -20,6 +22,8 @@ shape = SubResource("WorldBoundaryShape2D_uchsv")
 [node name="ceiling" type="StaticBody2D" parent="."]
 position = Vector2(640, 0)
 rotation = 3.1415925
+collision_layer = 8192
+collision_mask = 0
 
 [node name="ceiling_collider" type="CollisionShape2D" parent="ceiling"]
 shape = SubResource("WorldBoundaryShape2D_uchsv")
@@ -27,6 +31,8 @@ shape = SubResource("WorldBoundaryShape2D_uchsv")
 [node name="left" type="StaticBody2D" parent="."]
 position = Vector2(0, 360)
 rotation = 1.5707963
+collision_layer = 8192
+collision_mask = 0
 
 [node name="left_collider" type="CollisionShape2D" parent="left"]
 shape = SubResource("WorldBoundaryShape2D_uchsv")
@@ -34,6 +40,8 @@ shape = SubResource("WorldBoundaryShape2D_uchsv")
 [node name="right" type="StaticBody2D" parent="."]
 position = Vector2(1280, 360)
 rotation = 3.1415925
+collision_layer = 8192
+collision_mask = 0
 
 [node name="right_collider" type="CollisionShape2D" parent="right"]
 rotation = 1.5707964

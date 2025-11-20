@@ -50,6 +50,7 @@ is_on = false
 [node name="spotlight2" parent="level" instance=ExtResource("9_uvwj7")]
 position = Vector2(1243, 697.0001)
 rotation = 2.6071098
+is_on = false
 
 [node name="rotating_reflector" parent="level" instance=ExtResource("8_ie3t0")]
 position = Vector2(655, 604)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene load_steps=30 format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
 [ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_2k5l7"]
+[ext_resource type="PackedScene" uid="uid://c0el5tf2xs2rd" path="res://scenes/menus/level_select_menu/level_select_menu.tscn" id="3_8dhfv"]
 [ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_vsp5b"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_6xh1d"]
 [ext_resource type="Shader" uid="uid://cm08i45juumwb" path="res://common/shaders/sway.gdshader" id="6_2k5l7"]
@@ -335,7 +336,7 @@ shader_parameter/speed = 2.0
 
 [node name="MainMenu" instance=ExtResource("1_sr523")]
 script = ExtResource("2_ixa71")
-level_select_packed_scene = null
+level_select_packed_scene = ExtResource("3_8dhfv")
 confirm_new_game = true
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")

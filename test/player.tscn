@@ -14,7 +14,7 @@ size = Vector2(64, 64)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-collision_mask = 1999
+collision_mask = 10191
 collision_priority = 2.0
 safe_margin = 1.0
 script = ExtResource("1_wvbbu")

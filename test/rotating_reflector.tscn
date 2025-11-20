@@ -17,7 +17,7 @@ has_wheels = true
 [node name="head" type="RigidBody2D" parent="." groups=["reflector_head"]]
 position = Vector2(5, -7)
 collision_layer = 128
-collision_mask = 207
+collision_mask = 8399
 lock_rotation = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="head"]
@@ -41,7 +41,7 @@ shape = SubResource("CircleShape2D_qi5yx")
 
 [node name="body" type="RigidBody2D" parent="."]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 8271
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body"]
 polygon = PackedVector2Array(-46, 16, -53.983963, 61.00051, -57, 78, -10, 26, 19, 26, 62, 78, 55, 16, 5, -8)
