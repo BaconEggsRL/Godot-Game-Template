@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://c827qe5ov5dyu" path="res://test/face.gd" id="4_jp3oe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvbbu"]
-radius = 32.0
-height = 64.0
+radius = 31.75
+height = 63.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqgw4"]
 size = Vector2(64, 64)
@@ -20,9 +20,6 @@ safe_margin = 1.0
 script = ExtResource("1_wvbbu")
 auto_regen = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_wvbbu")
-
 [node name="player" type="Sprite2D" parent="."]
 texture = ExtResource("2_wvbbu")
 offset = Vector2(0, -32)
@@ -31,6 +28,9 @@ offset = Vector2(0, -32)
 texture = ExtResource("3_wvbbu")
 offset = Vector2(0, -32)
 script = ExtResource("4_jp3oe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wvbbu")
 
 [node name="player_area" type="Area2D" parent="." groups=["player_area"]]
 collision_layer = 4096

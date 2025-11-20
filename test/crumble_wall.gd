@@ -91,11 +91,7 @@ func _process(delta: float) -> void:
 	time_since_damage += delta
 	apply_heat_behavior(delta)
 	
-	# SHADOW DAMAGE: Light walls lose HP when out of light
-	if wall_type == WallType.LIGHT and time_since_damage > 0.2:
-		# lose HP if not being hit by raycast
-		set_hp(hp - shadow_dps * delta)   # shadow DPS (tweakable)
-		print("damage, hp = %f" % hp)
+	take_shadow_damage(delta)
 
 
 func apply_heat_behavior(delta: float) -> void:
@@ -123,3 +119,10 @@ func take_light_damage(beam_dps: float, delta: float) -> void:
 		# LIGHT WALL: Light heals instead of hurts
 		heat = max(0.0, heat - heat_decay * delta)  # cool down
 		set_hp(hp + beam_dps * 0.5 * delta)  # heal (slightly slower than damage)
+
+
+func take_shadow_damage(delta) -> void:
+	# SHADOW DAMAGE: Light walls lose HP when out of light
+	if wall_type == WallType.LIGHT and time_since_damage > 0.2:
+		# lose HP if not being hit by raycast
+		set_hp(hp - shadow_dps * delta)   # shadow DPS (tweakable)
