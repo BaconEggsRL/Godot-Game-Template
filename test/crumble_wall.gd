@@ -58,6 +58,7 @@ var volume_smooth_speed := 10.0
 func set_hp(value: float) -> void:
 	var last_hp = hp
 	hp = max(value, 0.0)
+	hp = clamp(hp, 0.0, max_hp)
 
 	if wall_type == WallType.DARK:
 		if hp < last_hp:  # took damage
