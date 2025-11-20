@@ -338,6 +338,7 @@ shader_parameter/speed = 2.0
 script = ExtResource("2_ixa71")
 level_select_packed_scene = ExtResource("3_8dhfv")
 confirm_new_game = true
+game_scene_path = "uid://clxs5gwisal5m"
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
