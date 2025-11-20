@@ -6,6 +6,7 @@ extends Node2D
 @export var is_on:bool = true:
 	set(value):
 		is_on = value
+		
 		if is_on:
 			enable_light()
 		else:

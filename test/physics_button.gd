@@ -25,7 +25,11 @@ var is_pressed:bool = false:
 		if door_toggle:
 			door_toggle.enabled = is_pressed
 		if spotlight_toggle:
-			spotlight_toggle.is_on = is_pressed
+			spotlight_toggle.is_on = not spotlight_toggle.is_on
+			if spotlight_toggle.is_on:
+				AudioManager.play_sound("light_switch", 0.0, 1.0, true)
+			else:
+				AudioManager.play_sound("light_switch", 0.0, 0.8, true)
 		# confirm has activated
 		if is_pressed == true:
 			has_activated = true

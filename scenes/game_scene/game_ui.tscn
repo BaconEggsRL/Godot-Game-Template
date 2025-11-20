@@ -81,6 +81,7 @@ level_lost_scene = ExtResource("7_i7m4m")
 level_won_scene = ExtResource("8_rkfhe")
 
 [node name="SceneLister" parent="LevelManager" instance=ExtResource("10_7aihr")]
+files = Array[String](["res://scenes/game_scene/levels/level_01.tscn", "res://scenes/game_scene/levels/level_02.tscn", "res://scenes/game_scene/levels/level_03.tscn", "res://scenes/game_scene/levels/level_04.tscn", "res://scenes/game_scene/levels/level_05.tscn", "res://scenes/game_scene/levels/level_06.tscn", "res://scenes/game_scene/levels/level_07.tscn", "res://scenes/game_scene/levels/level_08.tscn", "res://scenes/game_scene/levels/level_09.tscn", "res://scenes/game_scene/levels/level_10.tscn", "res://scenes/game_scene/levels/level_11.tscn", "res://scenes/game_scene/levels/level_12.tscn", "res://scenes/game_scene/levels/level_13.tscn", "res://scenes/game_scene/levels/level_14.tscn", "res://scenes/game_scene/levels/level_15.tscn", "res://scenes/game_scene/levels/level_16.tscn", "res://scenes/game_scene/levels/level_17.tscn", "res://scenes/game_scene/levels/level_18.tscn"])
 
 [node name="LevelLoadingScreen" parent="." instance=ExtResource("10_0v86b")]
 visible = false
