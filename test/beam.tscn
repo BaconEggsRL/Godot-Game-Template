@@ -17,7 +17,6 @@ offset = Vector2(0, -750)
 
 [node name="bounce_light" type="PointLight2D" parent="lights"]
 visible = false
-position = Vector2(1, 1)
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("1_b05as")
@@ -25,7 +24,6 @@ offset = Vector2(0, -750)
 
 [node name="bounce_light_2" type="PointLight2D" parent="lights"]
 visible = false
-position = Vector2(1, 1)
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("1_b05as")
@@ -33,7 +31,6 @@ offset = Vector2(0, -750)
 
 [node name="bounce_light_3" type="PointLight2D" parent="lights"]
 visible = false
-position = Vector2(1, 1)
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("1_b05as")
@@ -53,21 +50,18 @@ collide_with_areas = true
 
 [node name="bounce_ray" type="RayCast2D" parent="rays"]
 visible = false
-position = Vector2(1, 1)
 target_position = Vector2(0, -1500)
 collision_mask = 2063
 collide_with_areas = true
 
 [node name="bounce_ray_2" type="RayCast2D" parent="rays"]
 visible = false
-position = Vector2(1, 1)
 target_position = Vector2(0, -1500)
 collision_mask = 2063
 collide_with_areas = true
 
 [node name="bounce_ray_3" type="RayCast2D" parent="rays"]
 visible = false
-position = Vector2(1, 1)
 target_position = Vector2(0, -1500)
 collision_mask = 2063
 collide_with_areas = true
