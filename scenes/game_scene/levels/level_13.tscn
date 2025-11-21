@@ -54,6 +54,10 @@ rotation = 3.1415927
 position = Vector2(826, 80)
 rotation = 1.5707964
 
+[node name="wind4" parent="level" instance=ExtResource("8_idcp6")]
+position = Vector2(287, 80)
+rotation = 1.5707964
+
 [node name="player_umbrella" parent="." instance=ExtResource("9_08myb")]
 position = Vector2(634, 628)
 

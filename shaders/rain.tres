@@ -10,3 +10,4 @@ shader_parameter/speed = 50.0
 shader_parameter/blur = 0.002
 shader_parameter/colour = Color(1, 1, 1, 1)
 shader_parameter/size = Vector2(0.005, 0.2)
+shader_parameter/brightness = 0.0

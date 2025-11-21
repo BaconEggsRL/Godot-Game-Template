@@ -8,6 +8,9 @@ uniform float blur: hint_range(0.0005, 0.1) = 0.002;
 uniform vec4 colour: source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform vec2 size = vec2(0.005, 0.2);
 
+// Brightness adjustment: -1 = black, 0 = normal, 1 = white
+uniform float brightness: hint_range(-1.0, 1.0) = 0.0;
+
 // Simple line SDF
 float line_sdf(vec2 p, vec2 s) {
     vec2 d = abs(p) - s;
@@ -36,10 +39,16 @@ void fragment() {
         snow += clamp(-sdf / blur, 0.0, 1.0);
     }
 
-    // Preserve original texture (so lights still work)
+    // Sample the original texture
     vec4 base = texture(TEXTURE, UV);
 
-    // Blend snow effect over sprite
-    // You can adjust the snow blending: "mix" for soft overlay
+    // Apply brightness adjustment
+    if (brightness > 0.0) {
+        base.rgb = mix(base.rgb, vec3(1.0), brightness); // brighten toward white
+    } else if (brightness < 0.0) {
+        base.rgb = mix(base.rgb, vec3(0.0), -brightness); // darken toward black
+    }
+
+    // Blend snow effect over the sprite
     COLOR = mix(base, vec4(colour.rgb, 1.0), snow);
 }

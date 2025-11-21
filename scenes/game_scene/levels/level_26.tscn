@@ -61,7 +61,6 @@ shadow_dps = 10.0
 
 [node name="PhysicsButton" parent="level" node_paths=PackedStringArray("spotlight_toggle") instance=ExtResource("10_y38bj")]
 position = Vector2(1004, 715)
-is_one_shot = true
 spotlight_toggle = NodePath("../spotlight_corner")
 
 [node name="static_reflector2" parent="level" instance=ExtResource("12_xlmrr")]
