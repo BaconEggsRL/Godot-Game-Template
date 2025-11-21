@@ -1,9 +1,5 @@
 extends Control
 
-@export var focus_arrows : Control
-@export var first_focus : Control
-var first_focus_call:bool = true
-
 ## Node that captures UI focus when switching menus.
 ##
 ## This script assists with capturing UI focus when
@@ -50,14 +46,10 @@ func _focus_first_search(control_node : Control, levels : int = 1) -> bool:
 func focus_first() -> void:
 	_focus_first_search(self, search_depth)
 
-func update_focus() -> void:
-	if lock : return
-	if _is_visible_and_should_capture():
-		focus_first()
-	# regian focus after return from menus
-	if focus_arrows:
-		last_focused.grab_focus()
-
+#func update_focus() -> void:
+	#if lock : return
+	#if _is_visible_and_should_capture():
+		#focus_first()
 
 func _should_capture_focus() -> bool:
 	return enabled or \
@@ -71,7 +63,24 @@ func _is_visible_and_should_capture() -> bool:
 func _on_visibility_changed() -> void:
 	call_deferred("update_focus")
 
-#############################################################
+#func _ready() -> void:
+	#if is_inside_tree():
+		#update_focus()
+		#connect("visibility_changed", _on_visibility_changed)
+
+
+
+###########################################################################
+###########################################################################
+# CUSTOM STUFF BELOW
+###########################################################################
+###########################################################################
+
+
+@export var focus_arrows : FocusArrows
+@export var first_focus : Button
+var first_focus_call:bool = true
+
 
 # Customize these values
 var tween_dict = {}
@@ -83,19 +92,15 @@ const MENU_BTN_SHADER_MAT = preload("uid://fq2s47chxdpw")
 var last_focused:Control
 
 
+func update_focus() -> void:
+	if lock : return
+	if _is_visible_and_should_capture():
+		focus_first()
+	# regian focus after return from menus
+	if focus_arrows:
+		last_focused.grab_focus()
 
-#var check_time = 1.0
-#var _timer = 0.0
-#func _process(delta: float) -> void:
-	#if not focus_arrows:
-		#return
-	#_timer += delta
-	#if _timer >= check_time:
-		#print("current_focused = ", get_viewport().gui_get_focus_owner())
-		#print("last_focused = ", last_focused)
-		#_timer = 0.0
-	#
-	
+
 # after grabbing focus
 func update_focus_arrows(new_focus:Control) -> void:
 	if new_focus == null:

@@ -22,11 +22,15 @@ var last_selected:int = -1
 var hold_dir := 0        # -1 = up, +1 = down, 0 = none
 var hold_delay := 0.0    # time until next repeat
 const INITIAL_REPEAT := 0.35   # delay before repeat starts
-const HOLD_REPEAT := 0.08      # repeat speed while holding
+const HOLD_REPEAT := 0.06      # repeat speed while holding
+
+var first_move:bool = false
+var time_since_last_press:float = 0.0
 
 
 
 func select_level_index(index:int) -> void:
+	# print(index)
 	if level_paths.is_empty():
 		return
 
@@ -38,19 +42,23 @@ func select_level_index(index:int) -> void:
 	play_button.disabled = false
 	
 	AudioManager.play_sound("tab_press", -6.0, 1.0, true)
+	time_since_last_press = 0.0
 	
 	# --- KEEP SELECTED ITEM VISIBLE ---
 	# scroll_container.ensure_control_visible(child_node)
 	# var v_scroll = scroll_container.get_v_scroll_bar()
 	# v_scroll.set_value_no_signal(0.5)
 
-
+#
 func _process(delta: float) -> void:
+	time_since_last_press += delta
+	
 	if hold_dir == 0:
 		return
 
 	hold_delay -= delta
-	if hold_delay <= 0.0:
+	if hold_delay <= 0.0 and time_since_last_press > HOLD_REPEAT: #and hold_dir != 0:
+		# print("process proc")
 		move_selection(hold_dir)
 		hold_delay = HOLD_REPEAT
 
@@ -65,31 +73,37 @@ func move_selection(dir: int) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+
+		
 	# Accept key activation
 	if event.is_action_pressed("ui_accept") and last_selected != -1:
 		start_level(last_selected)
 		return
 
 	# --- Holding DOWN ---
-	if event.is_action_pressed("ui_down"):
-		hold_dir = +1
+	if event.is_action_pressed("move_down"):
+		# print("move down")
+		if time_since_last_press > HOLD_REPEAT:
+			move_selection(+1)
 		hold_delay = INITIAL_REPEAT
-		move_selection(+1)
+		hold_dir = +1
+		# hold_delay = 0.0  # first move will happen immediately in _process
 		return
-
-	if event.is_action_released("ui_down"):
+	if event.is_action_released("move_down"):
 		if hold_dir == +1:
 			hold_dir = 0
 		return
 
 	# --- Holding UP ---
-	if event.is_action_pressed("ui_up"):
-		hold_dir = -1
+	if event.is_action_pressed("move_up"):
+		# print("move up")
+		if time_since_last_press > HOLD_REPEAT:
+			move_selection(-1)
 		hold_delay = INITIAL_REPEAT
-		move_selection(-1)
+		hold_dir = -1
+		# hold_delay = 0.0  # first move will happen immediately in _process
 		return
-
-	if event.is_action_released("ui_up"):
+	if event.is_action_released("move_up"):
 		if hold_dir == -1:
 			hold_dir = 0
 		return
