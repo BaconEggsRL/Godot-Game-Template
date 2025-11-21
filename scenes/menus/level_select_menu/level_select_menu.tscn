@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0el5tf2xs2rd"]
+[gd_scene load_steps=8 format=3 uid="uid://c0el5tf2xs2rd"]
 
 [ext_resource type="Script" uid="uid://bgrtey1hosj1b" path="res://scenes/menus/level_select_menu/level_select_menu.gd" id="1_a0tqu"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_tjb7s"]
 [ext_resource type="PackedScene" uid="uid://d1tplx6ad4pta" path="res://scenes/menus/level_select_menu/scene_lister.tscn" id="3_a0tqu"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/smooth_scroll_container.gd" id="3_le4jx"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_enkmd"]
 
-[node name="LevelSelectMenu" type="Control"]
+[sub_resource type="Resource" id="Resource_pplp6"]
+script = ExtResource("4_enkmd")
+
+[sub_resource type="Resource" id="Resource_525ti"]
+script = ExtResource("4_enkmd")
+
+[node name="LevelSelectMenu" type="Control" node_paths=PackedStringArray("scroll_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a0tqu")
+scroll_container = NodePath("Control/SmoothScrollContainer")
 
 [node name="Panel" type="PanelContainer" parent="."]
 visible = false
@@ -46,7 +55,7 @@ offset_bottom = 30.0
 grow_horizontal = 2
 text = "choose a level"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Control"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -60,16 +69,40 @@ offset_right = 200.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+script = ExtResource("3_le4jx")
+wheel_scroll_damper = SubResource("Resource_pplp6")
+dragging_scroll_damper = SubResource("Resource_525ti")
+allow_horizontal_scroll = false
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="LevelButtonsContainer" type="ItemList" parent="Control/ScrollContainer"]
+[node name="LevelButtonsContainer" type="ItemList" parent="Control/SmoothScrollContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 3
 focus_mode = 0
+mouse_filter = 1
 auto_height = true
 item_count = 1
 item_0/text = "1 - ExampleLevel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -360.0
+offset_right = 200.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ContentContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -121,6 +154,6 @@ text = "Back"
 
 [node name="SceneLister" parent="." instance=ExtResource("3_a0tqu")]
 
-[connection signal="item_clicked" from="Control/ScrollContainer/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_clicked"]
+[connection signal="item_clicked" from="Control/SmoothScrollContainer/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_clicked"]
 [connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="." method="_on_close_button_pressed"]

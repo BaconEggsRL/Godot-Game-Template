@@ -16,9 +16,91 @@ var last_selected:int = -1
 
 @onready var play_button: Button = %PlayButton
 
+# @onready var scroll_container: ScrollContainer = $Control/ScrollContainer
+@export var scroll_container: SmoothScrollContainer
+
+var hold_dir := 0        # -1 = up, +1 = down, 0 = none
+var hold_delay := 0.0    # time until next repeat
+const INITIAL_REPEAT := 0.35   # delay before repeat starts
+const HOLD_REPEAT := 0.08      # repeat speed while holding
+
+
+
+func select_level_index(index:int) -> void:
+	if level_paths.is_empty():
+		return
+
+	if last_selected == index:
+		return
+	
+	last_selected = index
+	level_buttons_container.select(index, true)
+	play_button.disabled = false
+	
+	AudioManager.play_sound("tab_press", -6.0, 1.0, true)
+	
+	# --- KEEP SELECTED ITEM VISIBLE ---
+	# scroll_container.ensure_control_visible(child_node)
+	# var v_scroll = scroll_container.get_v_scroll_bar()
+	# v_scroll.set_value_no_signal(0.5)
+
+
+func _process(delta: float) -> void:
+	if hold_dir == 0:
+		return
+
+	hold_delay -= delta
+	if hold_delay <= 0.0:
+		move_selection(hold_dir)
+		hold_delay = HOLD_REPEAT
+
+
+func move_selection(dir: int) -> void:
+	if last_selected == -1:
+		select_level_index(0)
+		return
+
+	var target = clamp(last_selected + dir, 0, level_paths.size() - 1)
+	select_level_index(target)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Accept key activation
+	if event.is_action_pressed("ui_accept") and last_selected != -1:
+		start_level(last_selected)
+		return
+
+	# --- Holding DOWN ---
+	if event.is_action_pressed("ui_down"):
+		hold_dir = +1
+		hold_delay = INITIAL_REPEAT
+		move_selection(+1)
+		return
+
+	if event.is_action_released("ui_down"):
+		if hold_dir == +1:
+			hold_dir = 0
+		return
+
+	# --- Holding UP ---
+	if event.is_action_pressed("ui_up"):
+		hold_dir = -1
+		hold_delay = INITIAL_REPEAT
+		move_selection(-1)
+		return
+
+	if event.is_action_released("ui_up"):
+		if hold_dir == -1:
+			hold_dir = 0
+		return
+
+
+
 
 func _ready() -> void:
 	add_levels_to_container()
+	select_level_index(0)
+	
 	
 ## A fresh level list is propgated into the ItemList, and the file names are cleaned
 func add_levels_to_container() -> void:
@@ -36,11 +118,6 @@ func add_levels_to_container() -> void:
 
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	# Accept key activation
-	if event.is_action_pressed("ui_accept") and last_selected != -1:
-		start_level(last_selected)
-		return
 
 
 func _gui_input(event: InputEvent) -> void:
