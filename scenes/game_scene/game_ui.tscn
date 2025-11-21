@@ -75,11 +75,11 @@ level_loading_screen = NodePath("../LevelLoadingScreen")
 [node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("level_loader", "scene_lister")]
 script = ExtResource("5_wr4n6")
 level_loader = NodePath("../LevelLoader")
-starting_level_path = "uid://ch5p2ao57h2p1"
 scene_lister = NodePath("SceneLister")
 game_won_scene = ExtResource("6_ukb12")
 level_lost_scene = ExtResource("7_i7m4m")
 level_won_scene = ExtResource("8_rkfhe")
+force_level_path = "uid://doi2sj1nx5nd3"
 
 [node name="SceneLister" parent="LevelManager" instance=ExtResource("10_7aihr")]
 files = Array[String](["res://scenes/game_scene/levels/level_01.tscn", "res://scenes/game_scene/levels/level_02.tscn", "res://scenes/game_scene/levels/level_03.tscn", "res://scenes/game_scene/levels/level_04.tscn", "res://scenes/game_scene/levels/level_05.tscn", "res://scenes/game_scene/levels/level_06.tscn", "res://scenes/game_scene/levels/level_07.tscn", "res://scenes/game_scene/levels/level_08.tscn", "res://scenes/game_scene/levels/level_09.tscn", "res://scenes/game_scene/levels/level_10.tscn", "res://scenes/game_scene/levels/level_11.tscn", "res://scenes/game_scene/levels/level_12.tscn", "res://scenes/game_scene/levels/level_13.tscn", "res://scenes/game_scene/levels/level_14.tscn", "res://scenes/game_scene/levels/level_15.tscn", "res://scenes/game_scene/levels/level_16.tscn", "res://scenes/game_scene/levels/level_17.tscn", "res://scenes/game_scene/levels/level_18.tscn", "res://scenes/game_scene/levels/level_19.tscn", "res://scenes/game_scene/levels/level_20.tscn", "res://scenes/game_scene/levels/level_21.tscn", "res://scenes/game_scene/levels/level_22.tscn", "res://scenes/game_scene/levels/level_23.tscn", "res://scenes/game_scene/levels/level_24.tscn", "res://scenes/game_scene/levels/level_25.tscn", "res://scenes/game_scene/levels/level_26.tscn"])

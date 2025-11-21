@@ -3,6 +3,9 @@ extends CharacterBody2D
 
 signal hp_changed
 
+
+@onready var angle_ray: RayCast2D = $angle_ray
+
 @export var auto_regen:bool = false
 # regen_after_zero:
 # if auto_regen is enabled, will regen after delay even after hitting 0 hp
@@ -186,6 +189,7 @@ func _physics_process(delta):
 	
 	var pogo_now := false
 	var spike_hit_this_frame := false
+	var spike_collision_normal := Vector2.ZERO
 	
 
 	for i in range(get_slide_collision_count()):
@@ -201,6 +205,19 @@ func _physics_process(delta):
 			var data := tilemap.get_cell_tile_data(tile_pos)
 
 			if data and data.get_custom_data("type") == "spike":
+				var normal := collision.get_normal()
+				print("normal: %s" % normal)
+				spike_collision_normal = normal
+				#var angle := rad_to_deg(collision.get_angle(Vector2.RIGHT))
+				#var vel := collision.get_collider_velocity()
+				#var norm_angle := rad_to_deg(normal.angle())
+				#collision.get_collider_velocity()
+				# (0, -1) from above
+				# (-1, 0) from the left
+				# (-0.8, -0.6) from left corner
+				# (0.8, -0.6) from right corner
+				# (1, 0) from the right
+		
 				spike_hit_this_frame = true
 				break
 			
@@ -228,4 +245,6 @@ func _physics_process(delta):
 	if pogo_now and not is_disabled:
 		# print("pogo!")
 		self.hp -= pogo_damage
-		player._do_pogo()
+		var pointing_vector := Vector2.UP.rotated(self.rotation)
+		# var pointing_angle := rad_to_deg(pointing_vector.angle())
+		player._do_pogo(spike_collision_normal, pointing_vector)

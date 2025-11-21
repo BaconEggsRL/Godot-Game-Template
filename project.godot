@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Maaack's Game Template"
-run/main_scene="uid://bk80fxrac0p3i"
+run/main_scene="uid://clxs5gwisal5m"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.png"
 

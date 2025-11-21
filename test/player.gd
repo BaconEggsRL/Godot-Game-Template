@@ -43,6 +43,8 @@ var _jump_buffer_timer: float = 0.0
 var wind_velocity := Vector2.ZERO
 var wind_accel := Vector2.ZERO
 
+var pogo_velocity := Vector2.ZERO
+
 var is_dying:bool = false
 var time_since_damage := 0.0
 
@@ -154,6 +156,11 @@ func _physics_process(delta):
 	else:
 		# velocity.x = dir * speed
 		pass
+	
+	velocity += pogo_velocity
+	pogo_velocity = pogo_velocity.lerp(Vector2.ZERO, delta*8)
+	
+
 
 
 	# Check collision
@@ -206,8 +213,20 @@ func _do_jump(_jump_speed:float = jump_speed) -> void:
 	# AudioManager.play_sound("jump_pop", 0.0, pitch, true)
 	velocity.y = _jump_speed
 
-func _do_pogo(_jump_speed:float = jump_speed) -> void:
+func _do_pogo(normal:Vector2, _pointing_vector:Vector2) -> void:
 	# var pitch = randf_range(0.9, 1.1)
 	var pitch = 1.0
 	AudioManager.play_sound("spike_pogo", 0.0, pitch, true)
-	velocity.y = _jump_speed
+	
+	velocity.y = -1.0 * normal.y * jump_speed
+	# velocity.x = -1.0 * normal.x * jump_speed
+	
+	if abs(normal.y) < 0.1:
+		pogo_velocity = -1.0 * normal.x * jump_speed * Vector2.RIGHT
+		velocity.y = jump_speed
+		# pogo_velocity.y = pointing_vector.y * jump_speed/10.0
+	
+	# pogo_velocity.y = pointing_vector.y * jump_speed
+	
+	
+	
