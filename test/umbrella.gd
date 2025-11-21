@@ -206,7 +206,7 @@ func _physics_process(delta):
 
 			if data and data.get_custom_data("type") == "spike":
 				var normal := collision.get_normal()
-				print("normal: %s" % normal)
+				# print("normal: %s" % normal)
 				spike_collision_normal = normal
 				#var angle := rad_to_deg(collision.get_angle(Vector2.RIGHT))
 				#var vel := collision.get_collider_velocity()

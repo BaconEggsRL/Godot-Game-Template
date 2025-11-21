@@ -81,6 +81,7 @@ position = Vector2(72, 530)
 position = Vector2(293, 563)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

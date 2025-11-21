@@ -23,7 +23,7 @@ const max_hp = 25.0
 @export var regen_rate: float = 5.0      # HP per second
 @export var regen_delay: float = 1.0     # Seconds after last damage before regen starts
 
-@export_range(0, 1200, 1.0) var speed:float = 1000 # 1200
+@export_range(0, 1200, 1.0) var speed:float = 750 # 1200
 @export_range(-1500, -200, 1.0) var jump_speed:float = -1500 # -1500
 @export var gravity = 4000
 

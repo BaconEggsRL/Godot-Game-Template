@@ -63,6 +63,10 @@ position = Vector2(624, 287)
 [node name="trap_door" parent="level" instance=ExtResource("11_m8y67")]
 position = Vector2(496, 344)
 
+[node name="wind2" parent="level" instance=ExtResource("10_tfmui")]
+position = Vector2(864, 68)
+rotation = 1.5707964
+
 [node name="player_umbrella" parent="." instance=ExtResource("8_tfmui")]
 position = Vector2(122, 599)
 

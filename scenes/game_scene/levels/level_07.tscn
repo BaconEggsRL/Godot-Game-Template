@@ -41,22 +41,19 @@ metadata/_edit_lock_ = true
 ground_enabled = false
 
 [node name="star" parent="level" instance=ExtResource("6_xbubr")]
-position = Vector2(1178, 488)
+position = Vector2(1190, 120)
 
 [node name="spotlight" parent="level" instance=ExtResource("7_reeb3")]
 position = Vector2(640, 0)
 scale = Vector2(2, 1)
-is_on = null
 
 [node name="spotlight2" parent="level" instance=ExtResource("7_reeb3")]
 position = Vector2(400, 0)
 scale = Vector2(2, 1)
-is_on = null
 
 [node name="spotlight3" parent="level" instance=ExtResource("7_reeb3")]
 position = Vector2(880, 0)
 scale = Vector2(2, 1)
-is_on = null
 
 [node name="player_umbrella" parent="." instance=ExtResource("8_fm1xj")]
 position = Vector2(94, 469)

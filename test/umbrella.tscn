@@ -9,14 +9,6 @@
 collision_layer = 2048
 collision_mask = 1536
 script = ExtResource("1_wfpb0")
-auto_regen = null
-regen_after_zero = null
-pogo_damage = null
-regen_rate = null
-regen_delay = null
-hp = null
-downtime_duration = null
-respawn_safe_delay = null
 
 [node name="collision_shape" type="CollisionPolygon2D" parent="."]
 position = Vector2(-1, -42)
