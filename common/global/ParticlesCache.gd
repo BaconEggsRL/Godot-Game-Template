@@ -2,10 +2,13 @@ extends CanvasLayer
 
 
 const WIND_PARTICLE = preload("uid://dvca1wuimr3ov")
+const FALLING_LEAVES_MAT = preload("uid://krr3ujnqui3f")
+
 
 # Particle materials to preload
 var particle_materials := [
 	WIND_PARTICLE,
+	FALLING_LEAVES_MAT,
 ]
 
 # Dummy texture to use when preloading particles

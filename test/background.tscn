@@ -1,17 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctbc6hpsnkoa4"]
+[gd_scene load_steps=3 format=3 uid="uid://ctbc6hpsnkoa4"]
 
 [ext_resource type="Material" uid="uid://dg6e4l8c01udx" path="res://shaders/rain.tres" id="1_li8tk"]
+[ext_resource type="Texture2D" uid="uid://b8ug5q7e168qj" path="res://test/background_cityscape.png" id="2_li8tk"]
 
-[sub_resource type="Gradient" id="Gradient_sv8ip"]
-colors = PackedColorArray(0.3019608, 0.3019608, 0.3019608, 1, 0.3019608, 0.3019608, 0.3019608, 1)
+[node name="Background" type="Node2D"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_li8tk"]
-gradient = SubResource("Gradient_sv8ip")
-width = 1280
-height = 720
-
-[node name="Background" type="Sprite2D"]
+[node name="Background" type="Sprite2D" parent="."]
 material = ExtResource("1_li8tk")
-texture = SubResource("GradientTexture2D_li8tk")
+texture = ExtResource("2_li8tk")
 centered = false
 metadata/_edit_lock_ = true

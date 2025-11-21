@@ -14,6 +14,8 @@ var level_paths : Array[String]
 
 var last_selected:int = -1
 
+@onready var play_button: Button = %PlayButton
+
 
 func _ready() -> void:
 	add_levels_to_container()
@@ -35,8 +37,23 @@ func add_levels_to_container() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Accept key activation
 	if event.is_action_pressed("ui_accept") and last_selected != -1:
 		start_level(last_selected)
+		return
+
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		# Only act on left mouse button
+		if event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT:
+			reset_selection()
+
+
+func reset_selection():
+	last_selected = -1
+	level_buttons_container.deselect_all()
+	play_button.disabled = true
 
 
 func start_level(index:int) -> void:
@@ -48,15 +65,29 @@ func _on_level_buttons_container_item_activated(index: int) -> void:
 	start_level(index)
 
 
-func _on_level_buttons_container_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
-	# print("last_selected = %d, clicked_index = %d" % [last_selected, index])
+func _on_level_buttons_container_item_clicked(index: int, _pos: Vector2, mouse_button_index: int) -> void:
+	# Ignore scroll wheel events
+	if mouse_button_index == MOUSE_BUTTON_WHEEL_UP or mouse_button_index == MOUSE_BUTTON_WHEEL_DOWN:
+		return
+
+	print("last_selected = %d, clicked_index = %d" % [last_selected, index])
 	if last_selected == index:
 		start_level(index)
 	else:
 		last_selected = index
+		if last_selected == -1:
+			play_button.disabled = true
+		else:
+			play_button.disabled = false
+
 
 
 
 
 func _on_close_button_pressed() -> void:
 	close.emit()
+
+
+func _on_play_button_pressed() -> void:
+	if last_selected != -1:
+		start_level(last_selected)
