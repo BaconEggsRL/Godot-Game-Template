@@ -74,6 +74,8 @@ func _on_level_select_button_pressed() -> void:
 	var level_select_scene := _open_sub_menu(level_select_packed_scene)
 	if level_select_scene.has_signal("level_selected"):
 		level_select_scene.connect("level_selected", load_game_scene)
+	if level_select_scene.has_signal("close"):
+		level_select_scene.connect("close", _close_sub_menu)
 
 func _on_new_game_confirmation_confirmed() -> void:
 	GameState.reset()

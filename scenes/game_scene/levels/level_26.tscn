@@ -74,10 +74,9 @@ position = Vector2(592, 48)
 scale = Vector2(0.5, 0.5)
 shadow_dps = 10.0
 
-[node name="PhysicsButton2" parent="level" node_paths=PackedStringArray("door_toggle", "spotlight_toggle") instance=ExtResource("10_y38bj")]
+[node name="PhysicsButton2" parent="level" node_paths=PackedStringArray("spotlight_toggle") instance=ExtResource("10_y38bj")]
 position = Vector2(124, 715)
 is_one_shot = true
-door_toggle = NodePath("")
 spotlight_toggle = NodePath("../spotlight_ceiling")
 
 [node name="spotlight_ceiling" parent="level" instance=ExtResource("7_71110")]
