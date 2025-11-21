@@ -690,10 +690,43 @@
 [node name="Controls" instance=ExtResource("1_i27v5")]
 
 [node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" index="1" node_paths=PackedStringArray("input_icon_mapper")]
+readable_action_names = Array[String](["Move Forward", "Move Backward", "Jump / Move Up", "Move Down", "Move Left", "Move Right", "Interact"])
 input_icon_mapper = NodePath("../../../InputIconMapper")
+action_name_map = {
+&"interact": "Interact",
+&"move_backward": "Move Backward",
+&"move_down": "Move Down",
+&"move_forward": "Move Forward",
+&"move_left": "Move Left",
+&"move_right": "Move Right",
+&"move_up": "Jump / Move Up"
+}
 
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" index="2" node_paths=PackedStringArray("input_icon_mapper")]
 input_icon_mapper = NodePath("../../../InputIconMapper")
+
+[node name="KeyDeletionConfirmation" parent="." index="1"]
+pauses_game = false
+title_font_size = 0
+title_visible = true
+
+[node name="ResetConfirmation" parent="." index="2"]
+pauses_game = false
+title_font_size = 0
+title_visible = true
+
+[node name="KeyAssignmentWindow" parent="." index="5"]
+pauses_game = false
+text = ""
+title = "Menu"
+title_font_size = 0
+title_visible = true
+
+[node name="TitleMargin" parent="KeyAssignmentWindow/ContentContainer/BoxContainer" index="0"]
+visible = true
+
+[node name="TitleLabel" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
+theme_override_font_sizes/font_size = 0
 
 [node name="InputIconMapper" parent="." index="6" instance=ExtResource("2_hyv0n")]
 matching_icons = {

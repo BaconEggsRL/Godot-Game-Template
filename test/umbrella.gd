@@ -183,8 +183,17 @@ func _physics_process(delta):
 	
 
 	# Desired rotation toward mouse
-	var mouse_pos = get_global_mouse_position()
-	var desired_rotation = (mouse_pos - global_position).angle() + PI/2
+	var desired_rotation:float
+	var stick_dir := Vector2(
+		Input.get_action_strength("rotate_umbrella_right") - Input.get_action_strength("rotate_umbrella_left"),
+		Input.get_action_strength("rotate_umbrella_down")  - Input.get_action_strength("rotate_umbrella_up")
+	)
+	if stick_dir.length() > 0.25:    # deadzone
+		desired_rotation = stick_dir.angle() + PI/2
+	else:
+		# fallback → mouse
+		var mouse_pos = get_global_mouse_position()
+		desired_rotation = (mouse_pos - global_position).angle() + PI/2
 
 	
 	var pogo_now := false
