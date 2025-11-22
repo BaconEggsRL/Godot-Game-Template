@@ -27,6 +27,7 @@ var subtitles:Array[String] = [
 	"NOW WITH RAIN",
 	
 	"TOO MANY SPIKES, OR NOT ENOUGH?",
+	"LATE NIGHT LOFI LIGHTS",
 	
 	"CHILL BEATS TO RELAX/STUDY TO",
 	"DARK ACADEMIA LITE",
@@ -42,7 +43,7 @@ var subtitles:Array[String] = [
 	"DECAYING SINCE 1999",
 	
 	"BATMAN NOT INCLUDED",
-	"FRIDAY NIGHT LIGHTS",
+	"IT'S FRIDAY NIGHT",
 	"SHADOWS AT WORK",
 	
 	
