@@ -29,7 +29,7 @@ var time_since_last_press:float = 0.0
 
 
 
-func select_level_index(index:int) -> void:
+func select_level_index(index:int, play_sound:bool=true) -> void:
 	# print(index)
 	if level_paths.is_empty():
 		return
@@ -45,7 +45,9 @@ func select_level_index(index:int) -> void:
 	else:
 		play_button.disabled = false
 	
-	# AudioManager.play_sound("tab_press", -6.0, 1.0, true)
+	if play_sound:
+		AudioManager.play_sound("tab_press", -6.0, 1.0, true)
+	
 	time_since_last_press = 0.0
 	
 	# --- KEEP SELECTED ITEM VISIBLE ---
@@ -117,7 +119,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	add_levels_to_container()
-	select_level_index(0)
+	select_level_index(0, false)
 	
 	
 ## A fresh level list is propgated into the ItemList, and the file names are cleaned
