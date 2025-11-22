@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene load_steps=34 format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
@@ -17,6 +17,7 @@
 [ext_resource type="Material" uid="uid://fq2s47chxdpw" path="res://common/shaders/menu_btn_shader_mat.tres" id="10_672y5"]
 [ext_resource type="Texture2D" uid="uid://drqocxciqn1ti" path="res://common/sprites/ui_arrow_blur.png" id="10_x5bcm"]
 [ext_resource type="Script" uid="uid://dh22amdmjsmgw" path="res://test/focus_arrows.gd" id="12_j8onx"]
+[ext_resource type="PackedScene" uid="uid://luc8nck8sl5s" path="res://test/new_subtitle.tscn" id="18_fwab6"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -426,6 +427,9 @@ modulate = Color(1, 1, 1, 0)
 [node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" index="0"]
 text = "late night lofi lights"
 
+[node name="MenuButtonsMargin" parent="MenuContainer" index="2"]
+mouse_filter = 2
+
 [node name="MenuButtonsContainer" parent="MenuContainer/MenuButtonsMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
@@ -496,8 +500,18 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="falling_leaves" parent="." index="12" instance=ExtResource("8_vsp5b")]
+[node name="NewSubtitle" parent="." index="12" instance=ExtResource("18_fwab6")]
+custom_minimum_size = Vector2(1280, 160)
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 1
+
+[node name="falling_leaves" parent="." index="13" instance=ExtResource("8_vsp5b")]
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="confirmed" from="NewGameConfirmation" to="." method="_on_new_game_confirmation_confirmed"]
+[connection signal="pressed" from="NewSubtitle" to="." method="_on_new_subtitle_pressed"]

@@ -17,26 +17,25 @@ var animation_state_machine : AnimationNodeStateMachinePlayback
 @onready var sub_title_label: Label = $MenuContainer/SubTitleMargin/SubTitleContainer/SubTitleLabel
 
 
-var subtitle_ideas = [
-	"DECAYING LIGHTS",
+var main_subtitle := "DECAYING LIGHTS"
+var subtitles:Array[String] = [
+	# "DECAYING LIGHTS",
 	####################
-	"BLINDING LIGHTS",
-	"FEATURING LIGHT-DRIVEN ANXIETY",
 	
+	"FEATURING LIGHT-DRIVEN ANXIETY",
 	"CITY BLOB LIFE",
 	"NOW WITH RAIN",
-	
 	"WHY ARE THERE SPIKES EVERYWHERE?",
-	"POGO POWER",
-	
-	"CIRCLE PARKOUR",
-	"UMBRELLA PLATFORMER",
-
-	"LOFI VIBES",
 	"CHILL BEATS TO RELAX/STUDY TO",
-	
 	"DARK ACADEMIA UWU BLOB",
 	"STAR-CROSSED LOVERS",
+	"SUBTITLE SIMULATOR"
+	
+	# "BLINDING LIGHTS",
+	# "POGO POWER",
+	# "CIRCLE PARKOUR",
+	# "UMBRELLA PLATFORMER",
+	# "LOFI VIBES",
 	
 	# "My Childhood Friend Still Loves This Idol I Like, \nAnd Now She Is A Serial Killer!",
 	#"dark academia uwu blob",
@@ -46,12 +45,25 @@ var subtitle_ideas = [
 	#"star-crossed lovers",
 ]
 
-func set_subtitle_text(index:int = 0) -> void:
+
+func set_subtitle_text() -> void:
 	var game_won := GameState.get_game_won()
-	if game_won:
-		sub_title_label.text = subtitle_ideas.pick_random()
-	else:
-		sub_title_label.text = subtitle_ideas[index]
+	var subtitles_unique := GameState.get_subtitles_unique()
+	
+	if not game_won:
+		sub_title_label.text = main_subtitle
+		return
+	
+	if subtitles_unique.is_empty():
+		subtitles_unique = subtitles.duplicate()
+	
+	subtitles_unique.shuffle()
+	var sub = subtitles_unique.pop_front()
+	
+	sub_title_label.text = sub
+	
+	GameState.set_subtitles_unique(subtitles_unique)
+
 
 
 func load_game_scene() -> void:
@@ -121,3 +133,7 @@ func _on_level_select_button_pressed() -> void:
 func _on_new_game_confirmation_confirmed() -> void:
 	GameState.reset()
 	load_game_scene()
+
+
+func _on_new_subtitle_pressed() -> void:
+	set_subtitle_text()

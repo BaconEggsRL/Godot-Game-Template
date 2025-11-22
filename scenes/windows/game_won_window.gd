@@ -5,6 +5,9 @@ signal continue_pressed
 signal main_menu_pressed
 
 func _ready():
+	print("game won")
+	GameState.set_game_won(true)
+	
 	if OS.has_feature("web"):
 		%ExitButton.hide()
 

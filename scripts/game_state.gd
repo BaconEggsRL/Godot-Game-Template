@@ -13,6 +13,22 @@ const FILE_PATH = "res://scripts/game_state.gd"
 
 @export var game_won : bool
 
+@export var subtitles_unique:Array[String]
+
+
+static func set_subtitles_unique(subtitles : Array[String]) -> void:
+	var game_state := get_or_create_state()
+	game_state.subtitles_unique = subtitles.duplicate()
+	GlobalState.save()
+
+static func get_subtitles_unique() -> Array[String]:
+	if not has_game_state(): 
+		return []
+	var game_state := get_or_create_state()
+	return game_state.subtitles_unique
+
+
+
 static func set_game_won(_game_won : bool) -> void:
 	var game_state := get_or_create_state()
 	game_state.game_won = _game_won
