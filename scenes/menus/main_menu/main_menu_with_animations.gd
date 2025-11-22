@@ -29,13 +29,13 @@ var subtitles:Array[String] = [
 	"CHILL BEATS TO RELAX/STUDY TO",
 	"DARK ACADEMIA UWU BLOB",
 	"STAR-CROSSED LOVERS",
-	"SUBTITLE SIMULATOR"
+	"SUBTITLE SIMULATOR",
 	
-	# "BLINDING LIGHTS",
-	# "POGO POWER",
-	# "CIRCLE PARKOUR",
-	# "UMBRELLA PLATFORMER",
-	# "LOFI VIBES",
+	"BLINDING LIGHTS",
+	"POGO POWER",
+	"CIRCLE PARKOUR",
+	"UMBRELLA PLATFORMER",
+	"LOFI VIBES",
 	
 	# "My Childhood Friend Still Loves This Idol I Like, \nAnd Now She Is A Serial Killer!",
 	#"dark academia uwu blob",
