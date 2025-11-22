@@ -39,9 +39,13 @@ func select_level_index(index:int) -> void:
 	
 	last_selected = index
 	level_buttons_container.select(index, true)
-	play_button.disabled = false
+
+	if last_selected == -1:
+		play_button.disabled = true
+	else:
+		play_button.disabled = false
 	
-	AudioManager.play_sound("tab_press", -6.0, 1.0, true)
+	# AudioManager.play_sound("tab_press", -6.0, 1.0, true)
 	time_since_last_press = 0.0
 	
 	# --- KEEP SELECTED ITEM VISIBLE ---
@@ -161,15 +165,11 @@ func _on_level_buttons_container_item_clicked(index: int, _pos: Vector2, mouse_b
 	if mouse_button_index == MOUSE_BUTTON_WHEEL_UP or mouse_button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		return
 
-	print("last_selected = %d, clicked_index = %d" % [last_selected, index])
+	# print("last_selected = %d, clicked_index = %d" % [last_selected, index])
 	if last_selected == index:
 		start_level(index)
 	else:
-		last_selected = index
-		if last_selected == -1:
-			play_button.disabled = true
-		else:
-			play_button.disabled = false
+		select_level_index(index)
 
 
 
