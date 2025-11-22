@@ -395,6 +395,20 @@ region_rect = Rect2(-0.31306458, 3.397705, 1280.3131, 72.102295)
 [node name="VersionContainer" parent="VersionMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
+[node name="NewSubtitle" parent="." index="9" instance=ExtResource("18_fwab6")]
+custom_minimum_size = Vector2(1280, 160)
+layout_mode = 1
+anchors_preset = 15
+anchor_bottom = 1.0
+offset_bottom = 0.0
+grow_vertical = 2
+
+[node name="MenuContainer" parent="." index="10"]
+mouse_filter = 2
+
+[node name="TitleMargin" parent="MenuContainer" index="0"]
+mouse_filter = 2
+
 [node name="TitleContainer" parent="MenuContainer/TitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 
@@ -420,6 +434,9 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SubTitleMargin" parent="MenuContainer" index="1"]
+mouse_filter = 2
 
 [node name="SubTitleContainer" parent="MenuContainer/SubTitleMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
@@ -472,7 +489,7 @@ texture = ExtResource("10_x5bcm")
 stretch_mode = 5
 flip_h = true
 
-[node name="NewGameConfirmation" parent="." index="10" instance=ExtResource("5_6xh1d")]
+[node name="NewGameConfirmation" parent="." index="11" instance=ExtResource("5_6xh1d")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)
@@ -490,7 +507,7 @@ title = "New Game"
 title_font_size = 0
 title_visible = true
 
-[node name="MouseFilter" type="Control" parent="." index="11"]
+[node name="MouseFilter" type="Control" parent="." index="12"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -500,18 +517,9 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="NewSubtitle" parent="." index="12" instance=ExtResource("18_fwab6")]
-custom_minimum_size = Vector2(1280, 160)
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-offset_right = 64.0
-offset_bottom = 64.0
-grow_horizontal = 1
-
 [node name="falling_leaves" parent="." index="13" instance=ExtResource("8_vsp5b")]
 
+[connection signal="pressed" from="NewSubtitle" to="." method="_on_new_subtitle_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="confirmed" from="NewGameConfirmation" to="." method="_on_new_game_confirmation_confirmed"]
-[connection signal="pressed" from="NewSubtitle" to="." method="_on_new_subtitle_pressed"]
