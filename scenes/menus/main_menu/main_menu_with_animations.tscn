@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene load_steps=33 format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://c6k5nnpbypshi" path="res://addons/maaacks_game_template/base/nodes/menus/main_menu/main_menu.tscn" id="1_sr523"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://cm08i45juumwb" path="res://common/shaders/sway.gdshader" id="6_2k5l7"]
 [ext_resource type="Texture2D" uid="uid://b8ug5q7e168qj" path="res://test/background_cityscape.png" id="6_gwise"]
 [ext_resource type="FontFile" uid="uid://c0gxvcwl4h6di" path="res://common/fonts/Kenney Blocks.ttf" id="7_6xh1d"]
+[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="7_r8ef7"]
 [ext_resource type="Texture2D" uid="uid://bejc7dlq6ehgj" path="res://common/sprites/grass_blade.png" id="7_vsp5b"]
 [ext_resource type="Shader" uid="uid://cguowh7gu3qik" path="res://common/shaders/text_wave.gdshader" id="7_xkrf4"]
 [ext_resource type="Theme" uid="uid://2qh3aix7i37a" path="res://resources/themes/gravity.tres" id="8_dhrx6"]
@@ -367,7 +368,9 @@ parameters/conditions/intro_done = false
 [node name="BackgroundTextureRect" parent="." index="5"]
 texture = ExtResource("6_gwise")
 
-[node name="sway_shader_example" type="Node2D" parent="." index="6"]
+[node name="Background" parent="." index="6" instance=ExtResource("7_r8ef7")]
+
+[node name="sway_shader_example" type="Node2D" parent="." index="7"]
 
 [node name="Sprite2D" type="Sprite2D" parent="sway_shader_example" index="0"]
 texture_repeat = 2
@@ -465,7 +468,7 @@ texture = ExtResource("10_x5bcm")
 stretch_mode = 5
 flip_h = true
 
-[node name="NewGameConfirmation" parent="." index="9" instance=ExtResource("5_6xh1d")]
+[node name="NewGameConfirmation" parent="." index="10" instance=ExtResource("5_6xh1d")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)
@@ -483,7 +486,7 @@ title = "New Game"
 title_font_size = 0
 title_visible = true
 
-[node name="MouseFilter" type="Control" parent="." index="10"]
+[node name="MouseFilter" type="Control" parent="." index="11"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -493,7 +496,7 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="falling_leaves" parent="." index="11" instance=ExtResource("8_vsp5b")]
+[node name="falling_leaves" parent="." index="12" instance=ExtResource("8_vsp5b")]
 
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]

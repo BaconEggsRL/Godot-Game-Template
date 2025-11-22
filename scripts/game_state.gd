@@ -11,6 +11,21 @@ const FILE_PATH = "res://scripts/game_state.gd"
 @export var play_time : int
 @export var total_time : int
 
+@export var game_won : bool
+
+static func set_game_won(_game_won : bool) -> void:
+	var game_state := get_or_create_state()
+	game_state.game_won = _game_won
+	GlobalState.save()
+
+static func get_game_won() -> bool:
+	if not has_game_state(): 
+		return false
+	var game_state := get_or_create_state()
+	return game_state.game_won
+
+
+
 static func get_level_state(level_state_key : String) -> LevelState:
 	if not has_game_state(): 
 		return
@@ -71,4 +86,5 @@ static func reset() -> void:
 	game_state.continue_level_path = ""
 	game_state.play_time = 0
 	game_state.total_time = 0
+	game_state.game_won = false
 	GlobalState.save()

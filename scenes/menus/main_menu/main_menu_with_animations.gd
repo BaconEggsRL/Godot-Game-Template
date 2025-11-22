@@ -14,6 +14,46 @@ var animation_state_machine : AnimationNodeStateMachinePlayback
 @onready var level_select_button = %LevelSelectButton
 @onready var new_game_confirmation = %NewGameConfirmation
 
+@onready var sub_title_label: Label = $MenuContainer/SubTitleMargin/SubTitleContainer/SubTitleLabel
+
+
+var subtitle_ideas = [
+	"DECAYING LIGHTS",
+	####################
+	"BLINDING LIGHTS",
+	"FEATURING LIGHT-DRIVEN ANXIETY",
+	
+	"CITY BLOB LIFE",
+	"NOW WITH RAIN",
+	
+	"WHY ARE THERE SPIKES EVERYWHERE?",
+	"POGO POWER",
+	
+	"CIRCLE PARKOUR",
+	"UMBRELLA PLATFORMER",
+
+	"LOFI VIBES",
+	"CHILL BEATS TO RELAX/STUDY TO",
+	
+	"DARK ACADEMIA UWU BLOB",
+	"STAR-CROSSED LOVERS",
+	
+	# "My Childhood Friend Still Loves This Idol I Like, \nAnd Now She Is A Serial Killer!",
+	#"dark academia uwu blob",
+	#"My corpo blob get fried by lights",
+	#"Corpo blob gets blinded by nightlights",
+	#"corpo blob fears batman",
+	#"star-crossed lovers",
+]
+
+func set_subtitle_text(index:int = 0) -> void:
+	var game_won := GameState.get_game_won()
+	if game_won:
+		sub_title_label.text = subtitle_ideas.pick_random()
+	else:
+		sub_title_label.text = subtitle_ideas[index]
+
+
 func load_game_scene() -> void:
 	GameState.start_game()
 	super.load_game_scene()
@@ -65,6 +105,7 @@ func _ready() -> void:
 	_show_level_select_if_set()
 	_show_continue_if_set()
 	animation_state_machine = $MenuAnimationTree.get("parameters/playback")
+	set_subtitle_text()
 
 func _on_continue_game_button_pressed() -> void:
 	GameState.continue_game()

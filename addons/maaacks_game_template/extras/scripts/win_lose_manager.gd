@@ -60,4 +60,5 @@ func game_lost() -> void:
 	_load_lose_screen_or_reload()
 
 func game_won() -> void:
+	GameState.set_game_won(true)
 	_load_win_screen_or_ending()
