@@ -25,9 +25,7 @@ var subtitles:Array[String] = [
 	"FEATURING LIGHT-DRIVEN ANXIETY",
 	"CITY BLOB LIFE",
 	"NOW WITH RAIN",
-	# "WHY ARE THERE SPIKES EVERYWHERE?",
-	# "SPIKES EVERYWHERE",
-	# "CRITICS SAY: TOO MANY SPIKES",
+	
 	"TOO MANY SPIKES, OR NOT ENOUGH?",
 	
 	"CHILL BEATS TO RELAX/STUDY TO",
@@ -45,7 +43,8 @@ var subtitles:Array[String] = [
 	
 	"BATMAN NOT INCLUDED",
 	"FRIDAY NIGHT LIGHTS",
-	"SHADOWS AT WORK"
+	"SHADOWS AT WORK",
+	
 	
 	# "NIGHT LIFE",
 	# "LIGHTS OUT",
@@ -54,6 +53,10 @@ var subtitles:Array[String] = [
 	# "CIRCLE PARKOUR",
 	# "UMBRELLA PLATFORMER",
 	# "LOFI VIBES",
+	
+	# "WHY ARE THERE SPIKES EVERYWHERE?",
+	# "SPIKES EVERYWHERE",
+	# "CRITICS SAY: TOO MANY SPIKES",
 ]
 
 
@@ -65,17 +68,25 @@ func set_subtitle_text() -> void:
 		sub_title_label.text = main_subtitle
 		return
 	
-	if subtitles_unique.is_empty():
-		print("new")
-		subtitles_unique = subtitles.duplicate()
+	var sub:String
 	
-	subtitles_unique.shuffle()
-	var sub = subtitles_unique.pop_front()
+	if subtitles_unique.is_empty():
+		# print("new")
+		subtitles_unique = subtitles.duplicate()
+	elif subtitles_unique.size() == 1:
+		# print("new pop 1")
+		sub = subtitles_unique.pop_front()
+		subtitles_unique = subtitles.duplicate()
+		var i = subtitles_unique.find(sub)
+		subtitles_unique.pop_at(i)
+	else:
+		subtitles_unique.shuffle()
+		sub = subtitles_unique.pop_front()
 	
 	sub_title_label.text = sub
 	
 	GameState.set_subtitles_unique(subtitles_unique)
-	print(subtitles_unique)
+	# print(subtitles_unique)
 
 
 
