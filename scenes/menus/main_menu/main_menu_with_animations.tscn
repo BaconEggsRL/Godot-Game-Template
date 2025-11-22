@@ -345,6 +345,7 @@ options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -47,17 +47,17 @@ position = Vector2(94, 469)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -207.0
-offset_top = -64.5
-offset_right = 207.0
-offset_bottom = 64.5
+anchor_bottom = 1.0
+offset_left = -625.0
+offset_top = -629.0
+offset_right = -211.0
+offset_bottom = -500.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 text = "UMBRELLA DECAYS
 WITH EACH USE
 "
@@ -66,11 +66,11 @@ vertical_alignment = 2
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 456.00003
-offset_top = 320.00003
-offset_right = 756.65796
-offset_bottom = 350.00003
-rotation = -2.3561945
-text = "--------------->"
+offset_left = 17.0
+offset_top = 159.0
+offset_right = 89.0
+offset_bottom = 189.0
+rotation = -1.5707964
+text = "--->"
 
 [connection signal="reached_star" from="level/star" to="." method="_on_star_reached_star"]

@@ -32,7 +32,8 @@ var active_sounds: Dictionary[String, Array] = {}  # key: name of sound, value: 
 var polyphonic_player: AudioStreamPlayer
 
 
-
+func sfx_check() -> void:
+	play_sound("sfx_check", 0.0, 3.0, true)
 
 func _ready() -> void:
 	# sound test
