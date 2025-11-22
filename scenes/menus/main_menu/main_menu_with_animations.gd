@@ -25,24 +25,35 @@ var subtitles:Array[String] = [
 	"FEATURING LIGHT-DRIVEN ANXIETY",
 	"CITY BLOB LIFE",
 	"NOW WITH RAIN",
-	"WHY ARE THERE SPIKES EVERYWHERE?",
+	# "WHY ARE THERE SPIKES EVERYWHERE?",
+	# "SPIKES EVERYWHERE",
+	# "CRITICS SAY: TOO MANY SPIKES",
+	"TOO MANY SPIKES, OR NOT ENOUGH?",
+	
 	"CHILL BEATS TO RELAX/STUDY TO",
-	"DARK ACADEMIA UWU BLOB",
+	"DARK ACADEMIA LITE",
 	"STAR-CROSSED LOVERS",
-	"SUBTITLE SIMULATOR",
 	
-	"BLINDING LIGHTS",
-	"POGO POWER",
-	"CIRCLE PARKOUR",
-	"UMBRELLA PLATFORMER",
-	"LOFI VIBES",
+	"EMOTIONAL SUPPORT UMBRELLA",
 	
-	# "My Childhood Friend Still Loves This Idol I Like, \nAnd Now She Is A Serial Killer!",
-	#"dark academia uwu blob",
-	#"My corpo blob get fried by lights",
-	#"Corpo blob gets blinded by nightlights",
-	#"corpo blob fears batman",
-	#"star-crossed lovers",
+	"BEST PLAYED WITH WARM TEA",
+	"SOFT BLOB HOURS",
+	"PHYSICS ARE DOING THEIR BEST",
+	
+	"CODE WRITTEN AT 3AM",
+	"DECAYING SINCE 1999",
+	
+	"BATMAN NOT INCLUDED",
+	"FRIDAY NIGHT LIGHTS",
+	"SHADOWS AT WORK"
+	
+	# "NIGHT LIFE",
+	# "LIGHTS OUT",
+	# "BLINDING LIGHTS",
+	# "POGO POWER",
+	# "CIRCLE PARKOUR",
+	# "UMBRELLA PLATFORMER",
+	# "LOFI VIBES",
 ]
 
 
@@ -55,6 +66,7 @@ func set_subtitle_text() -> void:
 		return
 	
 	if subtitles_unique.is_empty():
+		print("new")
 		subtitles_unique = subtitles.duplicate()
 	
 	subtitles_unique.shuffle()
@@ -63,6 +75,7 @@ func set_subtitle_text() -> void:
 	sub_title_label.text = sub
 	
 	GameState.set_subtitles_unique(subtitles_unique)
+	print(subtitles_unique)
 
 
 

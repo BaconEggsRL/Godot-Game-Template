@@ -27,3 +27,6 @@ Exports/
 
 # Plugin specific
 addons/script-ide/*
+
+# Release folders
+_release/
