@@ -8,6 +8,9 @@ extends Control
 signal level_selected
 signal close
 
+@onready var control_marker: Control = $Control/SmoothScrollContainer/LevelButtonsContainer/ControlMarker
+@onready var marker_height:float = control_marker.size.y
+
 @onready var level_buttons_container: ItemList = %LevelButtonsContainer
 @onready var scene_lister: SceneLister = $SceneLister
 var level_paths : Array[String]
@@ -27,6 +30,14 @@ const HOLD_REPEAT := 0.06      # repeat speed while holding
 var first_move:bool = false
 var time_since_last_press:float = 0.0
 
+
+
+
+func move_control_marker(index:int) -> void:
+	# var starting_y = self.position.y
+	var target_y = index * marker_height
+	control_marker.position.y = target_y
+	pass
 
 
 func select_level_index(index:int, play_sound:bool=true) -> void:
@@ -51,6 +62,10 @@ func select_level_index(index:int, play_sound:bool=true) -> void:
 	time_since_last_press = 0.0
 	
 	# --- KEEP SELECTED ITEM VISIBLE ---
+	move_control_marker(index)
+	# scroll_container.ensure_control_visible_custom(level_buttons_container)
+
+	# level_buttons_container.ensure_current_is_visible()
 	# scroll_container.ensure_control_visible(child_node)
 	# var v_scroll = scroll_container.get_v_scroll_bar()
 	# v_scroll.set_value_no_signal(0.5)
