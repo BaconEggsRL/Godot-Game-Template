@@ -54,8 +54,10 @@ func select_level_index(index:int, play_sound:bool=true) -> void:
 
 	if last_selected == -1:
 		play_button.disabled = true
+		control_marker.hide()
 	else:
 		play_button.disabled = false
+		control_marker.show()
 	
 	if play_sound:
 		AudioManager.play_sound("tab_press", -6.0, 1.0, true)
@@ -168,6 +170,7 @@ func reset_selection():
 	last_selected = -1
 	level_buttons_container.deselect_all()
 	play_button.disabled = true
+	control_marker.hide()
 
 
 func start_level(index:int) -> void:

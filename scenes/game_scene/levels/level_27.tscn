@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=4 uid="uid://q1bh4o5yrfkj"]
+
+[ext_resource type="Script" uid="uid://qi4qdfy4cte8" path="res://scenes/game_scene/levels/level.gd" id="1_chejx"]
+[ext_resource type="PackedScene" uid="uid://ctbc6hpsnkoa4" path="res://test/background.tscn" id="2_dv5ks"]
+[ext_resource type="Script" uid="uid://bll85ag2um7hl" path="res://scenes/game_scene/tutorial_manager.gd" id="3_7jm73"]
+[ext_resource type="PackedScene" uid="uid://cw4bg78kfa3kc" path="res://test/level_ui.tscn" id="4_sfd1r"]
+[ext_resource type="TileSet" uid="uid://o12s6a4rq25n" path="res://tilemap/tileset.tres" id="5_2vjcc"]
+[ext_resource type="PackedScene" uid="uid://7xhi2yt0p7ws" path="res://test/level_border.tscn" id="6_7eig3"]
+[ext_resource type="PackedScene" uid="uid://blf6u2qahxm37" path="res://test/crumble_wall.tscn" id="9_5ay36"]
+[ext_resource type="PackedScene" uid="uid://b1s01n0ftfyfr" path="res://test/physics_button.tscn" id="10_0u66e"]
+[ext_resource type="PackedScene" uid="uid://d1chtl3gl1ip7" path="res://test/wind.tscn" id="11_chejx"]
+[ext_resource type="PackedScene" uid="uid://dpra7angkhxrq" path="res://test/static_reflector.tscn" id="11_kr2t8"]
+[ext_resource type="PackedScene" uid="uid://7tnkng0latb0" path="res://test/trap_door.tscn" id="12_dv5ks"]
+[ext_resource type="PackedScene" uid="uid://b0f65tju21ps5" path="res://test/star.tscn" id="12_eneau"]
+[ext_resource type="PackedScene" uid="uid://uv2ebpfkt3i6" path="res://test/player_umbrella.tscn" id="13_64x8a"]
+[ext_resource type="PackedScene" uid="uid://omj4w5foosv6" path="res://test/beam.tscn" id="14_vy30c"]
+
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_chejx")
+metadata/_edit_lock_ = true
+
+[node name="Background" parent="." instance=ExtResource("2_dv5ks")]
+
+[node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_7jm73")
+
+[node name="LevelUI" parent="." instance=ExtResource("4_sfd1r")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAABEAAAAAAAAAAAAAABIAAAAAAAAAAAABABEAAAAAAAAAAAABABIAAAAAAAAAAAACABEAAAAAAAAAAAACABIAAAAAAAAAAAADABEAAAAAAAAAAAADABIAAAAAAAAAAAAEABEAAAAAAAAAAAAEABIAAAAAAAAAAAAFABEAAAAAAAAAAAAFABIAAAAAAAAAAAAGABEAAAAAAAAAAAAGABIAAAAAAAAAAAAHABEAAAAAAAAAAAAHABIAAAAAAAAAAAAIABEAAAAAAAAAAAAIABIAAAAAAAAAAAAJABEAAAABAAEAAQAJABIAAAAAAAAAAAAPABEAAAABAAEAAAAPABIAAAAAAAAAAAAQABEAAAAAAAAAAAAQABIAAAAAAAAAAAARABEAAAAAAAAAAAARABIAAAAAAAAAAAASABEAAAAAAAAAAAASABIAAAAAAAAAAAATABEAAAAAAAAAAAATABIAAAAAAAAAAAAUABEAAAAAAAAAAAAUABIAAAAAAAAAAAAVABEAAAAAAAAAAAAVABIAAAAAAAAAAAAkABEAAAAAAAAAAAAkABIAAAAAAAAAAAAlABEAAAAAAAAAAAAlABIAAAAAAAAAAAAmABEAAAAAAAAAAAAmABIAAAAAAAAAAAAnABEAAAAAAAAAAAAnABIAAAAAAAAAAAAIABMAAAAAAAAAAAAIABQAAAAAAAAAAAAIABUAAAAAAAAAAAAIABYAAAAAAAAAAAAJABMAAAAAAAAAAAAJABQAAAAAAAAAAAAJABUAAAAAAAAAAAAJABYAAAAAAAAAAAAPABMAAAAAAAAAAAAPABQAAAAAAAAAAAAPABUAAAAAAAAAAAAPABYAAAAAAAAAAAAQABMAAAAAAAAAAAAQABQAAAAAAAAAAAAQABUAAAAAAAAAAAAQABYAAAAAAAAAAAAAABMAAAAAAAAAAAAAABQAAAAAAAAAAAAAABUAAAAAAAAAAAAAABYAAAAAAAAAAAABABMAAAAAAAAAAAABABQAAAAAAAAAAAABABUAAAAAAAAAAAABABYAAAAAAAAAAAACABMAAAAAAAAAAAACABQAAAAAAAAAAAACABUAAAAAAAAAAAACABYAAAAAAAAAAAADABMAAAAAAAAAAAADABQAAAAAAAAAAAADABUAAAAAAAAAAAADABYAAAAAAAAAAAAEABMAAAAAAAAAAAAEABQAAAAAAAAAAAAEABUAAAAAAAAAAAAEABYAAAAAAAAAAAAFABMAAAAAAAAAAAAFABQAAAAAAAAAAAAFABUAAAAAAAAAAAAFABYAAAAAAAAAAAAGABMAAAAAAAAAAAAGABQAAAAAAAAAAAAGABUAAAAAAAAAAAAGABYAAAAAAAAAAAAHABMAAAAAAAAAAAAHABQAAAAAAAAAAAAHABUAAAAAAAAAAAAHABYAAAAAAAAAAAARABMAAAAAAAAAAAARABQAAAAAAAAAAAARABUAAAAAAAAAAAARABYAAAAAAAAAAAASABMAAAAAAAAAAAASABQAAAAAAAAAAAASABUAAAAAAAAAAAASABYAAAAAAAAAAAATABMAAAAAAAAAAAATABQAAAAAAAAAAAATABUAAAAAAAAAAAATABYAAAAAAAAAAAAUABMAAAAAAAAAAAAUABQAAAAAAAAAAAAUABUAAAAAAAAAAAAUABYAAAAAAAAAAAAVABMAAAAAAAAAAAAVABQAAAAAAAAAAAAVABUAAAAAAAAAAAAVABYAAAAAAAAAAAAWABUAAAAAAAAAAAAWABYAAAAAAAAAAAAXABUAAAAAAAAAAAAXABYAAAAAAAAAAAAYABUAAAAAAAAAAAAYABYAAAAAAAAAAAAZABUAAAAAAAAAAAAZABYAAAAAAAAAAAAaABYAAAAAAAAAAAAbABYAAAAAAAAAAAAcABYAAAAAAAAAAAAdABYAAAAAAAAAAAAeABYAAAAAAAAAAAAfABMAAAAAAAAAAAAfABQAAAAAAAAAAAAfABUAAAAAAAAAAAAfABYAAAAAAAAAAAAgABMAAAAAAAAAAAAgABQAAAAAAAAAAAAgABUAAAAAAAAAAAAgABYAAAAAAAAAAAAhABMAAAAAAAAAAAAhABQAAAAAAAAAAAAhABUAAAAAAAAAAAAhABYAAAAAAAAAAAAiABMAAAAAAAAAAAAiABQAAAAAAAAAAAAiABUAAAAAAAAAAAAiABYAAAAAAAAAAAAjABMAAAAAAAAAAAAjABQAAAAAAAAAAAAjABUAAAAAAAAAAAAjABYAAAAAAAAAAAAkABMAAAAAAAAAAAAkABQAAAAAAAAAAAAkABUAAAAAAAAAAAAkABYAAAAAAAAAAAAlABMAAAAAAAAAAAAlABQAAAAAAAAAAAAlABUAAAAAAAAAAAAlABYAAAAAAAAAAAAmABMAAAAAAAAAAAAmABQAAAAAAAAAAAAmABUAAAAAAAAAAAAmABYAAAAAAAAAAAAnABMAAAAAAAAAAAAnABQAAAAAAAAAAAAnABUAAAAAAAAAAAAnABYAAAAAAAAAAAAKABYAAAAAAAAAAAALABYAAAAAAAAAAAAMABYAAAAAAAAAAAANABYAAAAAAAAAAAAOABYAAAAAAAAAAAAaAAMAAAAAAAAAAAAEAAMAAAABAAIAAwAEAAgAAAAAAAEAAAAAAAIAAAAAAAEAAAABAAIAAAAAAAEAAAACAAIAAAAAAAEAAAADAAIAAAAAAAEAAAAEAAIAAAAAAAEAAAAiAAwAAAAAAAAAAAAiAAsAAAABAAAAAAAWABEAAAAAAAAAAAAWABIAAAAAAAAAAAAWABMAAAAAAAAAAAAWABQAAAAAAAAAAAAXABEAAAAAAAAAAAAXABIAAAAAAAAAAAAXABMAAAAAAAAAAAAXABQAAAAAAAAAAAAYABEAAAAAAAAAAAAYABIAAAAAAAAAAAAYABMAAAAAAAAAAAAYABQAAAAAAAAAAAAZABEAAAAAAAAAAAAZABIAAAAAAAAAAAAZABMAAAAAAAAAAAAZABQAAAAAAAAAAAAaABEAAAABAAIAAgAeABEAAAABAAIAAwAfABEAAAAAAAAAAAAfABIAAAAAAAAAAAAgABIAAAAAAAAAAAAhABIAAAAAAAAAAAAiABIAAAAAAAAAAAAjABIAAAAAAAAAAAAgABEAAAAAAAAAAAAhABEAAAAAAAAAAAAiABEAAAAAAAAAAAAjABEAAAAAAAAAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAAIAAMAAAAAAAEAAAAFAAgAAAAAAAEAAAAGAAgAAAAAAAEAAAAHAAgAAAAAAAEAAAAIAAgAAAABAAIAAgAIAAQAAAABAAIAAwAFAAIAAAABAAIAAQA=")
+tile_set = ExtResource("5_2vjcc")
+rendering_quadrant_size = 32
+physics_quadrant_size = 32
+
+[node name="level" type="Node2D" parent="."]
+
+[node name="level_border" parent="level" instance=ExtResource("6_7eig3")]
+
+[node name="top" parent="level" instance=ExtResource("11_kr2t8")]
+position = Vector2(640, 8)
+scale = Vector2(0.5, 0.5)
+
+[node name="left" parent="level" instance=ExtResource("11_kr2t8")]
+position = Vector2(220, 205)
+rotation = -1.3089969
+scale = Vector2(0.5, 0.5)
+can_rotate = true
+
+[node name="right" parent="level" instance=ExtResource("11_kr2t8")]
+position = Vector2(1060, 205)
+rotation = 1.3089969
+scale = Vector2(0.5, 0.5)
+
+[node name="bottom_right" parent="level" instance=ExtResource("11_kr2t8")]
+position = Vector2(946.00006, 628.00006)
+rotation = 2.3561945
+scale = Vector2(0.49999997, 0.49999997)
+
+[node name="crumble_wall" parent="level" instance=ExtResource("9_5ay36")]
+position = Vector2(400, 592)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+shadow_dps = 10.0
+
+[node name="trap_LL" parent="level" instance=ExtResource("12_dv5ks")]
+position = Vector2(288, 208)
+rotation = 1.5707964
+
+[node name="trap_RL" parent="level" instance=ExtResource("12_dv5ks")]
+position = Vector2(912, 544)
+
+[node name="wind" parent="level" instance=ExtResource("11_chejx")]
+position = Vector2(68, 275)
+
+[node name="PhysicsButton" parent="level" node_paths=PackedStringArray("door_toggle") instance=ExtResource("10_0u66e")]
+position = Vector2(848, 92)
+is_one_shot = true
+door_toggle = NodePath("../trap_RL")
+
+[node name="PhysicsButton2" parent="level" node_paths=PackedStringArray("wind_toggle", "door_toggle") instance=ExtResource("10_0u66e")]
+position = Vector2(66, 100)
+rotation = 3.1415927
+is_one_shot = true
+wind_toggle = NodePath("../wind")
+door_toggle = NodePath("../trap_LL")
+
+[node name="PhysicsButton3" parent="level" node_paths=PackedStringArray("door_toggle") instance=ExtResource("10_0u66e")]
+position = Vector2(848, 700)
+is_one_shot = true
+door_toggle = NodePath("../trap_door")
+
+[node name="beam" parent="level" instance=ExtResource("14_vy30c")]
+position = Vector2(321, 543)
+rotation = 0.5235988
+active = true
+
+[node name="trap_door" parent="level" instance=ExtResource("12_dv5ks")]
+position = Vector2(64, 280)
+scale = Vector2(1.33, 1)
+
+[node name="star" parent="." instance=ExtResource("12_eneau")]
+position = Vector2(401, 657)
+
+[node name="player_umbrella" parent="." instance=ExtResource("13_64x8a")]
+position = Vector2(652, 504)
+
+[connection signal="reached_star" from="star" to="." method="_on_star_reached_star"]

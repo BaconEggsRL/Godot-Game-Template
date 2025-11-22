@@ -7,8 +7,8 @@ class_name SceneLister
 @export_dir var directory : String = "res://scenes/game_scene/levels":
 	set(value):
 		directory = value
-		# if Engine.is_editor_hint():
-		_refresh_files()
+		if Engine.is_editor_hint():
+			_refresh_files()
 
 func _refresh_files() -> void:
 	var dir_access = DirAccess.open(directory)

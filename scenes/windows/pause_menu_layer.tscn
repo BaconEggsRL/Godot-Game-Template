@@ -40,6 +40,7 @@ main_menu_confirmation_node_path = NodePath("../MainMenuConfirmation")
 exit_confirmation_node_path = NodePath("../ExitConfirmation")
 menu_container_node_path = NodePath("..")
 pauses_game = true
+close_on_cancel = true
 update_content = true
 title = "Paused"
 

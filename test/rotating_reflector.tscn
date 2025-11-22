@@ -11,6 +11,7 @@ radius = 164.0
 
 [node name="rotating_reflector" type="Node2D" node_paths=PackedStringArray("wheels")]
 script = ExtResource("1_5ujov")
+rotation_enabled = null
 wheels = NodePath("wheels")
 has_wheels = true
 

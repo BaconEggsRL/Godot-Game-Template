@@ -2,12 +2,14 @@
 class_name RotatingReflector
 extends Node2D
 
-
+@export var rotation_enabled:bool = true
 @export var wheels: Node2D
 
 @export var active:bool = false :
 	set(value):
 		active = value
+		if not beam:
+			return
 		beam.active = active
 
 @export var has_wheels:bool = false :
@@ -59,6 +61,9 @@ func _process(delta):
 	
 	# Do not allow rotation if not inside interact area
 	if not player_inside:
+		return
+	
+	if not rotation_enabled:
 		return
 		
 	# Rotate right

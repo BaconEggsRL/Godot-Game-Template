@@ -397,7 +397,7 @@ modulate = Color(1, 1, 1, 0)
 [node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
 material = SubResource("ShaderMaterial_x5bcm")
 theme_override_fonts/font = ExtResource("7_6xh1d")
-text = "EVERMORE"
+text = "umbra city"
 auto_update = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="1"]
@@ -421,7 +421,7 @@ vertical_alignment = 1
 modulate = Color(1, 1, 1, 0)
 
 [node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" index="0"]
-text = "JOURNEY'S END"
+text = "late night lofi lights"
 
 [node name="MenuButtonsContainer" parent="MenuContainer/MenuButtonsMargin" index="0"]
 modulate = Color(1, 1, 1, 0)

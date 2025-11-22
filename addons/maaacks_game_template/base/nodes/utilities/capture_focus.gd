@@ -96,7 +96,7 @@ func update_focus() -> void:
 	if lock : return
 	if _is_visible_and_should_capture():
 		focus_first()
-	# regian focus after return from menus
+	# regain focus after return from menus
 	if focus_arrows:
 		last_focused.grab_focus()
 

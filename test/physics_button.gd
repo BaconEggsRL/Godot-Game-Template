@@ -21,7 +21,7 @@ var is_pressed:bool = false:
 			return
 		# do button action
 		if wind_toggle:
-			wind_toggle.enabled = is_pressed
+			wind_toggle.enabled = not wind_toggle.enabled
 		if door_toggle:
 			door_toggle.enabled = is_pressed
 		if spotlight_toggle:

@@ -36,6 +36,10 @@ extends Node2D
 @onready var bounce_light_3: PointLight2D = $lights/bounce_light_3
 @onready var bounce_ray_3: RayCast2D = $rays/bounce_ray_3
 
+@onready var bounce_light_4: PointLight2D = $lights/bounce_light_4
+@onready var bounce_ray_4: RayCast2D = $rays/bounce_ray_4
+
+
 
 
 
@@ -66,7 +70,12 @@ func _process(_delta):
 		bounce_light_3.hide()
 	if bounce_ray_3:
 		bounce_ray_3.hide()
-		
+	
+	if bounce_light_4:
+		bounce_light_4.hide()
+	if bounce_ray_4:
+		bounce_ray_4.hide()
+	
 	cast_beam(_delta)
 	# _cast_beam(_delta)
 
@@ -211,8 +220,14 @@ func cast_beam(delta):
 	var _reflect_data := get_reflect_data(_hit_data, bounce_ray, bounce_light, delta)
 	var _reflect_data_2 := get_reflect_data(_reflect_data, bounce_ray_2, bounce_light_2, delta)
 	var _reflect_data_3 := get_reflect_data(_reflect_data_2, bounce_ray_3, bounce_light_3, delta)
+	var _reflect_data_4 := get_reflect_data(_reflect_data_3, bounce_ray_4, bounce_light_4, delta)
 
 
+
+
+###############################################################
+# old beam code
+###############################################################
 
 
 func _cast_beam(_delta):

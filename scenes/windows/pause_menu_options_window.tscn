@@ -24,6 +24,7 @@ corner_detail = 1
 process_mode = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_a6sle")
 packed_scene = ExtResource("2_r1t3m")
+close_on_cancel = true
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" index="0"]
 text = "Options"
