@@ -11,6 +11,7 @@ signal close
 @onready var control_marker: Control = $Control/SmoothScrollContainer/LevelButtonsContainer/ControlMarker
 @onready var marker_height:float = control_marker.size.y
 
+
 @onready var level_buttons_container: ItemList = %LevelButtonsContainer
 @onready var scene_lister: SceneLister = $SceneLister
 var level_paths : Array[String]
@@ -63,6 +64,7 @@ func select_level_index(index:int, play_sound:bool=true) -> void:
 	
 	# --- KEEP SELECTED ITEM VISIBLE ---
 	move_control_marker(index)
+	scroll_container.ensure_control_visible_smooth(control_marker)
 	# scroll_container.ensure_control_visible_custom(level_buttons_container)
 
 	# level_buttons_container.ensure_current_is_visible()
