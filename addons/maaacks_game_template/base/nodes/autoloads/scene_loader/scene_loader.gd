@@ -2,6 +2,12 @@ class_name SceneLoaderClass
 extends Node
 ## Autoload class for loading scenes with an optional loading screen.
 
+
+@onready var overlay: ColorRect = $CanvasLayer/Overlay
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+
 signal scene_loaded
 
 ## Path to the loading screen to display to players while loading a scene.
@@ -91,10 +97,23 @@ func _check_loading_screen() -> bool:
 func reload_current_scene() -> void:
 	get_tree().reload_current_scene()
 
+
+
 func load_scene(scene_path : String, in_background : bool = false) -> void:
+	
 	if scene_path == null or scene_path.is_empty():
 		push_error("no path given to load")
 		return
+		
+	## disable mouse clicks during transition
+	#overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	#
+	## play transition
+	## AudioManager.play_fx("scene_transition")
+	#_play_animation("fade_out")
+	#await animation_player.animation_finished
+	
+	
 	_scene_path = scene_path
 	_background_loading = in_background
 	if ResourceLoader.has_cached(_scene_path):
@@ -106,6 +125,41 @@ func load_scene(scene_path : String, in_background : bool = false) -> void:
 	set_process(true)
 	if _check_loading_screen() and not _background_loading:
 		change_scene_to_loading_screen()
+
+
+	#_play_animation("fade_in")
+	#await animation_player.animation_finished
+	## enable mouse clicks after new scene is loaded in
+	## could do this before animation finshes, but it might break aniamtion continuity
+	#overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+
+
+
+func _play_animation(anim_name: String) -> void:
+	if !animation_player.has_animation(anim_name):
+		push_warning("'%s' animation does not exist in SceneManager" % anim_name)
+	else:
+		animation_player.play(anim_name)
+
+
+#
+#func _goto(scene:Resource, custom_data:Dictionary={}, fade_out:String="fade_out", fade_in:String="fade_in") -> void:
+	## disable mouse clicks during transition
+	#overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	## play transition
+	## AudioManager.play_fx("scene_transition")
+	#_play_animation(fade_out)
+	#await animation_player.animation_finished
+	#_load_next_scene(scene, custom_data)
+	#_play_animation(fade_in)
+	#await animation_player.animation_finished
+	## enable mouse clicks after new scene is loaded in
+	## could do this before animation finshes, but it might break aniamtion continuity
+	#overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
 
 func _unhandled_key_input(event : InputEvent) -> void:
 	if event.is_action_pressed(&"ui_paste"):
